@@ -13,6 +13,16 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    
+    //estp es àra gemermar sdfsdfsdf
+    
+    ///sdfsdf /
+    //sdfsdf
+    //sdf/sdf
+    
+    //sdfsdf/
+    ///sdf/////sdf
+            
     public MainFrame() {
         initComponents();
     }
