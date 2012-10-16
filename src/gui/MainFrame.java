@@ -13,6 +13,12 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    /*public Mainframe1(){
+    
+    
+    }
+    
+    */
     public MainFrame() {
         initComponents();
     }
