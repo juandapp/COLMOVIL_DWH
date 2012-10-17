@@ -7,6 +7,7 @@ package gui;
 import controladores.ControladorRetiros;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
@@ -28,6 +29,7 @@ public class panelRetiros extends javax.swing.JPanel {
         this.main = main;
         controladorRetiros = new ControladorRetiros();
         initComponents();
+        imagen.setIcon(new ImageIcon("imagenes/retiros.jpg"));
     }
 
     /**
@@ -40,31 +42,148 @@ public class panelRetiros extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanelMenu = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanelGrafica = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        imagen = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanelMenu.setLayout(new javax.swing.BoxLayout(jPanelMenu, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanelMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, null, null));
 
-        jButton1.setText("Causa");
+        jButton3.setText("Inicio");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Pie");
+        jButton1.setPreferredSize(new java.awt.Dimension(60, 30));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanelMenu.add(jButton1);
 
-        jButton2.setText("Consulta");
+        jButton2.setText("Bar");
+        jButton2.setPreferredSize(new java.awt.Dimension(60, 30));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanelMenu.add(jButton2);
+
+        jLabel2.setText("Dimension");
+
+        jLabel3.setText("Atributo");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Atributo");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Pie");
+        jButton4.setPreferredSize(new java.awt.Dimension(60, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Bar");
+        jButton5.setPreferredSize(new java.awt.Dimension(60, 30));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
+        jPanelMenu.setLayout(jPanelMenuLayout);
+        jPanelMenuLayout.setHorizontalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator4)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelMenuLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator3)
+                    .addGroup(jPanelMenuLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(1, 1, 1))
+        );
+        jPanelMenuLayout.setVerticalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
 
         add(jPanelMenu, java.awt.BorderLayout.WEST);
 
@@ -72,25 +191,16 @@ public class panelRetiros extends javax.swing.JPanel {
         jPanelGrafica.setLayout(new java.awt.CardLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setText("Imagen");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jPanel1.add(imagen, java.awt.BorderLayout.CENTER);
 
         jPanelGrafica.add(jPanel1, "imagen");
 
         add(jPanelGrafica, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String[][] matrizCausas = controladorRetiros.reporteCausa();
-        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
-        jPanelPie = pieChart.getChartPanel();
-        jPanelGrafica.add(jPanelPie, "jPanelPie");
-        CardLayout cl = (CardLayout)(jPanelGrafica.getLayout());
-       cl.show(jPanelGrafica, (String)"jPanelPie");
-       main.pack();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
@@ -99,17 +209,54 @@ public class panelRetiros extends javax.swing.JPanel {
         jPanelBar = barChart.getChartPanel();
         jPanelGrafica.add(jPanelBar, "jPanelBar");
         CardLayout cl = (CardLayout)(jPanelGrafica.getLayout());
-       cl.show(jPanelGrafica, (String)"jPanelBar");
-       main.pack();
-
+        cl.show(jPanelGrafica, (String)"jPanelBar");
+        main.pack();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String[][] matrizCausas = controladorRetiros.reporteCausa();
+        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
+        jPanelPie = pieChart.getChartPanel();
+        jPanelGrafica.add(jPanelPie, "jPanelPie");
+        CardLayout cl = (CardLayout)(jPanelGrafica.getLayout());
+        cl.show(jPanelGrafica, (String)"jPanelPie");
+        main.pack();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelGrafica;
     private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
 }
