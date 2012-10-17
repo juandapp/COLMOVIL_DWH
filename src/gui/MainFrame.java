@@ -60,10 +60,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Consumos");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 60));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Contrataciones");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 60));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
