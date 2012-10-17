@@ -12,13 +12,14 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
  * @author gustavo
  */
 public class MainFrame extends javax.swing.JFrame {
+
     private final ControladorRetiros controladorRetiros;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
-        controladorRetiros= new ControladorRetiros();
+        controladorRetiros = new ControladorRetiros();
         initComponents();
     }
 
@@ -92,20 +93,27 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSaliActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String[][] matrizCausas=controladorRetiros.reporteCausa();
-        PieChart pieChart=new PieChart("Retiros y Causas", matrizCausas);
-        jPanelGrafica= pieChart.getChartPanel();
-           //jPanelGrafica.setLayout(null);
+
+        String[][] matrizCausas = controladorRetiros.reporteCausa();
+        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
+        jPanelGrafica = pieChart.getChartPanel();
         getContentPane().add(jPanelGrafica);
-       jPanelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
+        jPanelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
         getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
         this.pack();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
+        String[][] matrizCausas = controladorRetiros.reporteCausaEstrato();
+        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+        jPanelGrafica = barChart.getChartPanel();
+        getContentPane().add(jPanelGrafica);
+        jPanelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
+        getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
+        this.pack();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -118,7 +126,7 @@ public class MainFrame extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
