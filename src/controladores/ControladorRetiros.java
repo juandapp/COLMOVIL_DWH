@@ -7,6 +7,7 @@ package controladores;
 import accesoDatos.FachadaBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +22,61 @@ public class ControladorRetiros {
     public ControladorRetiros() {
 
         fachadaBD = new FachadaBD();
+    }
+
+    public String[] getDimensiones() {
+
+        String[] dimensiones = new String[6];
+
+        dimensiones[0] = "OficinaDWH";
+        dimensiones[1] = "ClienteDWH";
+        dimensiones[2] = "Demografia_Cliente";
+        dimensiones[3] = "PlanVoz";
+        dimensiones[4] = "PlanDatos";
+        dimensiones[5] = "Fecha";
+
+        return dimensiones;
+    }
+
+    public String[] getAtributosInteresantes(String dimension) {
+        try {
+            String consulta = "DESC " + dimension;
+            ResultSet tabla = fachadaBD.executeQuery(consulta);
+
+            tabla.next();
+
+            ArrayList<String> atributos = new ArrayList<>();
+
+            while (tabla.next()) {
+                String atributo = tabla.getString(1);
+                if (esIntesante(atributo, dimension)) {
+                    atributos.add(atributo);
+                }
+            }
+
+            String[] dimensiones = new String[atributos.size()];
+            
+            for (int i = 0; i < dimensiones.length; i++) {
+                dimensiones[i]=atributos.get(i);
+            }
+            return dimensiones;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    private boolean esIntesante(String atributo, String dimension) throws SQLException {
+            String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
+            ResultSet tabla = fachadaBD.executeQuery(consulta);
+
+            tabla.next();
+            int value = Integer.parseInt(tabla.getString(1));
+            
+            if (value<33) {
+               return true;
+            }
+            return false;
     }
 
     public String[][] reporteCausa() {
