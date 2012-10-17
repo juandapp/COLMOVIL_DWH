@@ -16,7 +16,6 @@ public class FachadaBD {
 
     Connection conexion;
     Statement instruccion;
-    ResultSet tabla;
     static String usuario = "root";
     static String password = "";
     static String host = "gustalibreros.no-ip.org";
