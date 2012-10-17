@@ -53,7 +53,10 @@ public class ControladorRetiros {
     public String[][] reporteCausaEstrato() {
 
         try {
-            ResultSet tabla = fachadaBD.executeQuery("SELECT causa, COUNT( causa ) FROM  Retiros GROUP BY causa");
+            ResultSet tabla = fachadaBD.executeQuery("SELECT COUNT( r.causa ), r.causa, d.estrato "
+                    + "FROM Retiros r "
+                    + "INNER JOIN Demografia_Cliente d ON r.cod_Demografia = d.cod_Demografia "
+                    + "GROUP BY r.causa, d.estrato");
 
             tabla.last();
             int numeroFilas = tabla.getRow();
