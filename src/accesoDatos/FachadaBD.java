@@ -58,7 +58,7 @@ public class FachadaBD {
         try {
             conectar();
             ResultSet resultSet = instruccion.executeQuery(sql);
-            cerrarConexion();
+            //cerrarConexion();
             return resultSet;
         } catch (SQLException ex) {
             Logger.getLogger(FachadaBD.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,7 +72,7 @@ public class FachadaBD {
         try {
             conectar();
             int executeUpdate = instruccion.executeUpdate(sql);
-            cerrarConexion();
+            //cerrarConexion();
             return executeUpdate;
         } catch (SQLException ex) {
             Logger.getLogger(FachadaBD.class.getName()).log(Level.SEVERE, null, ex);

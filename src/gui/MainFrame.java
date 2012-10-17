@@ -4,6 +4,7 @@
  */
 package gui;
 
+import controladores.ControladorRetiros;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
@@ -11,11 +12,13 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
  * @author gustavo
  */
 public class MainFrame extends javax.swing.JFrame {
+    private final ControladorRetiros controladorRetiros;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        controladorRetiros= new ControladorRetiros();
         initComponents();
     }
 
@@ -28,15 +31,29 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar1 = new javax.swing.JToolBar();
+        jPanelMenu = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jPanelGrafica = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSali = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jToolBar1.setRollover(true);
+        jButton1.setText("Causa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelMenu.add(jButton1);
+
+        getContentPane().add(jPanelMenu);
+
+        jPanelGrafica.setLayout(null);
+        getContentPane().add(jPanelGrafica);
 
         jMenu1.setText("Archivo");
 
@@ -55,25 +72,25 @@ public class MainFrame extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 454, Short.MAX_VALUE))
-        );
-
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-873)/2, (screenSize.height-562)/2, 873, 562);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemSaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaliActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSaliActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        String[][] matrizCausas=controladorRetiros.reporteCausa();
+        PieChart pieChart=new PieChart("Retiros y Causas", matrizCausas);
+        jPanelGrafica= pieChart.getChartPanel();
+           jPanelGrafica.setLayout(null);
+        getContentPane().add(jPanelGrafica);
+        jPanelGrafica.setBounds(300, 0, 370, 390);
+        jPanelGrafica.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,10 +122,12 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemSali;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JPanel jPanelGrafica;
+    private javax.swing.JPanel jPanelMenu;
     // End of variables declaration//GEN-END:variables
 }
