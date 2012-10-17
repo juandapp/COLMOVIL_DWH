@@ -49,4 +49,32 @@ public class ControladorRetiros {
         }
         return null;
     }
+    
+    public String[][] reporteCausaEstrato() {
+
+        try {
+            ResultSet tabla = fachadaBD.executeQuery("SELECT causa, COUNT( causa ) FROM  Retiros GROUP BY causa");
+
+            tabla.last();
+            int numeroFilas = tabla.getRow();
+            tabla.first();
+            
+            String[][] resultado = new String[numeroFilas][3];
+            
+            int i=0;
+            do {
+                resultado[i][0]=tabla.getString(1);
+                resultado[i][1]=tabla.getString(2);
+                resultado[i][2]=tabla.getString(3);
+                i++;
+            } while (tabla.next());
+
+
+            return resultado;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+        }
+        return null;
+    }
 }
