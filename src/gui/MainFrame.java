@@ -85,10 +85,11 @@ public class MainFrame extends javax.swing.JFrame {
         String[][] matrizCausas=controladorRetiros.reporteCausa();
         PieChart pieChart=new PieChart("Retiros y Causas", matrizCausas);
         jPanelGrafica= pieChart.getChartPanel();
-           jPanelGrafica.setLayout(null);
+           //jPanelGrafica.setLayout(null);
         getContentPane().add(jPanelGrafica);
-        jPanelGrafica.setBounds(300, 0, 370, 390);
+        //jPanelGrafica.setBounds(300, 0, 370, 390);
         jPanelGrafica.setVisible(true);
+        this.pack();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
