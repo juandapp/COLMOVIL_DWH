@@ -80,4 +80,44 @@ public class ControladorRetiros {
         }
         return null;
     }
+    
+    public String[][] reporteUnParametroJoin(String tabla, String parametro){
+       
+        String joinCondition;
+        
+        if (tabla=="Fecha") {
+            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        }
+        
+        if (tabla=="Fecha") {
+            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        }
+        
+        if (tabla=="Fecha") {
+            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        }
+        
+        if (tabla=="Fecha") {
+            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        }
+        
+        if (tabla=="Fecha") {
+            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        }
+        
+        if (tabla=="Fecha") {
+            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        }
+        
+        
+        ResultSet resultado = fachadaBD.executeQuery("SELECT j."+parametro+", COUNT( * ) "
+                 + "FROM Retiros r "
+                 + "INNER JOIN "+tabla+" j ON "+joinCondition+" "
+                 + "GROUP BY f.año");
+        
+        
+        
+        return null;
+        
+    }
 }
