@@ -113,7 +113,7 @@ public class ControladorRetiros {
         ResultSet resultado = fachadaBD.executeQuery("SELECT j."+parametro+", COUNT( * ) "
                  + "FROM Retiros r "
                  + "INNER JOIN "+tabla+" j ON "+joinCondition+" "
-                 + "GROUP BY f.año");
+                 + "GROUP BY j."+parametro);
         
         
         
