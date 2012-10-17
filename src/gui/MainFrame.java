@@ -88,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton9.setText("jButton9");
         menuBotones.add(jButton9);
 
-        panelCards.add(menuBotones, "card2");
+        panelCards.add(menuBotones, "menu");
 
         getContentPane().add(panelCards, java.awt.BorderLayout.CENTER);
 
@@ -167,6 +167,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemSali;
     private javax.swing.JPanel menuBotones;
-    private javax.swing.JPanel panelCards;
+    public javax.swing.JPanel panelCards;
     // End of variables declaration//GEN-END:variables
 }

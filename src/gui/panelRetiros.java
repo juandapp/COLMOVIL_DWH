@@ -18,14 +18,14 @@ import org.jfree.chart.ChartPanel;
  */
 public class panelRetiros extends javax.swing.JPanel {
     private final ControladorRetiros controladorRetiros;
-    private JFrame main;
+    private MainFrame main;
     JPanel jPanelBar;
     JPanel jPanelPie;
 
     /**
      * Creates new form panelRetiros
      */
-    public panelRetiros(JFrame main) {
+    public panelRetiros(MainFrame main) {
         this.main = main;
         controladorRetiros = new ControladorRetiros();
         initComponents();
@@ -225,7 +225,10 @@ public class panelRetiros extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        
+        CardLayout cl = (CardLayout)(main.panelCards.getLayout());
+       cl.show(main.panelCards, (String)"menu");
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
