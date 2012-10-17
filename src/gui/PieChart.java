@@ -18,27 +18,31 @@ import org.jfree.util.Rotation;
  */
 public class PieChart {
 
-    private final PieDataset dataset;
-    private final JFreeChart chart;
-    private final ChartPanel chartPanel;
+    private ChartPanel chartPanel;
+    private String charTitle;
+    private String[][] dataSet;
 
-    public PieChart(String title, String[][] dataSet) {
-
-
-        dataset = createDataset(dataSet);
-
-        // based on the dataset we create the chart
-        chart = createChart(dataset, title);
-
-        // we put the chart into a panel
-        chartPanel = new ChartPanel(chart);
-
+    public PieChart(String charTitle, String[][] dataSet) {
+        this.charTitle = charTitle;
+        this.dataSet = dataSet;
     }
 
+    
+//    public PieChart(String title, String[][] dataSet) {
+//
+//
+//        dataset = createDataset(dataSet);
+//
+//        // based on the dataset we create the chart
+//        chart = createChart(dataset, title);
+//
+//        // we put the chart into a panel
+//        chartPanel = new ChartPanel(chart);
+//
+//    }
+
     private PieDataset createDataset(String[][] dataSet) {
-
         DefaultPieDataset result = new DefaultPieDataset();
-
         for (int i = 0; i < dataSet.length; i++) {
             result.setValue(dataSet[i][0], Integer.parseInt(dataSet[i][1]));
         }
@@ -46,11 +50,11 @@ public class PieChart {
 
     }
 
-    private JFreeChart createChart(PieDataset dataset, String title) {
+    private JFreeChart createChart(PieDataset dataset) {
 
-        JFreeChart chart = ChartFactory.createPieChart3D(title, // chart title
-                dataset, // data
-                true, // include legend
+        JFreeChart chart = ChartFactory.createPieChart3D(charTitle,
+                dataset,
+                true,
                 true,
                 false);
 
@@ -62,11 +66,9 @@ public class PieChart {
     }
 
     public ChartPanel getChartPanel() {
-//        JFrame jframe = new JFrame();
-//        jframe.setContentPane(chartPanel);
-//        jframe.setVisible(true);
-//        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        jframe.pack();
+        PieDataset dataset = createDataset(dataSet);
+        JFreeChart chart = createChart(dataset);
+        chartPanel = new ChartPanel(chart);
         return chartPanel;
     }
 }
