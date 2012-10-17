@@ -31,13 +31,13 @@ public class ControladorRetiros {
             tabla.last();
             int numeroFilas = tabla.getRow();
             tabla.first();
-            
+
             String[][] resultado = new String[numeroFilas][2];
-            
-            int i=0;
+
+            int i = 0;
             do {
-                resultado[i][0]=tabla.getString(1);
-                resultado[i][1]=tabla.getString(2);
+                resultado[i][0] = tabla.getString(1);
+                resultado[i][1] = tabla.getString(2);
                 i++;
             } while (tabla.next());
 
@@ -49,7 +49,7 @@ public class ControladorRetiros {
         }
         return null;
     }
-    
+
     public String[][] reporteCausaEstrato() {
 
         try {
@@ -61,14 +61,14 @@ public class ControladorRetiros {
             tabla.last();
             int numeroFilas = tabla.getRow();
             tabla.first();
-            
+
             String[][] resultado = new String[numeroFilas][3];
-            
-            int i=0;
+
+            int i = 0;
             do {
-                resultado[i][0]=tabla.getString(1);
-                resultado[i][1]=tabla.getString(2);
-                resultado[i][2]=tabla.getString(3);
+                resultado[i][0] = tabla.getString(1);
+                resultado[i][1] = tabla.getString(2);
+                resultado[i][2] = tabla.getString(3);
                 i++;
             } while (tabla.next());
 
@@ -80,44 +80,60 @@ public class ControladorRetiros {
         }
         return null;
     }
-    
-    public String[][] reporteUnParametroJoin(String tabla, String parametro){
-       
-        String joinCondition = null;
-        
-        if (tabla=="Fecha") {
-            joinCondition="j.cod_Fecha = r.cod_Fecha";
+
+    public String[][] reporteUnParametroJoin(String tabla, String parametro) {
+
+        try {
+            String joinCondition = null;
+
+            if (tabla == "Fecha") {
+                joinCondition = "j.cod_Fecha = r.cod_Fecha";
+            }
+
+            if (tabla == "PlanDatos") {
+                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            }
+
+            if (tabla == "PlanVoz") {
+                joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
+            }
+
+            if (tabla == "Demografia_Cliente") {
+                joinCondition = "j.cod_Demografia = r.cod_Demografia";
+            }
+
+            if (tabla == "Cliente") {
+                joinCondition = "j.cod_Cliente = r.cod_Cliente";
+            }
+
+            if (tabla == "Oficina") {
+                joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+
+            ResultSet resultSet = fachadaBD.executeQuery("SELECT j." + parametro + ", COUNT( * ) "
+                    + "FROM Retiros r "
+                    + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
+                    + "GROUP BY j." + parametro);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][2];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (tabla=="PlanDatos") {
-            joinCondition="j.cod_PlanDatos = r.cod_PlanDatos";
-        }
-        
-        if (tabla=="PlanVoz") {
-            joinCondition="j.cod_PlanVoz = r.cod_PlanVoz";
-        }
-        
-        if (tabla=="Demografia_Cliente") {
-            joinCondition="j.cod_Demografia = r.cod_Demografia";
-        }
-        
-        if (tabla=="Cliente") {
-            joinCondition="j.cod_Cliente = r.cod_Cliente";
-        }
-        
-        if (tabla=="Oficina") {
-            joinCondition="j.cod_Oficina = r.cod_Oficina";
-        }
-        
-        
-        ResultSet resultado = fachadaBD.executeQuery("SELECT j."+parametro+", COUNT( * ) "
-                 + "FROM Retiros r "
-                 + "INNER JOIN "+tabla+" j ON "+joinCondition+" "
-                 + "GROUP BY j."+parametro);
-        
-        
-        
         return null;
-        
+
     }
 }
