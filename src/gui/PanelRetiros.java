@@ -113,12 +113,6 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jLabel4.setText("Atributo");
 
-        jComboBoxAtributo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAtributo1ActionPerformed(evt);
-            }
-        });
-
         jButtonPie1.setText("Pie");
         jButtonPie1.setPreferredSize(new java.awt.Dimension(60, 30));
         jButtonPie1.addActionListener(new java.awt.event.ActionListener() {
@@ -247,16 +241,30 @@ public class PanelRetiros extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBoxAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
-
     private void jButtonPie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPie1ActionPerformed
-        // TODO add your handling code here:
+
+        String[][] matrizCausas = controladorRetiros.reporteUnParametroPie(
+                jComboBoxAtributo1.getSelectedItem().toString());
+        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
+        jPanelPie = pieChart.getChartPanel();
+        jPanelGrafica.add(jPanelPie, "jPanelPie");
+        CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
+        cl.show(jPanelGrafica, (String) "jPanelPie");
+        main.pack();
+
     }//GEN-LAST:event_jButtonPie1ActionPerformed
 
     private void jButtonBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBar1ActionPerformed
-        // TODO add your handling code here:
+        String[][] matrizCausas = controladorRetiros.reporteUnParametroBarra(
+                jComboBoxAtributo1.getSelectedItem().toString());
+        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+        jPanelBar = barChart.getChartPanel();
+        jPanelGrafica.add(jPanelBar, "jPanelBar");
+        CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
+        cl.show(jPanelGrafica, (String) "jPanelBar");
+        main.pack();
+
+
     }//GEN-LAST:event_jButtonBar1ActionPerformed
 
     private void jComboBoxDimensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionActionPerformed
