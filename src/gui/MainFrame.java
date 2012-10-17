@@ -42,9 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanelMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelMenu.setLayout(new javax.swing.BoxLayout(jPanelMenu, javax.swing.BoxLayout.PAGE_AXIS));
 
         jButton1.setText("Causa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,10 +61,10 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jPanelMenu.add(jButton2);
 
-        getContentPane().add(jPanelMenu);
+        getContentPane().add(jPanelMenu, java.awt.BorderLayout.WEST);
 
         jPanelGrafica.setLayout(null);
-        getContentPane().add(jPanelGrafica);
+        getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
 
         jMenu1.setText("Archivo");
 
@@ -98,8 +97,6 @@ public class MainFrame extends javax.swing.JFrame {
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
         jPanelGrafica = pieChart.getChartPanel();
         getContentPane().add(jPanelGrafica);
-        jPanelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
-        getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
         this.pack();
 
     }//GEN-LAST:event_jButton1ActionPerformed
