@@ -35,58 +35,61 @@ public class MainFrame extends javax.swing.JFrame {
 
         panelCards = new javax.swing.JPanel();
         menuBotones = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSali = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(863, 650));
 
         panelCards.setLayout(new java.awt.CardLayout());
 
         menuBotones.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 50, 50, 50));
-        menuBotones.setLayout(new java.awt.GridLayout(3, 3, 30, 30));
+        menuBotones.setLayout(new java.awt.GridLayout(1, 3, 30, 30));
 
         jButton1.setText("Retiros");
+        jButton1.setPreferredSize(new java.awt.Dimension(200, 60));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        menuBotones.add(jButton1);
 
         jButton2.setText("jButton2");
-        menuBotones.add(jButton2);
-
-        jButton7.setText("jButton7");
-        menuBotones.add(jButton7);
+        jButton2.setPreferredSize(new java.awt.Dimension(200, 60));
 
         jButton3.setText("jButton3");
-        menuBotones.add(jButton3);
+        jButton3.setPreferredSize(new java.awt.Dimension(200, 60));
 
-        jButton4.setText("jButton4");
-        menuBotones.add(jButton4);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addGap(77, 77, 77)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
-        jButton6.setText("jButton6");
-        menuBotones.add(jButton6);
-
-        jButton8.setText("jButton8");
-        menuBotones.add(jButton8);
-
-        jButton5.setText("jButton5");
-        menuBotones.add(jButton5);
-
-        jButton9.setText("jButton9");
-        menuBotones.add(jButton9);
+        menuBotones.add(jPanel1);
 
         panelCards.add(menuBotones, "menu");
 
@@ -156,16 +159,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemSali;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel menuBotones;
     public javax.swing.JPanel panelCards;
     // End of variables declaration//GEN-END:variables
