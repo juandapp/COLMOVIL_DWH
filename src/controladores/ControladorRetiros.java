@@ -81,39 +81,43 @@ public class ControladorRetiros {
         return null;
     }
 
-    public String[][] reporteUnParametroJoin(String tabla, String parametro) {
+    public String[][] reporteUnParametroJoinPie(String tabla, String parametro) {
 
         try {
             String joinCondition = null;
+            System.out.println(tabla);
 
-            if (tabla == "Fecha") {
+            if ("Fecha".equals(tabla)) {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if (tabla == "PlanDatos") {
+            if ("PlanDatos".equals(tabla)) {
                 joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
             }
 
-            if (tabla == "PlanVoz") {
+            if ("PlanVoz".equals(tabla)) {
                 joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
 
-            if (tabla == "Demografia_Cliente") {
+            if ("Demografia_Cliente".equals(tabla)) {
                 joinCondition = "j.cod_Demografia = r.cod_Demografia";
             }
 
-            if (tabla == "Cliente") {
+            if ("ClienteDWH".equals(tabla)) {
                 joinCondition = "j.cod_Cliente = r.cod_Cliente";
             }
 
-            if (tabla == "Oficina") {
+            if ("OficinaDWH".equals(tabla)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
-            ResultSet resultSet = fachadaBD.executeQuery("SELECT j." + parametro + ", COUNT( * ) "
+
+            String consulta = "SELECT j." + parametro + ", COUNT( * ) "
                     + "FROM Retiros r "
                     + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
-                    + "GROUP BY j." + parametro);
+                    + "GROUP BY j." + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
@@ -125,6 +129,128 @@ public class ControladorRetiros {
             do {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public String[][] reporteUnParametroJoinBarra(String tabla, String parametro) {
+
+        try {
+            String joinCondition = null;
+            System.out.println(tabla);
+
+            if ("Fecha".equals(tabla)) {
+                joinCondition = "j.cod_Fecha = r.cod_Fecha";
+            }
+
+            if ("PlanDatos".equals(tabla)) {
+                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            }
+
+            if ("PlanVoz".equals(tabla)) {
+                joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
+            }
+
+            if ("Demografia_Cliente".equals(tabla)) {
+                joinCondition = "j.cod_Demografia = r.cod_Demografia";
+            }
+
+            if ("ClienteDWH".equals(tabla)) {
+                joinCondition = "j.cod_Cliente = r.cod_Cliente";
+            }
+
+            if ("OficinaDWH".equals(tabla)) {
+                joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+
+
+            String consulta = "SELECT COUNT(*), j." + parametro + " "
+                    + "FROM Retiros r "
+                    + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
+                    + "GROUP BY j." + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][3];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = "";
+                resultado[i][2] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public String[][] reporteUnParametroPie(String parametro) {
+
+        try {
+
+            String consulta = "SELECT " + parametro + ", COUNT( " + parametro + " ) FROM  Retiros GROUP BY " + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][2];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public String[][] reporteUnParametroBarra(String parametro) {
+
+        try {
+
+            String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][3];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = "";
+                resultado[i][2] = resultSet.getString(2);
                 i++;
             } while (resultSet.next());
 
