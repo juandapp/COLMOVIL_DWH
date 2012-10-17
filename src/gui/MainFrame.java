@@ -33,6 +33,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanelMenu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanelGrafica = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -42,6 +43,8 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
+        jPanelMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
         jButton1.setText("Causa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +52,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jPanelMenu.add(jButton1);
+
+        jButton2.setText("Consulta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanelMenu.add(jButton2);
 
         getContentPane().add(jPanelMenu);
 
@@ -85,12 +96,17 @@ public class MainFrame extends javax.swing.JFrame {
         String[][] matrizCausas=controladorRetiros.reporteCausa();
         PieChart pieChart=new PieChart("Retiros y Causas", matrizCausas);
         jPanelGrafica= pieChart.getChartPanel();
-           jPanelGrafica.setLayout(null);
+           //jPanelGrafica.setLayout(null);
         getContentPane().add(jPanelGrafica);
-        jPanelGrafica.setBounds(300, 0, 370, 390);
-        jPanelGrafica.setVisible(true);
+       jPanelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
+        getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
+        this.pack();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
