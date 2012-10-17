@@ -31,13 +31,13 @@ public class ControladorRetiros {
             tabla.last();
             int numeroFilas = tabla.getRow();
             tabla.first();
-            
+
             String[][] resultado = new String[numeroFilas][2];
-            
-            int i=0;
+
+            int i = 0;
             do {
-                resultado[i][0]=tabla.getString(1);
-                resultado[i][1]=tabla.getString(2);
+                resultado[i][0] = tabla.getString(1);
+                resultado[i][1] = tabla.getString(2);
                 i++;
             } while (tabla.next());
 
@@ -49,7 +49,7 @@ public class ControladorRetiros {
         }
         return null;
     }
-    
+
     public String[][] reporteCausaEstrato() {
 
         try {
@@ -61,14 +61,14 @@ public class ControladorRetiros {
             tabla.last();
             int numeroFilas = tabla.getRow();
             tabla.first();
-            
+
             String[][] resultado = new String[numeroFilas][3];
-            
-            int i=0;
+
+            int i = 0;
             do {
-                resultado[i][0]=tabla.getString(1);
-                resultado[i][1]=tabla.getString(2);
-                resultado[i][2]=tabla.getString(3);
+                resultado[i][0] = tabla.getString(1);
+                resultado[i][1] = tabla.getString(2);
+                resultado[i][2] = tabla.getString(3);
                 i++;
             } while (tabla.next());
 
@@ -79,5 +79,187 @@ public class ControladorRetiros {
             System.out.println(ex);
         }
         return null;
+    }
+
+    public String[][] reporteUnParametroJoinPie(String tabla, String parametro) {
+
+        try {
+            String joinCondition = null;
+            System.out.println(tabla);
+
+            if ("Fecha".equals(tabla)) {
+                joinCondition = "j.cod_Fecha = r.cod_Fecha";
+            }
+
+            if ("PlanDatos".equals(tabla)) {
+                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            }
+
+            if ("PlanVoz".equals(tabla)) {
+                joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
+            }
+
+            if ("Demografia_Cliente".equals(tabla)) {
+                joinCondition = "j.cod_Demografia = r.cod_Demografia";
+            }
+
+            if ("ClienteDWH".equals(tabla)) {
+                joinCondition = "j.cod_Cliente = r.cod_Cliente";
+            }
+
+            if ("OficinaDWH".equals(tabla)) {
+                joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+
+
+            String consulta = "SELECT j." + parametro + ", COUNT( * ) "
+                    + "FROM Retiros r "
+                    + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
+                    + "GROUP BY j." + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][2];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public String[][] reporteUnParametroJoinBarra(String tabla, String parametro) {
+
+        try {
+            String joinCondition = null;
+            System.out.println(tabla);
+
+            if ("Fecha".equals(tabla)) {
+                joinCondition = "j.cod_Fecha = r.cod_Fecha";
+            }
+
+            if ("PlanDatos".equals(tabla)) {
+                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            }
+
+            if ("PlanVoz".equals(tabla)) {
+                joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
+            }
+
+            if ("Demografia_Cliente".equals(tabla)) {
+                joinCondition = "j.cod_Demografia = r.cod_Demografia";
+            }
+
+            if ("ClienteDWH".equals(tabla)) {
+                joinCondition = "j.cod_Cliente = r.cod_Cliente";
+            }
+
+            if ("OficinaDWH".equals(tabla)) {
+                joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+
+
+            String consulta = "SELECT COUNT(*), j." + parametro + " "
+                    + "FROM Retiros r "
+                    + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
+                    + "GROUP BY j." + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][3];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = "";
+                resultado[i][2] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public String[][] reporteUnParametroPie(String parametro) {
+
+        try {
+
+            String consulta = "SELECT " + parametro + ", COUNT( " + parametro + " ) FROM  Retiros GROUP BY " + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][2];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public String[][] reporteUnParametroBarra(String parametro) {
+
+        try {
+
+            String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][3];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = "";
+                resultado[i][2] = resultSet.getString(2);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 }
