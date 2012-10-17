@@ -83,7 +83,7 @@ public class ControladorRetiros {
     
     public String[][] reporteUnParametroJoin(String tabla, String parametro){
        
-        String joinCondition;
+        String joinCondition = null;
         
         if (tabla=="Fecha") {
             joinCondition="j.cod_Fecha = r.cod_Fecha";
