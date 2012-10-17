@@ -16,7 +16,7 @@ import org.jfree.chart.ChartPanel;
  *
  * @author gustavo
  */
-public class panelRetiros extends javax.swing.JPanel {
+public class PanelRetiros extends javax.swing.JPanel {
 
     private final ControladorRetiros controladorRetiros;
     private MainFrame main;
@@ -26,7 +26,7 @@ public class panelRetiros extends javax.swing.JPanel {
     /**
      * Creates new form panelRetiros
      */
-    public panelRetiros(MainFrame main) {
+    public PanelRetiros(MainFrame main) {
         this.main = main;
         controladorRetiros = new ControladorRetiros();
         initComponents();

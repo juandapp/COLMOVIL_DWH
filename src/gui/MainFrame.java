@@ -20,7 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
        initComponents();
-       panelRetiros retiros = new panelRetiros(this);
+       PanelRetiros retiros = new PanelRetiros(this);
        panelCards.add(retiros, "retiros");
     }
 
