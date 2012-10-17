@@ -17,6 +17,7 @@ import org.jfree.chart.ChartPanel;
  * @author gustavo
  */
 public class panelRetiros extends javax.swing.JPanel {
+
     private final ControladorRetiros controladorRetiros;
     private MainFrame main;
     JPanel jPanelBar;
@@ -29,14 +30,14 @@ public class panelRetiros extends javax.swing.JPanel {
         this.main = main;
         controladorRetiros = new ControladorRetiros();
         initComponents();
-        
+
         jComboBoxDimension.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getDimensiones()));
         jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
         jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes("Retiros")));
-        
+
         imagen.setIcon(new ImageIcon("imagenes/retiros.jpg"));
     }
 
@@ -53,8 +54,8 @@ public class panelRetiros extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jComboBoxDimension = new javax.swing.JComboBox();
         jComboBoxAtributo = new javax.swing.JComboBox();
-        jButtonPie = new javax.swing.JButton();
-        jButtonBar = new javax.swing.JButton();
+        jButtonPieJoin = new javax.swing.JButton();
+        jButtonBarJoin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -90,19 +91,19 @@ public class panelRetiros extends javax.swing.JPanel {
             }
         });
 
-        jButtonPie.setText("Pie");
-        jButtonPie.setPreferredSize(new java.awt.Dimension(60, 30));
-        jButtonPie.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPieJoin.setText("Pie");
+        jButtonPieJoin.setPreferredSize(new java.awt.Dimension(60, 30));
+        jButtonPieJoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPieActionPerformed(evt);
+                jButtonPieJoinActionPerformed(evt);
             }
         });
 
-        jButtonBar.setText("Bar");
-        jButtonBar.setPreferredSize(new java.awt.Dimension(60, 30));
-        jButtonBar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBarJoin.setText("Bar");
+        jButtonBarJoin.setPreferredSize(new java.awt.Dimension(60, 30));
+        jButtonBarJoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBarActionPerformed(evt);
+                jButtonBarJoinActionPerformed(evt);
             }
         });
 
@@ -157,9 +158,9 @@ public class panelRetiros extends javax.swing.JPanel {
                         .addComponent(jButtonBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator3)
                     .addGroup(jPanelMenuLayout.createSequentialGroup()
-                        .addComponent(jButtonPie, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonPieJoin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonBarJoin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(1, 1, 1))
         );
         jPanelMenuLayout.setVerticalGroup(
@@ -179,8 +180,8 @@ public class panelRetiros extends javax.swing.JPanel {
                 .addComponent(jComboBoxAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonPie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonPieJoin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBarJoin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,34 +212,39 @@ public class panelRetiros extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxAtributoActionPerformed
 
-    private void jButtonBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarActionPerformed
+    private void jButtonBarJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoinActionPerformed
 
-        String[][] matrizCausas = controladorRetiros.reporteCausaEstrato();
+        String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinBarra(
+                jComboBoxDimension.getSelectedItem().toString(),
+                jComboBoxAtributo.getSelectedItem().toString());
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
         jPanelBar = barChart.getChartPanel();
         jPanelGrafica.add(jPanelBar, "jPanelBar");
-        CardLayout cl = (CardLayout)(jPanelGrafica.getLayout());
-        cl.show(jPanelGrafica, (String)"jPanelBar");
+        CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
+        cl.show(jPanelGrafica, (String) "jPanelBar");
         main.pack();
-    }//GEN-LAST:event_jButtonBarActionPerformed
 
-    private void jButtonPieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieActionPerformed
+    }//GEN-LAST:event_jButtonBarJoinActionPerformed
 
-        String[][] matrizCausas = controladorRetiros.reporteCausa();
+    private void jButtonPieJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoinActionPerformed
+
+        String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinPie(
+                jComboBoxDimension.getSelectedItem().toString(),
+                jComboBoxAtributo.getSelectedItem().toString());
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
         jPanelPie = pieChart.getChartPanel();
         jPanelGrafica.add(jPanelPie, "jPanelPie");
-        CardLayout cl = (CardLayout)(jPanelGrafica.getLayout());
-        cl.show(jPanelGrafica, (String)"jPanelPie");
+        CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
+        cl.show(jPanelGrafica, (String) "jPanelPie");
         main.pack();
-        
-    }//GEN-LAST:event_jButtonPieActionPerformed
+
+    }//GEN-LAST:event_jButtonPieJoinActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        CardLayout cl = (CardLayout)(main.panelCards.getLayout());
-       cl.show(main.panelCards, (String)"menu");
-        
+
+        CardLayout cl = (CardLayout) (main.panelCards.getLayout());
+        cl.show(main.panelCards, (String) "menu");
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBoxAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributo1ActionPerformed
@@ -254,17 +260,16 @@ public class panelRetiros extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonBar1ActionPerformed
 
     private void jComboBoxDimensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionActionPerformed
-       jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
+        jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
     }//GEN-LAST:event_jComboBoxDimensionActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonBar;
     private javax.swing.JButton jButtonBar1;
-    private javax.swing.JButton jButtonPie;
+    private javax.swing.JButton jButtonBarJoin;
     private javax.swing.JButton jButtonPie1;
+    private javax.swing.JButton jButtonPieJoin;
     private javax.swing.JComboBox jComboBoxAtributo;
     private javax.swing.JComboBox jComboBoxAtributo1;
     private javax.swing.JComboBox jComboBoxDimension;
