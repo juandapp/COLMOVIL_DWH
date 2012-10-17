@@ -262,4 +262,73 @@ public class ControladorRetiros {
         return null;
 
     }
+    
+    
+    public String[][] reporteBivariadoBarra(String parametroHecho, String parametroDimension, String tablaDim) {
+
+        try {
+            
+            String joinCondition = null;
+            System.out.println(tablaDim);
+
+            if ("Fecha".equals(tablaDim)) {
+                joinCondition = "j.cod_Fecha = r.cod_Fecha";
+            }
+
+            if ("PlanDatos".equals(tablaDim)) {
+                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            }
+
+            if ("PlanVoz".equals(tablaDim)) {
+                joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
+            }
+
+            if ("Demografia_Cliente".equals(tablaDim)) {
+                joinCondition = "j.cod_Demografia = r.cod_Demografia";
+            }
+
+            if ("ClienteDWH".equals(tablaDim)) {
+                joinCondition = "j.cod_Cliente = r.cod_Cliente";
+            }
+
+            if ("OficinaDWH".equals(tablaDim)) {
+                joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+            
+
+            //String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
+            String consulta = "SELECT COUNT( r."+ parametroHecho +" ), r."+parametroHecho+", j."+parametroDimension
+                    +"FROM Retiros r"
+                    +"INNER JOIN" + tablaDim +" j ON "+ joinCondition +" "
+                    +"GROUP BY r."+parametroHecho+", j."+parametroDimension;
+            
+            System.out.println(consulta);
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][3];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = resultSet.getString(2);
+                resultado[i][2] = resultSet.getString(3);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+    
+    
+    
+    
 }
