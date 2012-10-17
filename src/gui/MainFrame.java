@@ -5,6 +5,7 @@
 package gui;
 
 import controladores.ControladorRetiros;
+import java.awt.CardLayout;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
@@ -13,14 +14,14 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private final ControladorRetiros controladorRetiros;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
-        controladorRetiros = new ControladorRetiros();
-        initComponents();
+       initComponents();
+       panelRetiros retiros = new panelRetiros(this);
+       panelCards.add(retiros, "retiros");
     }
 
     /**
@@ -32,10 +33,17 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelMenu = new javax.swing.JPanel();
+        panelCards = new javax.swing.JPanel();
+        menuBotones = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanelGrafica = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSali = new javax.swing.JMenuItem();
@@ -43,28 +51,46 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanelMenu.setLayout(new javax.swing.BoxLayout(jPanelMenu, javax.swing.BoxLayout.PAGE_AXIS));
+        panelCards.setLayout(new java.awt.CardLayout());
 
-        jButton1.setText("Causa");
+        menuBotones.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        menuBotones.setLayout(new java.awt.GridLayout(3, 3, 30, 30));
+
+        jButton1.setText("Retiros");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanelMenu.add(jButton1);
+        menuBotones.add(jButton1);
 
-        jButton2.setText("Consulta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanelMenu.add(jButton2);
+        jButton2.setText("jButton2");
+        menuBotones.add(jButton2);
 
-        getContentPane().add(jPanelMenu, java.awt.BorderLayout.WEST);
+        jButton7.setText("jButton7");
+        menuBotones.add(jButton7);
 
-        jPanelGrafica.setLayout(null);
-        getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
+        jButton3.setText("jButton3");
+        menuBotones.add(jButton3);
+
+        jButton4.setText("jButton4");
+        menuBotones.add(jButton4);
+
+        jButton6.setText("jButton6");
+        menuBotones.add(jButton6);
+
+        jButton8.setText("jButton8");
+        menuBotones.add(jButton8);
+
+        jButton5.setText("jButton5");
+        menuBotones.add(jButton5);
+
+        jButton9.setText("jButton9");
+        menuBotones.add(jButton9);
+
+        panelCards.add(menuBotones, "card2");
+
+        getContentPane().add(panelCards, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("Archivo");
 
@@ -92,26 +118,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSaliActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String[][] matrizCausas = controladorRetiros.reporteCausa();
-        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
-        jPanelGrafica = pieChart.getChartPanel();
-        getContentPane().add(jPanelGrafica);
-        this.pack();
-
+       CardLayout cl = (CardLayout)(panelCards.getLayout());
+       cl.show(panelCards, (String)"retiros");
+       
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        String[][] matrizCausas = controladorRetiros.reporteCausaEstrato();
-        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
-        jPanelGrafica = barChart.getChartPanel();
-        getContentPane().add(jPanelGrafica);
-        jPanelGrafica.setPreferredSize(new java.awt.Dimension(400, 300));
-        getContentPane().add(jPanelGrafica, java.awt.BorderLayout.EAST);
-        this.pack();
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,11 +155,18 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemSali;
-    private javax.swing.JPanel jPanelGrafica;
-    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel menuBotones;
+    private javax.swing.JPanel panelCards;
     // End of variables declaration//GEN-END:variables
 }
