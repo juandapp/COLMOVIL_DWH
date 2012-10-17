@@ -89,24 +89,24 @@ public class ControladorRetiros {
             joinCondition="j.cod_Fecha = r.cod_Fecha";
         }
         
-        if (tabla=="Fecha") {
-            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        if (tabla=="PlanDatos") {
+            joinCondition="j.cod_PlanDatos = r.cod_PlanDatos";
         }
         
-        if (tabla=="Fecha") {
-            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        if (tabla=="PlanVoz") {
+            joinCondition="j.cod_PlanVoz = r.cod_PlanVoz";
         }
         
-        if (tabla=="Fecha") {
-            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        if (tabla=="Demografia_Cliente") {
+            joinCondition="j.cod_Demografia = r.cod_Demografia";
         }
         
-        if (tabla=="Fecha") {
-            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        if (tabla=="Cliente") {
+            joinCondition="j.cod_Cliente = r.cod_Cliente";
         }
         
-        if (tabla=="Fecha") {
-            joinCondition="j.cod_Fecha = r.cod_Fecha";
+        if (tabla=="Oficina") {
+            joinCondition="j.cod_Oficina = r.cod_Oficina";
         }
         
         
