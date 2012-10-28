@@ -27,6 +27,7 @@ public class FachadaBD {
     }
 
     private void conectar() {
+
         try {
             // Se carga el driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -45,7 +46,7 @@ public class FachadaBD {
     }
 
     public void cerrarConexion() {
-       
+
         try {
             conexion.close();
         } catch (Exception e) {
@@ -53,31 +54,21 @@ public class FachadaBD {
         }
     }
 
-    public ResultSet executeQuery(String sql) {
-        
-        try {
-            conectar();
-            ResultSet resultSet = instruccion.executeQuery(sql);
-            //cerrarConexion();
-            return resultSet;
-        } catch (SQLException ex) {
-            Logger.getLogger(FachadaBD.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Problemas con la consulta: "+sql);
-        }
-        return null;
+    public ResultSet executeQuery(String sql) throws SQLException {
+
+        conectar();
+        ResultSet resultSet = instruccion.executeQuery(sql);
+        //cerrarConexion();
+        return resultSet;
+
 
     }
 
-    public int executeUpdate(String sql) {
-        try {
-            conectar();
-            int executeUpdate = instruccion.executeUpdate(sql);
-            //cerrarConexion();
-            return executeUpdate;
-        } catch (SQLException ex) {
-            Logger.getLogger(FachadaBD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
+    public int executeUpdate(String sql) throws SQLException {
+        conectar();
+        int executeUpdate = instruccion.executeUpdate(sql);
+        //cerrarConexion();
+        return executeUpdate;
     }
 
     public static void setDatabase(String database) {
