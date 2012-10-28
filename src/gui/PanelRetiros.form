@@ -206,7 +206,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jComboBoxAtributo1" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="jComboBoxHechos" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -217,7 +217,7 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBoxAtributo1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxHechos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonBar1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -250,7 +250,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPie1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxAtributo1">
+            <Component class="javax.swing.JComboBox" name="jComboBoxHechos">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>

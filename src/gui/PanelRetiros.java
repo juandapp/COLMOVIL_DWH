@@ -32,7 +32,7 @@ public class PanelRetiros extends javax.swing.JPanel {
                 controladorRetiros.getDimensiones("Retiros")));
         jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
-        jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(
+        jComboBoxHechos.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes("Retiros")));
 
         imagen.setIcon(new ImageIcon("imagenes/retiros.jpg"));
@@ -60,7 +60,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jButtonBar1 = new javax.swing.JButton();
         jButtonPie1 = new javax.swing.JButton();
-        jComboBoxAtributo1 = new javax.swing.JComboBox();
+        jComboBoxHechos = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jComboBoxDimension1 = new javax.swing.JComboBox();
@@ -186,7 +186,7 @@ public class PanelRetiros extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxAtributo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxHechos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -194,7 +194,7 @@ public class PanelRetiros extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxAtributo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxHechos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,7 +329,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     private void jButtonPie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPie1ActionPerformed
 
         String[][] matrizCausas = controladorRetiros.reporteUnParametroPie(
-            jComboBoxAtributo1.getSelectedItem().toString());
+            jComboBoxHechos.getSelectedItem().toString());
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
         jPanelPie = pieChart.getChartPanel();
         jPanelGrafica.add(jPanelPie, "jPanelPie");
@@ -340,7 +340,7 @@ public class PanelRetiros extends javax.swing.JPanel {
 
     private void jButtonBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBar1ActionPerformed
         String[][] matrizCausas = controladorRetiros.reporteUnParametroBarra(
-            jComboBoxAtributo1.getSelectedItem().toString());
+            jComboBoxHechos.getSelectedItem().toString());
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
         jPanelBar = barChart.getChartPanel();
         jPanelGrafica.add(jPanelBar, "jPanelBar");
@@ -416,11 +416,11 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JButton jButtonPie1;
     private javax.swing.JButton jButtonPieJoin;
     private javax.swing.JComboBox jComboBoxAtributo;
-    private javax.swing.JComboBox jComboBoxAtributo1;
     private javax.swing.JComboBox jComboBoxAtributo2;
     private javax.swing.JComboBox jComboBoxDimension;
     private javax.swing.JComboBox jComboBoxDimension1;
     private javax.swing.JComboBox jComboBoxDimension2;
+    private javax.swing.JComboBox jComboBoxHechos;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
