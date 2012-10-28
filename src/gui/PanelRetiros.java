@@ -5,12 +5,9 @@
 package gui;
 
 import controladores.ControladorRetiros;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import org.jfree.chart.ChartPanel;
 
 /**
  *
@@ -32,7 +29,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         initComponents();
 
         jComboBoxDimension.setModel(new javax.swing.DefaultComboBoxModel(
-                controladorRetiros.getDimensiones()));
+                controladorRetiros.getDimensiones("Retiros")));
         jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
         jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(

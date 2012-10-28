@@ -24,18 +24,29 @@ public class ControladorRetiros {
         fachadaBD = new FachadaBD();
     }
 
-    public String[] getDimensiones() {
+    public Object[] getDimensiones(String hecho) {
+        try {
+            String consulta = "select "
+                    + "referenced_table_name "
+                    + "from information_schema.key_column_usage "
+                    + "where referenced_table_name is not null and table_name = '" + hecho + "';";
 
-        String[] dimensiones = new String[6];
+            ResultSet tabla = fachadaBD.executeQuery(consulta);
 
-        dimensiones[0] = "OficinaDWH";
-        dimensiones[1] = "ClienteDWH";
-        dimensiones[2] = "Demografia_Cliente";
-        dimensiones[3] = "PlanVoz";
-        dimensiones[4] = "PlanDatos";
-        dimensiones[5] = "Fecha";
+            ArrayList<String> dimensiones = new ArrayList<>();
+            
+            while (tabla.next()) {
+                dimensiones.add(tabla.getString(1));
+            }
+            
 
-        return dimensiones;
+            return dimensiones.toArray();
+ 
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     public String[] getAtributosInteresantes(String dimension) {
@@ -55,9 +66,9 @@ public class ControladorRetiros {
             }
 
             String[] dimensiones = new String[atributos.size()];
-            
+
             for (int i = 0; i < dimensiones.length; i++) {
-                dimensiones[i]=atributos.get(i);
+                dimensiones[i] = atributos.get(i);
             }
             return dimensiones;
         } catch (SQLException ex) {
@@ -67,16 +78,16 @@ public class ControladorRetiros {
     }
 
     private boolean esIntesante(String atributo, String dimension) throws SQLException {
-            String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
-            ResultSet tabla = fachadaBD.executeQuery(consulta);
+        String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
+        ResultSet tabla = fachadaBD.executeQuery(consulta);
 
-            tabla.next();
-            int value = Integer.parseInt(tabla.getString(1));
-            
-            if (value<33) {
-               return true;
-            }
-            return false;
+        tabla.next();
+        int value = Integer.parseInt(tabla.getString(1));
+
+        if (value < 33) {
+            return true;
+        }
+        return false;
     }
 
     public String[][] reporteCausa() {
@@ -318,12 +329,11 @@ public class ControladorRetiros {
         return null;
 
     }
-    
-    
+
     public String[][] reporteBivariadoBarra(String parametroHecho, String parametroDimension, String tablaDim) {
 
         try {
-            
+
             String joinCondition = null;
             System.out.println(tablaDim);
 
@@ -350,14 +360,14 @@ public class ControladorRetiros {
             if ("OficinaDWH".equals(tablaDim)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
-            
+
 
             //String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
-            String consulta = "SELECT COUNT( r."+ parametroHecho +" ), r."+parametroHecho+", j."+parametroDimension
-                    +"FROM Retiros r"
-                    +"INNER JOIN" + tablaDim +" j ON "+ joinCondition +" "
-                    +"GROUP BY r."+parametroHecho+", j."+parametroDimension;
-            
+            String consulta = "SELECT COUNT( r." + parametroHecho + " ), r." + parametroHecho + ", j." + parametroDimension
+                    + "FROM Retiros r"
+                    + "INNER JOIN" + tablaDim + " j ON " + joinCondition + " "
+                    + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;
+
             System.out.println(consulta);
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
@@ -383,8 +393,4 @@ public class ControladorRetiros {
         return null;
 
     }
-    
-    
-    
-    
 }
