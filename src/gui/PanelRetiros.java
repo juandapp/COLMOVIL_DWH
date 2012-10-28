@@ -29,7 +29,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         initComponents();
 
         jComboBoxDimension.setModel(new javax.swing.DefaultComboBoxModel(
-                controladorRetiros.getDimensiones("Retiros")));
+                controladorRetiros.getDimensionesRelacionadas("Retiros")));
         jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
         jComboBoxHechos.setModel(new javax.swing.DefaultComboBoxModel(
