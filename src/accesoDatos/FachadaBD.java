@@ -9,8 +9,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class FachadaBD {
 
@@ -58,16 +56,12 @@ public class FachadaBD {
 
         conectar();
         ResultSet resultSet = instruccion.executeQuery(sql);
-        //cerrarConexion();
         return resultSet;
-
-
     }
 
     public int executeUpdate(String sql) throws SQLException {
         conectar();
         int executeUpdate = instruccion.executeUpdate(sql);
-        //cerrarConexion();
         return executeUpdate;
     }
 
