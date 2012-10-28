@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 /**
  *
@@ -24,7 +25,7 @@ public class ControladorRetiros {
         fachadaBD = new FachadaBD();
     }
 
-    public Object[] getDimensiones(String hecho) {
+    public Object[] getDimensionesRelacionadas(String hecho) {
         try {
             String consulta = "select "
                     + "referenced_table_name "
@@ -32,31 +33,27 @@ public class ControladorRetiros {
                     + "where referenced_table_name is not null and table_name = '" + hecho + "';";
 
             ResultSet tabla = fachadaBD.executeQuery(consulta);
-
             ArrayList<String> dimensiones = new ArrayList<>();
-            
+
             while (tabla.next()) {
                 dimensiones.add(tabla.getString(1));
             }
-            
 
             return dimensiones.toArray();
- 
+
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             fachadaBD.cerrarConexion();
         }
-        
+
         return null;
     }
 
-    public String[] getAtributosInteresantes(String dimension) {
+    public Object[] getAtributosInteresantes(String dimension) {
         try {
             String consulta = "DESC " + dimension;
             ResultSet tabla = fachadaBD.executeQuery(consulta);
-
-            tabla.next();
 
             ArrayList<String> atributos = new ArrayList<>();
 
@@ -66,13 +63,7 @@ public class ControladorRetiros {
                     atributos.add(atributo);
                 }
             }
-
-            String[] dimensiones = new String[atributos.size()];
-
-            for (int i = 0; i < dimensiones.length; i++) {
-                dimensiones[i] = atributos.get(i);
-            }
-            return dimensiones;
+            return atributos.toArray();
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -81,15 +72,22 @@ public class ControladorRetiros {
         return null;
     }
 
-    private boolean esIntesante(String atributo, String dimension) throws SQLException {
-        String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
-        ResultSet tabla = fachadaBD.executeQuery(consulta);
+    private boolean esIntesante(String atributo, String dimension) {
+        try {
+            if (!atributo.startsWith("cod")) {
+                String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
+                ResultSet tabla = fachadaBD.executeQuery(consulta);
 
-        tabla.next();
-        int value = Integer.parseInt(tabla.getString(1));
+                tabla.next();
+                int value = Integer.parseInt(tabla.getString(1));
 
-        if (value < 33) {
-            return true;
+                if (value < 33) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class FachadaBD {
 
     Connection conexion;
@@ -58,16 +57,12 @@ public class FachadaBD {
 
         conectar();
         ResultSet resultSet = instruccion.executeQuery(sql);
-        //cerrarConexion();
         return resultSet;
-
-
     }
 
     public int executeUpdate(String sql) throws SQLException {
         conectar();
         int executeUpdate = instruccion.executeUpdate(sql);
-        //cerrarConexion();
         return executeUpdate;
     }
 
