@@ -44,6 +44,8 @@ public class ControladorRetiros {
  
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            fachadaBD.cerrarConexion();
         }
         
         return null;
@@ -73,6 +75,8 @@ public class ControladorRetiros {
             return dimensiones;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
     }
@@ -113,6 +117,8 @@ public class ControladorRetiros {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
     }
@@ -144,6 +150,8 @@ public class ControladorRetiros {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
     }
@@ -203,6 +211,8 @@ public class ControladorRetiros {
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
 
@@ -264,6 +274,8 @@ public class ControladorRetiros {
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
 
@@ -294,6 +306,8 @@ public class ControladorRetiros {
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
 
@@ -325,6 +339,8 @@ public class ControladorRetiros {
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
 
@@ -389,6 +405,8 @@ public class ControladorRetiros {
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            fachadaBD.cerrarConexion();
         }
         return null;
 

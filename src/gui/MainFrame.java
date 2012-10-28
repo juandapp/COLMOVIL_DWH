@@ -45,7 +45,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(863, 650));
 
         panelCards.setLayout(new java.awt.CardLayout());
 
