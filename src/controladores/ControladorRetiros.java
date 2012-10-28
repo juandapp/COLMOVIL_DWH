@@ -88,6 +88,8 @@ public class ControladorRetiros {
             return false;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            fachadaBD.cerrarConexion();
         }
         return false;
     }
