@@ -66,8 +66,6 @@ public class ControladorRetiros {
             return atributos.toArray();
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
-            fachadaBD.cerrarConexion();
         }
         return null;
     }
