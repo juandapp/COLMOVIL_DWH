@@ -99,7 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelHome.add(jLabelTitulo);
 
         jLabelLogoUV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogoUV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/UNIVALLE.jpg"))); // NOI18N
+        jLabelLogoUV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/imagenes/UNIVALLE.jpg"))); // NOI18N
         jPanelHome.add(jLabelLogoUV);
 
         jPanelMain.add(jPanelHome, "jPanelHome");

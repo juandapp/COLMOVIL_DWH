@@ -20,7 +20,7 @@ public class PanelConsumos extends javax.swing.JPanel {
 
         jLabelTitle.setFont(new java.awt.Font("Ubuntu", 1, 50)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setText("CONSUMOSSS");
+        jLabelTitle.setText("CONSUMOS");
         add(jLabelTitle, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
