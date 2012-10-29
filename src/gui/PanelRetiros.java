@@ -1,15 +1,12 @@
 package gui;
 
 import controladores.ControladorRetiros;
-import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 public class PanelRetiros extends javax.swing.JPanel {
 
     private final ControladorRetiros controladorRetiros;
     private MainFrame parent;
-    JPanel jPanelBar;
-    JPanel jPanelPie;
 
     public PanelRetiros(MainFrame parent) {
 
@@ -59,7 +56,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(900, 650));
         setLayout(new java.awt.BorderLayout());
 
-        jPanelMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, null, null));
+        jPanelMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelMenu.setPreferredSize(new java.awt.Dimension(210, 50));
 
         jPanelUno.setBorder(javax.swing.BorderFactory.createTitledBorder("Uno"));
@@ -170,11 +167,10 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMain.setLayout(new java.awt.BorderLayout());
 
         jPanelNorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelNorte.setPreferredSize(new java.awt.Dimension(10, 200));
+        jPanelNorte.setPreferredSize(new java.awt.Dimension(10, 150));
         jPanelMain.add(jPanelNorte, java.awt.BorderLayout.PAGE_START);
 
         jPanelGrafica.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelGrafica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelGrafica.setLayout(new java.awt.BorderLayout());
 
         jLabelImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,21 +187,14 @@ public class PanelRetiros extends javax.swing.JPanel {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroPie(
                 jComboBoxHechos.getSelectedItem().toString());
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
-        jPanelGrafica.removeAll();
-        jPanelGrafica.add(pieChart.getChartPanel(), java.awt.BorderLayout.CENTER);
-        jPanelGrafica.updateUI();
-
+        updateGrafica(pieChart.getChartPanel());
     }//GEN-LAST:event_jButtonPie1ActionPerformed
 
     private void jButtonBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBar1ActionPerformed
         String[][] matrizCausas = controladorRetiros.reporteUnParametroBarra(
                 jComboBoxHechos.getSelectedItem().toString());
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
-        jPanelBar = barChart.getChartPanel();
-        jPanelGrafica.removeAll();
-        jPanelGrafica.add(barChart.getChartPanel(), java.awt.BorderLayout.CENTER);
-        jPanelGrafica.updateUI();
-
+        updateGrafica(barChart.getChartPanel());
     }//GEN-LAST:event_jButtonBar1ActionPerformed
 
     private void jButtonBarJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoinActionPerformed
@@ -214,11 +203,7 @@ public class PanelRetiros extends javax.swing.JPanel {
                 jComboBoxAtributo.getSelectedItem().toString());
 
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
-        jPanelBar = barChart.getChartPanel();
-
-        jPanelGrafica.removeAll();
-        jPanelGrafica.add(barChart.getChartPanel(), java.awt.BorderLayout.CENTER);
-        jPanelGrafica.updateUI();
+        updateGrafica(barChart.getChartPanel());
     }//GEN-LAST:event_jButtonBarJoinActionPerformed
 
     private void jButtonPieJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoinActionPerformed
@@ -227,17 +212,19 @@ public class PanelRetiros extends javax.swing.JPanel {
                 jComboBoxDimension.getSelectedItem().toString(),
                 jComboBoxAtributo.getSelectedItem().toString());
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
-        jPanelPie = pieChart.getChartPanel();
-
-        jPanelGrafica.removeAll();
-        jPanelGrafica.add(pieChart.getChartPanel(), java.awt.BorderLayout.CENTER);
-        jPanelGrafica.updateUI();
+        updateGrafica(pieChart.getChartPanel());
     }//GEN-LAST:event_jButtonPieJoinActionPerformed
 
     private void jComboBoxDimensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionActionPerformed
         jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
     }//GEN-LAST:event_jComboBoxDimensionActionPerformed
+
+    private void updateGrafica(JPanel chartPanel) {
+        jPanelGrafica.removeAll();
+        jPanelGrafica.add(chartPanel, java.awt.BorderLayout.CENTER);
+        jPanelGrafica.updateUI();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBar1;
     private javax.swing.JButton jButtonBarJoin;
