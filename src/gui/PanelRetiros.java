@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import controladores.ControladorRetiros;
@@ -9,10 +5,6 @@ import java.awt.CardLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-/**
- *
- * @author gustavo
- */
 public class PanelRetiros extends javax.swing.JPanel {
 
     private final ControladorRetiros controladorRetiros;
@@ -20,9 +12,6 @@ public class PanelRetiros extends javax.swing.JPanel {
     JPanel jPanelBar;
     JPanel jPanelPie;
 
-    /**
-     * Creates new form panelRetiros
-     */
     public PanelRetiros(MainFrame parent) {
         
         this.parent = parent;
@@ -37,7 +26,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxHechos.setModel(new javax.swing.DefaultComboBoxModel(
                 controladorRetiros.getAtributosInteresantes("Retiros")));
 
-        imagen.setIcon(new ImageIcon("imagenes/retiros.jpg"));
+//        imagen.setIcon(new ImageIcon("imagenes/retiros.jpg"));
     }
 
     /**
@@ -57,7 +46,6 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxAtributo = new javax.swing.JComboBox();
         jButtonPieJoin = new javax.swing.JButton();
         jButtonBarJoin = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonBar1 = new javax.swing.JButton();
         jButtonPie1 = new javax.swing.JButton();
@@ -75,9 +63,11 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         imagen = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(900, 650));
         setLayout(new java.awt.BorderLayout());
 
         jPanelMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, null, null));
+        jPanelMenu.setLayout(new java.awt.GridLayout(3, 1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("dos"));
 
@@ -122,7 +112,7 @@ public class PanelRetiros extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonPieJoin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(jButtonBarJoin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBoxDimension, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxAtributo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,15 +133,11 @@ public class PanelRetiros extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBarJoin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPieJoin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonPieJoin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Inicio");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jPanelMenu.add(jPanel2);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("uno"));
 
@@ -184,7 +170,7 @@ public class PanelRetiros extends javax.swing.JPanel {
                 .addComponent(jButtonBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxHechos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,23 +188,34 @@ public class PanelRetiros extends javax.swing.JPanel {
                     .addComponent(jButtonPie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanelMenu.add(jPanel3);
+
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("tres"));
+        jPanel4.setLayout(null);
 
         jComboBoxDimension1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxDimension1ActionPerformed(evt);
             }
         });
+        jPanel4.add(jComboBoxDimension1);
+        jComboBoxDimension1.setBounds(18, 56, 224, 28);
 
         jLabel5.setText("Dimension");
+        jPanel4.add(jLabel5);
+        jLabel5.setBounds(18, 91, 224, 18);
 
         jLabel6.setText("Atributo");
+        jPanel4.add(jLabel6);
+        jLabel6.setBounds(18, 149, 224, 18);
 
         jComboBoxAtributo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxAtributo2ActionPerformed(evt);
             }
         });
+        jPanel4.add(jComboBoxAtributo2);
+        jComboBoxAtributo2.setBounds(18, 173, 224, 28);
 
         jButtonBarJoin1.setText("Bar");
         jButtonBarJoin1.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -227,99 +224,33 @@ public class PanelRetiros extends javax.swing.JPanel {
                 jButtonBarJoin1ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButtonBarJoin1);
+        jButtonBarJoin1.setBounds(18, 207, 236, 30);
 
         jComboBoxDimension2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxDimension2ActionPerformed(evt);
             }
         });
+        jPanel4.add(jComboBoxDimension2);
+        jComboBoxDimension2.setBounds(18, 115, 224, 28);
 
         jLabel7.setText("Hecho");
+        jPanel4.add(jLabel7);
+        jLabel7.setBounds(18, 32, 224, 18);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxAtributo2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxDimension2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(jButtonBarJoin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jComboBoxDimension1, 0, 200, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxDimension2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxAtributo2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBarJoin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(46, 46, 46))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(36, 36, 36)
-                    .addComponent(jComboBoxDimension1)
-                    .addGap(199, 199, 199)))
-        );
-
-        javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
-        jPanelMenu.setLayout(jPanelMenuLayout);
-        jPanelMenuLayout.setHorizontalGroup(
-            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanelMenuLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelMenuLayout.setVerticalGroup(
-            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanelMenu.add(jPanel4);
 
         add(jPanelMenu, java.awt.BorderLayout.WEST);
 
         jPanelGrafica.setName(""); // NOI18N
         jPanelGrafica.setLayout(new java.awt.CardLayout());
 
+        jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setLayout(new java.awt.BorderLayout());
+
+        imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagen.setIcon(new javax.swing.ImageIcon("/home/gustavo/PROGRAMMING/DESKTOP/DESCUBRIMIENTO_DE_CONOCIMIENTO_EN_BASES_DE_DATOS/Colmovil_DWH/imagenes/retiros.jpg")); // NOI18N
         jPanel1.add(imagen, java.awt.BorderLayout.CENTER);
 
         jPanelGrafica.add(jPanel1, "imagen");
@@ -350,12 +281,6 @@ public class PanelRetiros extends javax.swing.JPanel {
         parent.pack();
 
     }//GEN-LAST:event_jButtonBar1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-//        CardLayout cl = (CardLayout) (parent.panelCards.getLayout());
-//        cl.show(parent.panelCards, (String) "menu");
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonBarJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoinActionPerformed
 
@@ -410,7 +335,6 @@ public class PanelRetiros extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imagen;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonBar1;
     private javax.swing.JButton jButtonBarJoin;
     private javax.swing.JButton jButtonBarJoin1;
