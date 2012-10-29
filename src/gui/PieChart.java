@@ -27,20 +27,6 @@ public class PieChart {
         this.dataSet = dataSet;
     }
 
-    
-//    public PieChart(String title, String[][] dataSet) {
-//
-//
-//        dataset = createDataset(dataSet);
-//
-//        // based on the dataset we create the chart
-//        chart = createChart(dataset, title);
-//
-//        // we put the chart into a panel
-//        chartPanel = new ChartPanel(chart);
-//
-//    }
-
     private PieDataset createDataset(String[][] dataSet) {
         DefaultPieDataset result = new DefaultPieDataset();
         for (int i = 0; i < dataSet.length; i++) {
