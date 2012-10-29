@@ -1,9 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package accesoDatos;
-//~--- JDK imports ------------------------------------------------------------
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,8 +20,7 @@ public class FachadaBD {
     public FachadaBD() {
     }
 
-    private void conectar() {
-
+    public void conectar() {
         try {
             // Se carga el driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -54,14 +49,11 @@ public class FachadaBD {
     }
 
     public ResultSet executeQuery(String sql) throws SQLException {
-
-        conectar();
         ResultSet resultSet = instruccion.executeQuery(sql);
         return resultSet;
     }
 
     public int executeUpdate(String sql) throws SQLException {
-        conectar();
         int executeUpdate = instruccion.executeUpdate(sql);
         return executeUpdate;
     }

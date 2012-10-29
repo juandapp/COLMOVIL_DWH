@@ -31,14 +31,14 @@ public class ControladorRetiros {
                     + "referenced_table_name "
                     + "from information_schema.key_column_usage "
                     + "where referenced_table_name is not null and table_name = '" + hecho + "';";
-
+            fachadaBD.conectar();
             ResultSet tabla = fachadaBD.executeQuery(consulta);
             ArrayList<String> dimensiones = new ArrayList<>();
 
             while (tabla.next()) {
                 dimensiones.add(tabla.getString(1));
             }
-
+            fachadaBD.cerrarConexion();
             return dimensiones.toArray();
 
         } catch (SQLException ex) {
@@ -53,6 +53,7 @@ public class ControladorRetiros {
     public Object[] getAtributosInteresantes(String dimension) {
         try {
             String consulta = "DESC " + dimension;
+            fachadaBD.conectar();
             ResultSet tabla = fachadaBD.executeQuery(consulta);
 
             ArrayList<String> atributos = new ArrayList<>();
@@ -63,6 +64,7 @@ public class ControladorRetiros {
                     atributos.add(atributo);
                 }
             }
+            fachadaBD.cerrarConexion();
             return atributos.toArray();
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,6 +95,7 @@ public class ControladorRetiros {
     public String[][] reporteCausa() {
 
         try {
+            fachadaBD.conectar();
             ResultSet tabla = fachadaBD.executeQuery("SELECT causa, COUNT( causa ) FROM  Retiros GROUP BY causa");
 
             tabla.last();
@@ -108,7 +111,7 @@ public class ControladorRetiros {
                 i++;
             } while (tabla.next());
 
-
+            fachadaBD.cerrarConexion();
             return resultado;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,6 +125,7 @@ public class ControladorRetiros {
     public String[][] reporteCausaEstrato() {
 
         try {
+            fachadaBD.conectar();
             ResultSet tabla = fachadaBD.executeQuery("SELECT COUNT( r.causa ), r.causa, d.estrato "
                     + "FROM Retiros r "
                     + "INNER JOIN Demografia_Cliente d ON r.cod_Demografia = d.cod_Demografia "
@@ -141,7 +145,7 @@ public class ControladorRetiros {
                 i++;
             } while (tabla.next());
 
-
+            fachadaBD.cerrarConexion();
             return resultado;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,6 +192,7 @@ public class ControladorRetiros {
                     + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
             System.out.println(consulta);
+            fachadaBD.conectar();
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -202,7 +207,8 @@ public class ControladorRetiros {
                 resultado[i][1] = resultSet.getString(2);
                 i++;
             } while (resultSet.next());
-
+            
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
@@ -250,6 +256,7 @@ public class ControladorRetiros {
                     + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
             System.out.println(consulta);
+            fachadaBD.conectar();
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -265,7 +272,7 @@ public class ControladorRetiros {
                 resultado[i][2] = resultSet.getString(2);
                 i++;
             } while (resultSet.next());
-
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
@@ -283,6 +290,7 @@ public class ControladorRetiros {
 
             String consulta = "SELECT " + parametro + ", COUNT( " + parametro + " ) FROM  Retiros GROUP BY " + parametro;
             System.out.println(consulta);
+            fachadaBD.conectar();
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -297,7 +305,8 @@ public class ControladorRetiros {
                 resultado[i][1] = resultSet.getString(2);
                 i++;
             } while (resultSet.next());
-
+            
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
@@ -315,6 +324,7 @@ public class ControladorRetiros {
 
             String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
             System.out.println(consulta);
+            fachadaBD.conectar();
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -331,6 +341,7 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
