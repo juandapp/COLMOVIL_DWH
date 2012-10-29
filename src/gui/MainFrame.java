@@ -1,26 +1,27 @@
 package gui;
 
 import java.awt.CardLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
-        
-        
+
+
         jPanelMain.remove(jPanelContrataciones);
         jPanelContrataciones = new PanelContrataciones(this);
         jPanelMain.add(jPanelContrataciones, "jPanelContrataciones");
-        
+
         jPanelMain.remove(jPanelConsumos);
         jPanelConsumos = new PanelConsumos(this);
         jPanelMain.add(jPanelConsumos, "jPanelConsumos");
-        
+
         jPanelMain.remove(jPanelRetiros);
         jPanelRetiros = new PanelRetiros(this);
         jPanelMain.add(jPanelRetiros, "jPanelRetiros");
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -45,12 +46,12 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout(0, 5));
 
-        jPanelMenuPrincipal.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
+        jPanelMenuPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelMenuPrincipal.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
 
         jButtonHome.setText("Home");
-        jButtonHome.setPreferredSize(new java.awt.Dimension(60, 40));
+        jButtonHome.setPreferredSize(new java.awt.Dimension(150, 40));
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHomeActionPerformed(evt);
@@ -59,7 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelMenuPrincipal.add(jButtonHome);
 
         jButtonRetiros.setText("Retiros");
-        jButtonRetiros.setPreferredSize(new java.awt.Dimension(60, 40));
+        jButtonRetiros.setPreferredSize(new java.awt.Dimension(150, 40));
         jButtonRetiros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRetirosActionPerformed(evt);
@@ -68,7 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelMenuPrincipal.add(jButtonRetiros);
 
         jButtonContrataciones.setText("Contrataciones");
-        jButtonContrataciones.setPreferredSize(new java.awt.Dimension(60, 40));
+        jButtonContrataciones.setPreferredSize(new java.awt.Dimension(150, 40));
         jButtonContrataciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonContratacionesActionPerformed(evt);
@@ -77,7 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelMenuPrincipal.add(jButtonContrataciones);
 
         jButtonConsumos.setText("Consumos");
-        jButtonConsumos.setPreferredSize(new java.awt.Dimension(60, 40));
+        jButtonConsumos.setPreferredSize(new java.awt.Dimension(150, 40));
         jButtonConsumos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsumosActionPerformed(evt);
@@ -117,6 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
+        jMenuItemSali.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemSali.setText("Salir");
         jMenuItemSali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,14 +166,17 @@ public class MainFrame extends javax.swing.JFrame {
         UpdateFrameSize(jPanelHome);
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
-    private void UpdateFrameSize(JPanel panel){
-        int newHeight=panel.getPreferredSize().height+70;
-        int newWidth=panel.getPreferredSize().width+10;
-        
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width - newWidth) / 2, (screenSize.height - newHeight) / 2, newWidth, newHeight);
+    private void UpdateFrameSize(JPanel panel) {
+        if (this.getExtendedState() != JFrame.MAXIMIZED_BOTH) {
+            int newHeight = panel.getPreferredSize().height + 70;
+            int newWidth = panel.getPreferredSize().width + 10;
+
+            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            setBounds((screenSize.width - newWidth) / 2, (screenSize.height - newHeight) / 2, newWidth, newHeight);
+        }
     }
     //<editor-fold defaultstate="collapsed" desc="main()">
+
     public static void main(String args[]) {
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
