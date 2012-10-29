@@ -16,15 +16,17 @@ import javax.swing.JPanel;
 public class PanelRetiros extends javax.swing.JPanel {
 
     private final ControladorRetiros controladorRetiros;
-    private MainFrame main;
+    private MainFrame parent;
     JPanel jPanelBar;
     JPanel jPanelPie;
 
     /**
      * Creates new form panelRetiros
      */
-    public PanelRetiros(MainFrame main) {
-        this.main = main;
+    public PanelRetiros(MainFrame parent) {
+        
+        this.parent = parent;
+        
         controladorRetiros = new ControladorRetiros();
         initComponents();
 
@@ -36,7 +38,6 @@ public class PanelRetiros extends javax.swing.JPanel {
                 controladorRetiros.getAtributosInteresantes("Retiros")));
 
         imagen.setIcon(new ImageIcon("imagenes/retiros.jpg"));
-        main.pack();
     }
 
     /**
@@ -335,7 +336,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelGrafica.add(jPanelPie, "jPanelPie");
         CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
         cl.show(jPanelGrafica, (String) "jPanelPie");
-        main.pack();
+        parent.pack();
     }//GEN-LAST:event_jButtonPie1ActionPerformed
 
     private void jButtonBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBar1ActionPerformed
@@ -346,14 +347,14 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelGrafica.add(jPanelBar, "jPanelBar");
         CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
         cl.show(jPanelGrafica, (String) "jPanelBar");
-        main.pack();
+        parent.pack();
 
     }//GEN-LAST:event_jButtonBar1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        CardLayout cl = (CardLayout) (main.panelCards.getLayout());
-        cl.show(main.panelCards, (String) "menu");
+//        CardLayout cl = (CardLayout) (parent.panelCards.getLayout());
+//        cl.show(parent.panelCards, (String) "menu");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonBarJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoinActionPerformed
@@ -366,7 +367,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelGrafica.add(jPanelBar, "jPanelBar");
         CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
         cl.show(jPanelGrafica, (String) "jPanelBar");
-        main.pack();
+        parent.pack();
     }//GEN-LAST:event_jButtonBarJoinActionPerformed
 
     private void jButtonPieJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoinActionPerformed
@@ -379,7 +380,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelGrafica.add(jPanelPie, "jPanelPie");
         CardLayout cl = (CardLayout) (jPanelGrafica.getLayout());
         cl.show(jPanelGrafica, (String) "jPanelPie");
-        main.pack();
+        parent.pack();
     }//GEN-LAST:event_jButtonPieJoinActionPerformed
 
     private void jComboBoxAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributoActionPerformed

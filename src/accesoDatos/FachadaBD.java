@@ -49,11 +49,13 @@ public class FachadaBD {
     }
 
     public ResultSet executeQuery(String sql) throws SQLException {
+        conectar();
         ResultSet resultSet = instruccion.executeQuery(sql);
         return resultSet;
     }
 
     public int executeUpdate(String sql) throws SQLException {
+        conectar();
         int executeUpdate = instruccion.executeUpdate(sql);
         return executeUpdate;
     }
