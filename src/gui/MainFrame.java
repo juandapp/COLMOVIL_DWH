@@ -88,6 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanelMenuPrincipal, java.awt.BorderLayout.NORTH);
 
+        jPanelMain.setPreferredSize(new java.awt.Dimension(700, 350));
         jPanelMain.setLayout(new java.awt.CardLayout());
 
         jPanelHome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -168,7 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void UpdateFrameSize(JPanel panel) {
         if (this.getExtendedState() != JFrame.MAXIMIZED_BOTH) {
-            int newHeight = panel.getPreferredSize().height + 70;
+            int newHeight = panel.getPreferredSize().height +30+40+30;
             int newWidth = panel.getPreferredSize().width + 10;
 
             java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
