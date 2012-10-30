@@ -1,5 +1,8 @@
 package gui;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import logica.LogicaRetiros;
 
@@ -55,10 +58,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMain = new javax.swing.JPanel();
         jPanelNorte = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        jPanelGrafica = new javax.swing.JPanel();
-        jLabelImagen = new javax.swing.JLabel();
+        jDesktopPane = new javax.swing.JDesktopPane();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
@@ -197,35 +197,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelNorte.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jPanelMain.add(jPanelNorte, java.awt.BorderLayout.NORTH);
-
-        jInternalFrame1.setClosable(true);
-        jInternalFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        jInternalFrame1.setIconifiable(true);
-        jInternalFrame1.setMaximizable(true);
-        jInternalFrame1.setResizable(true);
-        jInternalFrame1.setNormalBounds(new java.awt.Rectangle(0, 0, 500, 500));
-        jInternalFrame1.setVisible(true);
-
-        jPanelGrafica.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelGrafica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelGrafica.setLayout(new java.awt.BorderLayout());
-
-        jLabelImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/imagenes/retiros.jpg"))); // NOI18N
-        jLabelImagen.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanelGrafica.add(jLabelImagen, java.awt.BorderLayout.CENTER);
-
-        jInternalFrame1.getContentPane().add(jPanelGrafica, java.awt.BorderLayout.CENTER);
-
-        jInternalFrame1.setBounds(0, 0, 760, 450);
-        jDesktopPane1.add(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        try {
-            jInternalFrame1.setMaximum(true);
-        } catch (java.beans.PropertyVetoException e1) {
-            e1.printStackTrace();
-        }
-
-        jPanelMain.add(jDesktopPane1, java.awt.BorderLayout.CENTER);
+        jPanelMain.add(jDesktopPane, java.awt.BorderLayout.CENTER);
 
         add(jPanelMain, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -277,9 +249,15 @@ public class PanelRetiros extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonBarJoin1ActionPerformed
 
     private void updateGrafica(JPanel chartPanel) {
-        jPanelGrafica.removeAll();
-        jPanelGrafica.add(chartPanel, java.awt.BorderLayout.CENTER);
-        jPanelGrafica.updateUI();
+        PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
+        personalJInternalFrame.setBounds(0, 0, 760, 450);
+        jDesktopPane.add(personalJInternalFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            personalJInternalFrame.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(PanelRetiros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        personalJInternalFrame.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBar;
@@ -293,18 +271,15 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBoxDimension1;
     private javax.swing.JComboBox jComboBoxHechos;
     private javax.swing.JComboBox jComboBoxHechos1;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabelImagen;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDos;
-    private javax.swing.JPanel jPanelGrafica;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelNorte;
