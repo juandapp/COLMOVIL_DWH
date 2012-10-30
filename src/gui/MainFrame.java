@@ -6,9 +6,12 @@ import javax.swing.JPanel;
 
 public class MainFrame extends javax.swing.JFrame {
 
+    private String currentPanel;
+
     public MainFrame() {
         initComponents();
 
+        currentPanel = "jPanelHome";
 
         jPanelMain.remove(jPanelContrataciones);
         jPanelContrataciones = new PanelContrataciones(this);
@@ -46,6 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSali = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItemMosaico = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,6 +159,28 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu3.setText("Ventana");
+
+        jMenuItemMosaico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemMosaico.setText("Mosaico");
+        jMenuItemMosaico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMosaicoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemMosaico);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Mostar Todas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu3);
+
         jMenu2.setText("Ayuda");
         jMenuBar1.add(jMenu2);
 
@@ -169,30 +197,46 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonRetirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetirosActionPerformed
         CardLayout cl = (CardLayout) (jPanelMain.getLayout());
         cl.show(jPanelMain, "jPanelRetiros");
+        currentPanel = "jPanelRetiros";
         UpdateFrameSize(jPanelRetiros);
     }//GEN-LAST:event_jButtonRetirosActionPerformed
 
     private void jButtonContratacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContratacionesActionPerformed
         CardLayout cl = (CardLayout) (jPanelMain.getLayout());
         cl.show(jPanelMain, "jPanelContrataciones");
+        currentPanel = "jPanelContrataciones";
         UpdateFrameSize(jPanelContrataciones);
     }//GEN-LAST:event_jButtonContratacionesActionPerformed
 
     private void jButtonConsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsumosActionPerformed
         CardLayout cl = (CardLayout) (jPanelMain.getLayout());
         cl.show(jPanelMain, "jPanelConsumos");
+        currentPanel = "jPanelConsumos";
         UpdateFrameSize(jPanelConsumos);
     }//GEN-LAST:event_jButtonConsumosActionPerformed
 
     private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
         CardLayout cl = (CardLayout) (jPanelMain.getLayout());
         cl.show(jPanelMain, "jPanelHome");
+        currentPanel = "jPanelHome";
         UpdateFrameSize(jPanelHome);
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
+    private void jMenuItemMosaicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMosaicoActionPerformed
+        if (currentPanel.endsWith("jPanelRetiros")) {
+            ((PanelRetiros) jPanelRetiros).tileInternalframes();
+        }
+    }//GEN-LAST:event_jMenuItemMosaicoActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if (currentPanel.endsWith("jPanelRetiros")) {
+            ((PanelRetiros) jPanelRetiros).maximizarTodos();
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     private void UpdateFrameSize(JPanel panel) {
         if (this.getExtendedState() != JFrame.MAXIMIZED_BOTH) {
-            int newHeight = panel.getPreferredSize().height +30+40+30;
+            int newHeight = panel.getPreferredSize().height + 30 + 40 + 30;
             int newWidth = panel.getPreferredSize().width + 10;
 
             java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -224,7 +268,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemMosaico;
     private javax.swing.JMenuItem jMenuItemSali;
     private javax.swing.JPanel jPanelConsumos;
     private javax.swing.JPanel jPanelContrataciones;
