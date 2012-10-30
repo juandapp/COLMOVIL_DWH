@@ -335,10 +335,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBoxValorActionPerformed
 
     private void jComboBoxAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributo1ActionPerformed
-        int dimension = jComboBoxDimension1.getSelectedIndex();
-        int atributo = jComboBoxAtributo1.getSelectedIndex();
-        Object[] valores=logicaRetiros.getValores(dimension, atributo);
-        jComboBoxValor.setModel(new javax.swing.DefaultComboBoxModel(valores));
+        cargarValores();
     }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -399,6 +396,14 @@ public class PanelRetiros extends javax.swing.JPanel {
         }
         personalJInternalFrame.setVisible(true);
     }
+    
+    private void cargarValores() {
+        int dimension = jComboBoxDimension1.getSelectedIndex();
+        int atributo = jComboBoxAtributo1.getSelectedIndex();
+        Object[] valores=logicaRetiros.getValores(dimension, atributo);
+        jComboBoxValor.setModel(new javax.swing.DefaultComboBoxModel(valores));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
