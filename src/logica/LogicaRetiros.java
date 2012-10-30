@@ -128,6 +128,13 @@ public class LogicaRetiros {
     }
 
     public BarChart reporteBiDimensionalBarra(int dimensionA, int atributoA, int dimensionB, int atributoB) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String dimensionNameA = comboBoxDimensionesA[1].get(dimensionA);
+        String atributoNameA = comboBoxAtributosA[1].get(atributoA);
+        String dimensionNameB = comboBoxDimensionesB[1].get(dimensionB);
+        String atributoNameB = comboBoxAtributosB[1].get(atributoB);
+
+        String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, dimensionNameB, atributoNameB);
+        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+        return barChart;
     }
 }

@@ -75,22 +75,22 @@ public class ControladorRetiros {
         }
         return null;
     }
-    
+
     public Object[] getValores(String dimension, String atributo) {
-        
+
         ArrayList<String> valores = new ArrayList<>();
         try {
-                String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
-                ResultSet tabla = fachadaBD.executeQuery(consulta);
+            String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
+            ResultSet tabla = fachadaBD.executeQuery(consulta);
 
-                valores.add("Todos");
+            valores.add("Todos");
             while (tabla.next()) {
                 String valor = tabla.getString(1);
                 valores.add(valor);
             }
 
             return valores.toArray();
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("Error valor Interesante: " + ex);
@@ -353,11 +353,11 @@ public class ControladorRetiros {
             String consulta = "SELECT COUNT( r." + hecho + " ), r." + hecho + ", j." + atributo + " "
                     + "FROM Retiros r" + " "
                     + "INNER JOIN " + dimension + " j ON " + joinCondition + " ";
-            
+
             if (!valueAtributo.equalsIgnoreCase("todos")) {
-                consulta = consulta + "WHERE j." + atributo + " = '"+valueAtributo+"' ";
+                consulta = consulta + "WHERE j." + atributo + " = '" + valueAtributo + "' ";
             }
-            
+
             consulta = consulta + "GROUP BY r." + hecho + ", j." + atributo;
 
             System.out.println(consulta);
@@ -408,4 +408,84 @@ public class ControladorRetiros {
         return newAtributo.substring(0, newAtributo.length() - 1);
     }
 
+    public String[][] reporteBidimensional(String dimensionA, String atributoA, String dimensionB, String atributoB) {
+        try {
+
+            String joinConditionA = null;
+            String joinConditionB = null;
+            System.out.println(dimensionA);
+
+            if ("Fecha".equals(dimensionA)) {
+                joinConditionA = "j.cod_Fecha = r.cod_Fecha";
+            }
+            if ("PlanDatos".equals(dimensionA)) {
+                joinConditionA = "j.cod_PlanDatos = r.cod_PlanDatos";
+            }
+            if ("PlanVoz".equals(dimensionA)) {
+                joinConditionA = "j.cod_PlanVoz = r.cod_PlanVoz";
+            }
+            if ("Demografia_Cliente".equals(dimensionA)) {
+                joinConditionA = "j.cod_Demografia = r.cod_Demografia";
+            }
+            if ("ClienteDWH".equals(dimensionA)) {
+                joinConditionA = "j.cod_Cliente = r.cod_Cliente";
+            }
+            if ("OficinaDWH".equals(dimensionA)) {
+                joinConditionA = "j.cod_Oficina = r.cod_Oficina";
+            }
+
+            if ("Fecha".equals(dimensionB)) {
+                joinConditionB = "k.cod_Fecha = r.cod_Fecha";
+            }
+            if ("PlanDatos".equals(dimensionB)) {
+                joinConditionB = "k.cod_PlanDatos = r.cod_PlanDatos";
+            }
+            if ("PlanVoz".equals(dimensionB)) {
+                joinConditionB = "k.cod_PlanVoz = r.cod_PlanVoz";
+            }
+            if ("Demografia_Cliente".equals(dimensionB)) {
+                joinConditionB = "k.cod_Demografia = r.cod_Demografia";
+            }
+            if ("ClienteDWH".equals(dimensionB)) {
+                joinConditionB = "k.cod_Cliente = r.cod_Cliente";
+            }
+            if ("OficinaDWH".equals(dimensionB)) {
+                joinConditionB = "k.cod_Oficina = r.cod_Oficina";
+            }
+
+            String consulta = "SELECT COUNT(*), j." + atributoA + ", k." + atributoB + " "
+                    + "FROM Retiros r" + " "
+                    + "INNER JOIN " + dimensionA + " j ON " + joinConditionA + " "
+                    + "INNER JOIN " + dimensionB + " k ON " + joinConditionB + " ";
+
+
+            consulta = consulta + "GROUP BY j." + atributoA + ", k." + atributoB;
+
+            ResultSet resultSet = fachadaBD.executeQuery(consulta);
+
+            resultSet.last();
+            int numeroFilas = resultSet.getRow();
+            resultSet.first();
+
+            String[][] resultado = new String[numeroFilas][3];
+
+            int i = 0;
+            do {
+                resultado[i][0] = resultSet.getString(1);
+                resultado[i][1] = resultSet.getString(2);
+                resultado[i][2] = resultSet.getString(3);
+                i++;
+            } while (resultSet.next());
+
+            return resultado;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error reporteBivariadoBarra: " + ex);
+        } finally {
+            fachadaBD.cerrarConexion("reporteBivariadoBarra");
+
+        }
+        return null;
+    }
 }
