@@ -329,7 +329,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         int dimension = jComboBoxDimension1.getSelectedIndex();
         int atributo = jComboBoxAtributo1.getSelectedIndex();
         Object[] valores=logicaRetiros.getValores(dimension, atributo);
-        jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(valores));
+        jComboBoxValor.setModel(new javax.swing.DefaultComboBoxModel(valores));
     }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
 
     private void updateGrafica(JPanel chartPanel) {
