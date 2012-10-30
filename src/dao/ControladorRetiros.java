@@ -75,6 +75,31 @@ public class ControladorRetiros {
         }
         return null;
     }
+    
+    public Object[] getValores(String dimension, String atributo) {
+         ArrayList<String> valores = new ArrayList<>();
+        try {
+                String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
+                ResultSet tabla = fachadaBD.executeQuery(consulta);
+
+                valores.add("Todos");
+            while (tabla.next()) {
+                String valor = tabla.getString(1);
+                if (esIntesante(atributo, dimension)) {
+                    valores.add(formatearAtributo(atributo));
+                }
+            }
+
+            return valores.toArray();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error valor Interesante: " + ex);
+        } finally {
+            fachadaBD.cerrarConexion("Get Valores Interesantes");
+        }
+        return null;
+    }
 
     private boolean esIntesante(String atributo, String dimension) {
         try {
@@ -382,10 +407,6 @@ public class ControladorRetiros {
         }
 
         return newAtributo.substring(0, newAtributo.length() - 1);
-    }
-
-    public Object[] getValores(String dimensionName, String atributoName) {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }

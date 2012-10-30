@@ -214,6 +214,11 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jComboBoxAtributo1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
         jComboBoxAtributo1.setPreferredSize(new java.awt.Dimension(200, 25));
+        jComboBoxAtributo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAtributo1ActionPerformed(evt);
+            }
+        });
         jPanelTres.add(jComboBoxAtributo1);
 
         jLabel8.setText("Valor");
@@ -318,11 +323,15 @@ public class PanelRetiros extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBoxValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxValorActionPerformed
+        
+    }//GEN-LAST:event_jComboBoxValorActionPerformed
+
+    private void jComboBoxAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributo1ActionPerformed
         int dimension = jComboBoxDimension1.getSelectedIndex();
         int atributo = jComboBoxAtributo1.getSelectedIndex();
         Object[] valores=logicaRetiros.getValores(dimension, atributo);
         jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(valores));
-    }//GEN-LAST:event_jComboBoxValorActionPerformed
+    }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
 
     private void updateGrafica(JPanel chartPanel) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
