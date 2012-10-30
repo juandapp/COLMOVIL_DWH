@@ -390,11 +390,9 @@ public class ControladorRetiros {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
-
-            //String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
-            String consulta = "SELECT COUNT( r." + parametroHecho + " ), r." + parametroHecho + ", j." + parametroDimension
-                    + "FROM Retiros r"
-                    + "INNER JOIN" + tablaDim + " j ON " + joinCondition + " "
+            String consulta = "SELECT COUNT( r." + parametroHecho + " ), r." + parametroHecho + ", j." + parametroDimension + " "
+                    + "FROM Retiros r" + " "
+                    + "INNER JOIN " + tablaDim + " j ON " + joinCondition + " "
                     + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;
 
             System.out.println(consulta);
