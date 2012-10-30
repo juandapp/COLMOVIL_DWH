@@ -46,6 +46,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelOpciones = new javax.swing.JPanel();
         jToolBarOpciones = new javax.swing.JToolBar();
         jBAnalisisUnidimensional = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         jBAnalisisBidimensional = new javax.swing.JButton();
         jPanelCardLayout = new javax.swing.JPanel();
         jPanelUniDimensional = new javax.swing.JPanel();
@@ -104,12 +105,12 @@ public class PanelRetiros extends javax.swing.JPanel {
         jToolBarOpciones.setFloatable(false);
         jToolBarOpciones.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBarOpciones.setRollover(true);
-        jToolBarOpciones.setPreferredSize(new java.awt.Dimension(30, 600));
+        jToolBarOpciones.setPreferredSize(new java.awt.Dimension(25, 600));
 
-        jBAnalisisUnidimensional.setText("A");
+        jBAnalisisUnidimensional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/imagenes/Uni.jpg"))); // NOI18N
         jBAnalisisUnidimensional.setFocusable(false);
         jBAnalisisUnidimensional.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBAnalisisUnidimensional.setPreferredSize(new java.awt.Dimension(50, 80));
+        jBAnalisisUnidimensional.setPreferredSize(new java.awt.Dimension(40, 150));
         jBAnalisisUnidimensional.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBAnalisisUnidimensional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,11 +118,12 @@ public class PanelRetiros extends javax.swing.JPanel {
             }
         });
         jToolBarOpciones.add(jBAnalisisUnidimensional);
+        jToolBarOpciones.add(jSeparator1);
 
-        jBAnalisisBidimensional.setText("B");
+        jBAnalisisBidimensional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/imagenes/Bi.jpg"))); // NOI18N
         jBAnalisisBidimensional.setFocusable(false);
         jBAnalisisBidimensional.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBAnalisisBidimensional.setPreferredSize(new java.awt.Dimension(50, 80));
+        jBAnalisisBidimensional.setPreferredSize(new java.awt.Dimension(40, 150));
         jBAnalisisBidimensional.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBAnalisisBidimensional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,6 +594,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelTres;
     private javax.swing.JPanel jPanelUniDimensional;
     private javax.swing.JPanel jPanelUno;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBarOpciones;
     // End of variables declaration//GEN-END:variables
 }
