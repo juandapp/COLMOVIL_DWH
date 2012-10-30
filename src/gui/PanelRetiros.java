@@ -522,6 +522,28 @@ public class PanelRetiros extends javax.swing.JPanel {
         }
         tileInternalframes();
     }
+    
+    
+    public void cerrarTodos() {
+        JInternalFrame[] allframes = jDesktopPane.getAllFrames();
+        for (int i = 0; i < allframes.length; i++) {
+            JInternalFrame jInternalFrame = allframes[i];
+            jInternalFrame.dispose();
+        }
+    }
+    
+    
+    public void minimizarTodos() {
+        JInternalFrame[] allframes = jDesktopPane.getAllFrames();
+        for (int i = 0; i < allframes.length; i++) {
+            try {
+                JInternalFrame jInternalFrame = allframes[i];
+                jInternalFrame.setIcon(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(PanelRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     private void loadDatajComboBoxValores() {
         int dimension = jComboBoxDimensiones1.getSelectedIndex();

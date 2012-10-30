@@ -51,7 +51,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItemSali = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemMosaico = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemMostrarTodas = new javax.swing.JMenuItem();
+        jMenuItemMinimizarTodas = new javax.swing.JMenuItem();
+        jMenuItemCerrarTodas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,14 +172,32 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemMosaico);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Mostar Todas");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemMostrarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemMostrarTodas.setText("Mostar Todas");
+        jMenuItemMostrarTodas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemMostrarTodasActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenu3.add(jMenuItemMostrarTodas);
+
+        jMenuItemMinimizarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemMinimizarTodas.setText("Minimizar Todas");
+        jMenuItemMinimizarTodas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMinimizarTodasActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemMinimizarTodas);
+
+        jMenuItemCerrarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemCerrarTodas.setText("Cerrar Todas");
+        jMenuItemCerrarTodas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCerrarTodasActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemCerrarTodas);
 
         jMenuBar1.add(jMenu3);
 
@@ -228,11 +248,23 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemMosaicoActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItemMostrarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarTodasActionPerformed
         if (currentPanel.endsWith("jPanelRetiros")) {
             ((PanelRetiros) jPanelRetiros).maximizarTodos();
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItemMostrarTodasActionPerformed
+
+    private void jMenuItemCerrarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarTodasActionPerformed
+        if (currentPanel.endsWith("jPanelRetiros")) {
+            ((PanelRetiros) jPanelRetiros).cerrarTodos();
+        }
+    }//GEN-LAST:event_jMenuItemCerrarTodasActionPerformed
+
+    private void jMenuItemMinimizarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMinimizarTodasActionPerformed
+        if (currentPanel.endsWith("jPanelRetiros")) {
+            ((PanelRetiros) jPanelRetiros).minimizarTodos();
+        }
+    }//GEN-LAST:event_jMenuItemMinimizarTodasActionPerformed
 
     private void UpdateFrameSize(JPanel panel) {
         if (this.getExtendedState() != JFrame.MAXIMIZED_BOTH) {
@@ -270,8 +302,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemCerrarTodas;
+    private javax.swing.JMenuItem jMenuItemMinimizarTodas;
     private javax.swing.JMenuItem jMenuItemMosaico;
+    private javax.swing.JMenuItem jMenuItemMostrarTodas;
     private javax.swing.JMenuItem jMenuItemSali;
     private javax.swing.JPanel jPanelConsumos;
     private javax.swing.JPanel jPanelContrataciones;
