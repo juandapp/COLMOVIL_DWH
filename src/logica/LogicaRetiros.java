@@ -77,4 +77,8 @@ public class LogicaRetiros {
         String atributoName = atributosInteresantes[1].get(atributo);
         return controladorRetiros.getValores(dimensionName, atributoName);
     }
+
+    public BarChart reporteBiDimensionalBarra(int dimensionA, int atributoA, int dimensionB, int atributoB) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
