@@ -319,46 +319,46 @@ public class ControladorRetiros {
 
     }
 
-    public String[][] reporteBivariadoBarra(String parametroHecho, String parametroDimension, String value, String tablaDim) {
+    public String[][] reporteBivariadoBarra(String dimension, String atributo, String valueAtributo, String hecho) {
 
         try {
 
             String joinCondition = null;
-            System.out.println(tablaDim);
+            System.out.println(dimension);
 
-            if ("Fecha".equals(tablaDim)) {
+            if ("Fecha".equals(dimension)) {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if ("PlanDatos".equals(tablaDim)) {
+            if ("PlanDatos".equals(dimension)) {
                 joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
             }
 
-            if ("PlanVoz".equals(tablaDim)) {
+            if ("PlanVoz".equals(dimension)) {
                 joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
 
-            if ("Demografia_Cliente".equals(tablaDim)) {
+            if ("Demografia_Cliente".equals(dimension)) {
                 joinCondition = "j.cod_Demografia = r.cod_Demografia";
             }
 
-            if ("ClienteDWH".equals(tablaDim)) {
+            if ("ClienteDWH".equals(dimension)) {
                 joinCondition = "j.cod_Cliente = r.cod_Cliente";
             }
 
-            if ("OficinaDWH".equals(tablaDim)) {
+            if ("OficinaDWH".equals(dimension)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
-            String consulta = "SELECT COUNT( r." + parametroHecho + " ), r." + parametroHecho + ", j." + parametroDimension + " "
+            String consulta = "SELECT COUNT( r." + hecho + " ), r." + hecho + ", j." + atributo + " "
                     + "FROM Retiros r" + " "
-                    + "INNER JOIN " + tablaDim + " j ON " + joinCondition + " ";
+                    + "INNER JOIN " + dimension + " j ON " + joinCondition + " ";
             
-            if (!value.equalsIgnoreCase("todos")) {
-                consulta = consulta + "WHERE j." + parametroDimension + " = '"+value+"' ";
+            if (!valueAtributo.equalsIgnoreCase("todos")) {
+                consulta = consulta + "WHERE j." + atributo + " = '"+valueAtributo+"' ";
             }
             
-            consulta = consulta + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;
+            consulta = consulta + "GROUP BY r." + hecho + ", j." + atributo;
 
             System.out.println(consulta);
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
