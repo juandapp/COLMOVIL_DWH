@@ -4,8 +4,6 @@ import accesoDatos.FachadaBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ControladorRetiros {
 
@@ -35,14 +33,13 @@ public class ControladorRetiros {
                 dimensiones[0].add(formatearAtributo(dimension));
                 dimensiones[1].add(dimension);
             }
-            
-            fachadaBD.cerrarConexion();
+
             return dimensiones;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error getDimensionesRelacionadas: " + ex);
         } finally {
-            fachadaBD.cerrarConexion();
+            fachadaBD.cerrarConexion("getDimensionesRelacionadas");
         }
 
         return null;
@@ -52,7 +49,6 @@ public class ControladorRetiros {
 
         try {
             String consulta = "DESC " + dimension;
-
             ResultSet tabla = fachadaBD.executeQuery(consulta);
             ArrayList<String>[] atributos = new ArrayList[2];
 
@@ -69,11 +65,13 @@ public class ControladorRetiros {
                 }
             }
 
-            fachadaBD.cerrarConexion();
             return atributos;
-            
+
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error getAtributosInteresantes: " + ex);
+        } finally {
+            fachadaBD.cerrarConexion("getAtributosInteresantes");
         }
         return null;
     }
@@ -93,73 +91,10 @@ public class ControladorRetiros {
             }
             return false;
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error esIntesante: " + ex);
         }
         return false;
-    }
-
-    public String[][] reporteCausa() {
-
-        try {
-
-            ResultSet tabla = fachadaBD.executeQuery("SELECT causa, COUNT( causa ) FROM  Retiros GROUP BY causa");
-
-            tabla.last();
-            int numeroFilas = tabla.getRow();
-            tabla.first();
-
-            String[][] resultado = new String[numeroFilas][2];
-
-            int i = 0;
-            do {
-                resultado[i][0] = tabla.getString(1);
-                resultado[i][1] = tabla.getString(2);
-                i++;
-            } while (tabla.next());
-
-            fachadaBD.cerrarConexion();
-            return resultado;
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex);
-        } finally {
-            fachadaBD.cerrarConexion();
-        }
-        return null;
-    }
-
-    public String[][] reporteCausaEstrato() {
-
-        try {
-
-            ResultSet tabla = fachadaBD.executeQuery("SELECT COUNT( r.causa ), r.causa, d.estrato "
-                    + "FROM Retiros r "
-                    + "INNER JOIN Demografia_Cliente d ON r.cod_Demografia = d.cod_Demografia "
-                    + "GROUP BY r.causa, d.estrato");
-
-            tabla.last();
-            int numeroFilas = tabla.getRow();
-            tabla.first();
-
-            String[][] resultado = new String[numeroFilas][3];
-
-            int i = 0;
-            do {
-                resultado[i][0] = tabla.getString(1);
-                resultado[i][1] = tabla.getString(2);
-                resultado[i][2] = tabla.getString(3);
-                i++;
-            } while (tabla.next());
-
-            fachadaBD.cerrarConexion();
-            return resultado;
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex);
-        } finally {
-            fachadaBD.cerrarConexion();
-        }
-        return null;
     }
 
     public String[][] reporteUnParametroJoinPie(String tabla, String parametro) {
@@ -214,13 +149,13 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
-            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error reporteUnParametroJoinPie: " + ex);
         } finally {
-            fachadaBD.cerrarConexion();
+            fachadaBD.cerrarConexion("reporteUnParametroJoinPie");
         }
         return null;
 
@@ -278,13 +213,14 @@ public class ControladorRetiros {
                 resultado[i][2] = resultSet.getString(2);
                 i++;
             } while (resultSet.next());
-            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error reporteUnParametroJoinBarra: " + ex);
         } finally {
-            fachadaBD.cerrarConexion();
+            fachadaBD.cerrarConexion("reporteUnParametroJoinBarra");
+
         }
         return null;
 
@@ -312,13 +248,13 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
-            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error reporteUnParametroPie: " + ex);
         } finally {
-            fachadaBD.cerrarConexion();
+            fachadaBD.cerrarConexion("reporteUnParametroPie");
         }
         return null;
 
@@ -347,13 +283,13 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
-            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error reporteUnParametroBarra: " + ex);
         } finally {
-            fachadaBD.cerrarConexion();
+            fachadaBD.cerrarConexion("reporteUnParametroBarra");
         }
         return null;
 
@@ -415,9 +351,11 @@ public class ControladorRetiros {
             return resultado;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("Error reporteBivariadoBarra: " + ex);
         } finally {
-            fachadaBD.cerrarConexion();
+            fachadaBD.cerrarConexion("reporteBivariadoBarra");
+
         }
         return null;
 
@@ -438,6 +376,6 @@ public class ControladorRetiros {
             }
         }
 
-        return newAtributo.substring(0, newAtributo.length()-1);
+        return newAtributo.substring(0, newAtributo.length() - 1);
     }
 }
