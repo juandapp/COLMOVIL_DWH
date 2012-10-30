@@ -43,8 +43,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         jDesktopPane = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAnalisisUnidimensional = new javax.swing.JButton();
+        jBAnalisisBidimensional = new javax.swing.JButton();
         jPanelVarios = new javax.swing.JPanel();
         jPanelMenu = new javax.swing.JPanel();
         jPanelUno = new javax.swing.JPanel();
@@ -69,7 +69,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jComboBoxHechos1 = new javax.swing.JComboBox();
         jButtonBarJoin1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBMostrarTodos = new javax.swing.JButton();
         jPanelMenu1 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -90,29 +90,29 @@ public class PanelRetiros extends javax.swing.JPanel {
         jToolBar1.setRollover(true);
         jToolBar1.setPreferredSize(new java.awt.Dimension(30, 600));
 
-        jButton1.setText("A");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setPreferredSize(new java.awt.Dimension(50, 80));
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBAnalisisUnidimensional.setText("A");
+        jBAnalisisUnidimensional.setFocusable(false);
+        jBAnalisisUnidimensional.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBAnalisisUnidimensional.setPreferredSize(new java.awt.Dimension(50, 80));
+        jBAnalisisUnidimensional.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBAnalisisUnidimensional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBAnalisisUnidimensionalActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(jBAnalisisUnidimensional);
 
-        jButton2.setText("B");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setPreferredSize(new java.awt.Dimension(50, 80));
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBAnalisisBidimensional.setText("B");
+        jBAnalisisBidimensional.setFocusable(false);
+        jBAnalisisBidimensional.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBAnalisisBidimensional.setPreferredSize(new java.awt.Dimension(50, 80));
+        jBAnalisisBidimensional.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBAnalisisBidimensional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBAnalisisBidimensionalActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar1.add(jBAnalisisBidimensional);
 
         jPanel1.add(jToolBar1, java.awt.BorderLayout.WEST);
 
@@ -253,13 +253,13 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jPanelMenu.add(jPanelTres);
 
-        jButton3.setText("Mostrar Todos");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBMostrarTodos.setText("Mostrar Todos");
+        jBMostrarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBMostrarTodosActionPerformed(evt);
             }
         });
-        jPanelMenu.add(jButton3);
+        jPanelMenu.add(jBMostrarTodos);
 
         jPanelVarios.add(jPanelMenu, "jPanelMenu");
 
@@ -320,15 +320,15 @@ public class PanelRetiros extends javax.swing.JPanel {
         updateGrafica(barChart.getChartPanel());
     }//GEN-LAST:event_jButtonBarJoin1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBAnalisisUnidimensionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnalisisUnidimensionalActionPerformed
         CardLayout cl = (CardLayout) (jPanelVarios.getLayout());
         cl.show(jPanelVarios, "jPanelMenu");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBAnalisisUnidimensionalActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBAnalisisBidimensionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnalisisBidimensionalActionPerformed
         CardLayout cl = (CardLayout) (jPanelVarios.getLayout());
         cl.show(jPanelVarios, "jPanelMenu1");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBAnalisisBidimensionalActionPerformed
 
     private void jComboBoxValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxValorActionPerformed
         
@@ -338,7 +338,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         cargarValores();
     }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBMostrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMostrarTodosActionPerformed
         
         // How many frames do we have?
         JInternalFrame[] allframes = jDesktopPane.getAllFrames();
@@ -346,10 +346,11 @@ public class PanelRetiros extends javax.swing.JPanel {
         if (count == 0) return;
         
         // Determine the necessary grid size
+        count = count/2;
         int sqrt = (int)Math.sqrt(count);
-        System.out.println("sqrt"+sqrt);
         int rows = sqrt;
         int cols = sqrt;
+        
         if (rows * cols < count) {
             cols++;
             if (rows * cols < count) {
@@ -357,12 +358,17 @@ public class PanelRetiros extends javax.swing.JPanel {
             }
         }
         
+        System.out.println("cont"+count);
+        System.out.println("sqrt"+sqrt);
+        System.out.println("rows"+rows);
+        System.out.println("cols"+cols);
+        
         // Define some initial values for size & location.
         System.out.println(jDesktopPane.getSize());
         Dimension size = jDesktopPane.getSize();
         
         int w = size.width / cols;
-        int h = size.height / rows;
+        int h = (size.height-30) / rows;
         int x = 0;
         int y = 0;
         
@@ -383,7 +389,7 @@ public class PanelRetiros extends javax.swing.JPanel {
             y += h; // start the next row
             x = 0;
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBMostrarTodosActionPerformed
 
     private void updateGrafica(JPanel chartPanel) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
@@ -395,6 +401,7 @@ public class PanelRetiros extends javax.swing.JPanel {
             Logger.getLogger(PanelRetiros.class.getName()).log(Level.SEVERE, null, ex);
         }
         personalJInternalFrame.setVisible(true);
+        jBMostrarTodos.doClick();
     }
     
     private void cargarValores() {
@@ -405,9 +412,9 @@ public class PanelRetiros extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBAnalisisBidimensional;
+    private javax.swing.JButton jBAnalisisUnidimensional;
+    private javax.swing.JButton jBMostrarTodos;
     private javax.swing.JButton jButtonBar;
     private javax.swing.JButton jButtonBarJoin;
     private javax.swing.JButton jButtonBarJoin1;
