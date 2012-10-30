@@ -70,4 +70,10 @@ public class LogicaRetiros {
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
         return barChart;
     }
+
+    public Object[] getValores(int dimension, int atributo) {
+        String dimensionName = dimensionesRelacionadas[1].get(dimension);
+        String atributoName = atributosInteresantes[1].get(atributo);
+        return controladorRetiros.getValores(dimensionName, atributoName);
+    }
 }
