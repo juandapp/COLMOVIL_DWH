@@ -55,6 +55,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMain = new javax.swing.JPanel();
         jPanelNorte = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanelGrafica = new javax.swing.JPanel();
         jLabelImagen = new javax.swing.JLabel();
 
@@ -194,7 +196,15 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Espacio pensado para agregar más funcionalidades"));
         jPanelNorte.add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jPanelMain.add(jPanelNorte, java.awt.BorderLayout.PAGE_START);
+        jPanelMain.add(jPanelNorte, java.awt.BorderLayout.NORTH);
+
+        jInternalFrame1.setClosable(true);
+        jInternalFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        jInternalFrame1.setIconifiable(true);
+        jInternalFrame1.setMaximizable(true);
+        jInternalFrame1.setResizable(true);
+        jInternalFrame1.setNormalBounds(new java.awt.Rectangle(0, 0, 500, 500));
+        jInternalFrame1.setVisible(true);
 
         jPanelGrafica.setBackground(new java.awt.Color(255, 255, 255));
         jPanelGrafica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -205,7 +215,17 @@ public class PanelRetiros extends javax.swing.JPanel {
         jLabelImagen.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanelGrafica.add(jLabelImagen, java.awt.BorderLayout.CENTER);
 
-        jPanelMain.add(jPanelGrafica, java.awt.BorderLayout.CENTER);
+        jInternalFrame1.getContentPane().add(jPanelGrafica, java.awt.BorderLayout.CENTER);
+
+        jInternalFrame1.setBounds(0, 0, 760, 450);
+        jDesktopPane1.add(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            jInternalFrame1.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+
+        jPanelMain.add(jDesktopPane1, java.awt.BorderLayout.CENTER);
 
         add(jPanelMain, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -273,6 +293,8 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBoxDimension1;
     private javax.swing.JComboBox jComboBoxHechos;
     private javax.swing.JComboBox jComboBoxHechos1;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
