@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,13 @@ public class PanelRetiros extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelMain = new javax.swing.JPanel();
+        jDesktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanelVarios = new javax.swing.JPanel();
         jPanelMenu = new javax.swing.JPanel();
         jPanelUno = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -55,16 +63,57 @@ public class PanelRetiros extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jComboBoxHechos1 = new javax.swing.JComboBox();
         jButtonBarJoin1 = new javax.swing.JButton();
-        jPanelMain = new javax.swing.JPanel();
-        jPanelNorte = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jDesktopPane = new javax.swing.JDesktopPane();
+        jPanelMenu1 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
 
+        jPanelMain.setName(""); // NOI18N
+        jPanelMain.setLayout(new java.awt.BorderLayout());
+        jPanelMain.add(jDesktopPane, java.awt.BorderLayout.CENTER);
+
+        add(jPanelMain, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(270, 50));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jToolBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToolBar1.setFloatable(false);
+        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jToolBar1.setRollover(true);
+        jToolBar1.setPreferredSize(new java.awt.Dimension(30, 600));
+
+        jButton1.setText("A");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setPreferredSize(new java.awt.Dimension(50, 80));
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+
+        jButton2.setText("B");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setPreferredSize(new java.awt.Dimension(50, 80));
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
+
+        jPanel1.add(jToolBar1, java.awt.BorderLayout.WEST);
+
+        jPanelVarios.setLayout(new java.awt.CardLayout());
+
         jPanelMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelMenu.setPreferredSize(new java.awt.Dimension(240, 50));
+        jPanelMenu.setRequestFocusEnabled(false);
 
         jPanelUno.setBorder(javax.swing.BorderFactory.createTitledBorder("Uno"));
         jPanelUno.setPreferredSize(new java.awt.Dimension(230, 110));
@@ -184,22 +233,16 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jPanelMenu.add(jPanelTres);
 
-        add(jPanelMenu, java.awt.BorderLayout.WEST);
+        jPanelVarios.add(jPanelMenu, "jPanelMenu");
 
-        jPanelMain.setName(""); // NOI18N
-        jPanelMain.setLayout(new java.awt.BorderLayout());
+        jPanelMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelMenu1.setPreferredSize(new java.awt.Dimension(240, 50));
+        jPanelMenu1.setRequestFocusEnabled(false);
+        jPanelVarios.add(jPanelMenu1, "jPanelMenu1");
 
-        jPanelNorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelNorte.setPreferredSize(new java.awt.Dimension(10, 150));
-        jPanelNorte.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(jPanelVarios, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Espacio pensado para agregar más funcionalidades"));
-        jPanelNorte.add(jPanel1, java.awt.BorderLayout.CENTER);
-
-        jPanelMain.add(jPanelNorte, java.awt.BorderLayout.NORTH);
-        jPanelMain.add(jDesktopPane, java.awt.BorderLayout.CENTER);
-
-        add(jPanelMain, java.awt.BorderLayout.CENTER);
+        add(jPanel1, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieActionPerformed
@@ -248,6 +291,16 @@ public class PanelRetiros extends javax.swing.JPanel {
         updateGrafica(barChart.getChartPanel());
     }//GEN-LAST:event_jButtonBarJoin1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CardLayout cl = (CardLayout) (jPanelVarios.getLayout());
+        cl.show(jPanelVarios, "jPanelMenu");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CardLayout cl = (CardLayout) (jPanelVarios.getLayout());
+        cl.show(jPanelVarios, "jPanelMenu1");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void updateGrafica(JPanel chartPanel) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
         personalJInternalFrame.setBounds(0, 0, 760, 450);
@@ -260,6 +313,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         personalJInternalFrame.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonBar;
     private javax.swing.JButton jButtonBarJoin;
     private javax.swing.JButton jButtonBarJoin1;
@@ -282,8 +337,10 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelDos;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelMenu;
-    private javax.swing.JPanel jPanelNorte;
+    private javax.swing.JPanel jPanelMenu1;
     private javax.swing.JPanel jPanelTres;
     private javax.swing.JPanel jPanelUno;
+    private javax.swing.JPanel jPanelVarios;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
