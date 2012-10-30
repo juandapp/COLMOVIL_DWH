@@ -75,6 +75,32 @@ public class ControladorRetiros {
         }
         return null;
     }
+    
+    private ArrayList<String> getValoresInteresantes(String dimension, String atributo) {
+        
+        try {
+                String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
+                ResultSet tabla = fachadaBD.executeQuery(consulta);
+
+                ArrayList<String> valores = new ArrayList<>();
+
+            while (tabla.next()) {
+                String valor = tabla.getString(1);
+                if (esIntesante(atributo, dimension)) {
+                    valores.add(formatearAtributo(atributo));
+                }
+            }
+
+            return valores;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error valor Interesante: " + ex);
+        } finally {
+            fachadaBD.cerrarConexion("Get Valores Interesantes");
+        }
+        return null;
+    }
 
     private boolean esIntesante(String atributo, String dimension) {
         try {
