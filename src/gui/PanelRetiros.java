@@ -1,9 +1,11 @@
 package gui;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import logica.LogicaRetiros;
 
@@ -65,6 +67,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jComboBoxHechos1 = new javax.swing.JComboBox();
         jButtonBarJoin1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanelMenu1 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -253,6 +256,14 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jPanelMenu.add(jPanelTres);
 
+        jButton3.setText("Mostrar Todos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanelMenu.add(jButton3);
+
         jPanelVarios.add(jPanelMenu, "jPanelMenu");
 
         jPanelMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -333,6 +344,53 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxValor.setModel(new javax.swing.DefaultComboBoxModel(valores));
     }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        // How many frames do we have?
+        JInternalFrame[] allframes = jDesktopPane.getAllFrames();
+        int count = allframes.length;
+        if (count == 0) return;
+        
+        // Determine the necessary grid size
+        int sqrt = (int)Math.sqrt(count);
+        System.out.println("sqrt"+sqrt);
+        int rows = sqrt;
+        int cols = sqrt;
+        if (rows * cols < count) {
+            cols++;
+            if (rows * cols < count) {
+                rows++;
+            }
+        }
+        
+        // Define some initial values for size & location.
+        System.out.println(jDesktopPane.getSize());
+        Dimension size = jDesktopPane.getSize();
+        
+        int w = size.width / cols;
+        int h = size.height / rows;
+        int x = 0;
+        int y = 0;
+        
+        // Iterate over the frames, deiconifying any iconified frames and then
+        // relocating & resizing each.
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols && ((i * cols) + j < count); j++) {
+                JInternalFrame f = allframes[(i * cols) + j];
+                
+                if (!f.isClosed() && f.isIcon()) {
+                    try {
+                        f.setIcon(false);
+                    } catch (PropertyVetoException ignored) {}
+                }
+                jDesktopPane.getDesktopManager().resizeFrame(f, x, y, w, h);
+                x += w;
+            }
+            y += h; // start the next row
+            x = 0;
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void updateGrafica(JPanel chartPanel) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
         personalJInternalFrame.setBounds(0, 0, 760, 450);
@@ -347,6 +405,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonBar;
     private javax.swing.JButton jButtonBarJoin;
     private javax.swing.JButton jButtonBarJoin1;
