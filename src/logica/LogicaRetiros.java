@@ -127,14 +127,27 @@ public class LogicaRetiros {
         return controladorRetiros.getValores(dimensionName, atributoName);
     }
 
-    public BarChart reporteBiDimensionalBarra(int dimensionA, int atributoA, int dimensionB, int atributoB) {
+    public BarChart reporteBiDimensionalBarra(int dimensionA, int atributoA, String valorA, int dimensionB, int atributoB, String valorB) {
         String dimensionNameA = comboBoxDimensionesA[1].get(dimensionA);
         String atributoNameA = comboBoxAtributosA[1].get(atributoA);
         String dimensionNameB = comboBoxDimensionesB[1].get(dimensionB);
         String atributoNameB = comboBoxAtributosB[1].get(atributoB);
 
-        String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, dimensionNameB, atributoNameB);
+        
+        String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, valorA, dimensionNameB, atributoNameB, valorB);
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
         return barChart;
+    }
+
+    public Object[] getDataComboBoxValoresA(int dimension, int atributo) {
+        String dimensionName = comboBoxDimensionesA[1].get(dimension);
+        String atributoName = comboBoxAtributosA[1].get(atributo);
+        return controladorRetiros.getValores(dimensionName, atributoName);
+    }
+
+    public Object[] getDataComboBoxValoresB(int dimension, int atributo) {
+        String dimensionName = comboBoxDimensionesB[1].get(dimension);
+        String atributoName = comboBoxAtributosB[1].get(atributo);
+        return controladorRetiros.getValores(dimensionName, atributoName);
     }
 }

@@ -408,7 +408,7 @@ public class ControladorRetiros {
         return newAtributo.substring(0, newAtributo.length() - 1);
     }
 
-    public String[][] reporteBidimensional(String dimensionA, String atributoA, String dimensionB, String atributoB) {
+    public String[][] reporteBidimensional(String dimensionA, String atributoA, String valorA, String dimensionB, String atributoB, String valorB) {
         try {
 
             String joinConditionA = null;
@@ -459,6 +459,19 @@ public class ControladorRetiros {
                     + "INNER JOIN " + dimensionB + " k ON " + joinConditionB + " ";
 
 
+            if (!valorA.equalsIgnoreCase("todos") && valorB.equalsIgnoreCase("todos")) {
+                consulta = consulta + "WHERE j." + atributoA + " = '" + valorA + "' ";
+            }
+
+            if (!valorB.equalsIgnoreCase("todos") && valorA.equalsIgnoreCase("todos")) {
+                consulta = consulta + "WHERE k." + atributoB + " = '" + valorB + "' ";
+            }
+
+            if (!valorB.equalsIgnoreCase("todos") && !valorA.equalsIgnoreCase("todos")) {
+                consulta = consulta + "WHERE k." + atributoB + " = '" + valorB + "' "+
+                        "AND j." + atributoA + " = '" + valorA + "' ";
+            }
+
             consulta = consulta + "GROUP BY j." + atributoA + ", k." + atributoB;
 
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
@@ -469,6 +482,7 @@ public class ControladorRetiros {
 
             String[][] resultado = new String[numeroFilas][3];
 
+            // Esto aqui y en todas las demas esta mal!!! porque puede que la consulta no arroje resultados!!
             int i = 0;
             do {
                 resultado[i][0] = resultSet.getString(1);
