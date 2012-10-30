@@ -193,7 +193,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMenu.add(jPanelDos);
 
         jPanelTres.setBorder(javax.swing.BorderFactory.createTitledBorder("Tres"));
-        jPanelTres.setPreferredSize(new java.awt.Dimension(260, 260));
+        jPanelTres.setPreferredSize(new java.awt.Dimension(230, 260));
 
         jLabel5.setText("Dimension");
         jLabel5.setPreferredSize(new java.awt.Dimension(200, 15));
