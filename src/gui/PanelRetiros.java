@@ -302,7 +302,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         final int hecho = jComboBoxHechos1.getSelectedIndex();
         int dimension = jComboBoxDimension1.getSelectedIndex();
         int atributo = jComboBoxAtributo1.getSelectedIndex();
-        BarChart barChart = logicaRetiros.reporteBivariadoBarra(hecho, atributo, dimension);
+        String valor = jComboBoxValor.getSelectedItem().toString();
+        BarChart barChart = logicaRetiros.reporteBivariadoBarra(hecho, atributo, valor, dimension);
         updateGrafica(barChart.getChartPanel());
     }//GEN-LAST:event_jButtonBarJoin1ActionPerformed
 
