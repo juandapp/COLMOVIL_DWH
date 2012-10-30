@@ -355,7 +355,7 @@ public class ControladorRetiros {
                     + "INNER JOIN " + tablaDim + " j ON " + joinCondition + " ";
             
             if (!value.equalsIgnoreCase("todos")) {
-                consulta = consulta + "WHERE j." + parametroDimension + " = "+value+" ";
+                consulta = consulta + "WHERE j." + parametroDimension + " = '"+value+"' ";
             }
             
             consulta = consulta + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;

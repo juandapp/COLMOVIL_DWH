@@ -29,6 +29,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxHechos1.setModel(new javax.swing.DefaultComboBoxModel(hechosInteresantes));
         jComboBoxDimension1.setModel(new javax.swing.DefaultComboBoxModel(dimensionesRelacionadas));
         jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes));
+        
+        cargarValores();
     }
 
     @SuppressWarnings("unchecked")
@@ -227,11 +229,6 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jComboBoxValor.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
         jComboBoxValor.setPreferredSize(new java.awt.Dimension(200, 25));
-        jComboBoxValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxValorActionPerformed(evt);
-            }
-        });
         jPanelTres.add(jComboBoxValor);
 
         jLabel7.setText("Hecho");
@@ -322,17 +319,18 @@ public class PanelRetiros extends javax.swing.JPanel {
         cl.show(jPanelVarios, "jPanelMenu1");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBoxValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxValorActionPerformed
-        
-    }//GEN-LAST:event_jComboBoxValorActionPerformed
-
     private void jComboBoxAtributo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributo1ActionPerformed
+        cargarValores();
+    }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
+
+    
+    private void cargarValores() {
         int dimension = jComboBoxDimension1.getSelectedIndex();
         int atributo = jComboBoxAtributo1.getSelectedIndex();
         Object[] valores=logicaRetiros.getValores(dimension, atributo);
         jComboBoxValor.setModel(new javax.swing.DefaultComboBoxModel(valores));
-    }//GEN-LAST:event_jComboBoxAtributo1ActionPerformed
-
+    }
+    
     private void updateGrafica(JPanel chartPanel) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
         personalJInternalFrame.setBounds(0, 0, 760, 450);
