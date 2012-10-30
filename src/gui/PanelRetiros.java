@@ -379,27 +379,27 @@ public class PanelRetiros extends javax.swing.JPanel {
     private void jButtonPieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieActionPerformed
         final int hecho = jComboBoxHechos.getSelectedIndex();
         PieChart pieChart = logicaRetiros.reporteUnParametroPie(hecho);
-        addChartPanelInsideInternalFrame(pieChart.getChartPanel());
+        addChartPanelInsideInternalFrame(pieChart.getChartPanel(), pieChart.getCharTitle());
     }//GEN-LAST:event_jButtonPieActionPerformed
 
     private void jButtonBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarActionPerformed
         final int hecho = jComboBoxHechos.getSelectedIndex();
         BarChart barChart = logicaRetiros.reporteUnParametroBarra(hecho);
-        addChartPanelInsideInternalFrame(barChart.getChartPanel());
+        addChartPanelInsideInternalFrame(barChart.getChartPanel(), barChart.getCharTitle());
     }//GEN-LAST:event_jButtonBarActionPerformed
 
     private void jButtonBarJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoinActionPerformed
         int dimension = jComboBoxDimensiones.getSelectedIndex();
         int atributo = jComboBoxAtributos.getSelectedIndex();
         BarChart barChart = logicaRetiros.reporteUnParametroJoinBarra(dimension, atributo);
-        addChartPanelInsideInternalFrame(barChart.getChartPanel());
+        addChartPanelInsideInternalFrame(barChart.getChartPanel(),barChart.getCharTitle());
     }//GEN-LAST:event_jButtonBarJoinActionPerformed
 
     private void jButtonPieJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoinActionPerformed
         int dimension = jComboBoxDimensiones.getSelectedIndex();
         int atributo = jComboBoxAtributos.getSelectedIndex();
         PieChart pieChart = logicaRetiros.reporteUnParametroJoinPie(dimension, atributo);
-        addChartPanelInsideInternalFrame(pieChart.getChartPanel());
+        addChartPanelInsideInternalFrame(pieChart.getChartPanel(), pieChart.getCharTitle());
     }//GEN-LAST:event_jButtonPieJoinActionPerformed
 
     private void jComboBoxDimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionesActionPerformed
@@ -425,7 +425,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         String valorB = jComboBoxValoresB.getSelectedItem().toString();
 
         BarChart barChart = logicaRetiros.reporteBiDimensionalBarra(dimensionA, atributoA, valorA, dimensionB, atributoB, valorB);
-        addChartPanelInsideInternalFrame(barChart.getChartPanel());
+        addChartPanelInsideInternalFrame(barChart.getChartPanel(), barChart.getCharTitle());
     }//GEN-LAST:event_jButtonBarJoin1ActionPerformed
 
     private void jBAnalisisUnidimensionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnalisisUnidimensionalActionPerformed
@@ -460,7 +460,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         int atributo = jComboBoxAtributos1.getSelectedIndex();
         String valor = jComboBoxValores.getSelectedItem().toString();
         BarChart barChart = logicaRetiros.reporteBivariadoBarra(dimension, atributo, valor, hecho);
-        addChartPanelInsideInternalFrame(barChart.getChartPanel());
+        addChartPanelInsideInternalFrame(barChart.getChartPanel(), barChart.getCharTitle());
     }//GEN-LAST:event_jButtonBarJoin2ActionPerformed
 
     private void jComboBoxDimensionesBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionesBActionPerformed
@@ -478,8 +478,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         loadDatajComboBoxValoresB();
     }//GEN-LAST:event_jComboBoxAtributosBActionPerformed
 
-    private void addChartPanelInsideInternalFrame(JPanel chartPanel) {
-        PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
+    private void addChartPanelInsideInternalFrame(JPanel chartPanel, String title) {
+        PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, title);
         personalJInternalFrame.setBounds(0, 0, 760, 450);
         jDesktopPane.add(personalJInternalFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         personalJInternalFrame.setVisible(true);

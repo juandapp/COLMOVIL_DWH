@@ -84,14 +84,14 @@ public class LogicaRetiros {
     public PieChart reporteUnParametroPie(int hecho) {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroPie(
                 comboBoxHechos[1].get(hecho));
-        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
+        PieChart pieChart = new PieChart("Retiros - " + comboBoxHechos[0].get(hecho), matrizCausas);
         return pieChart;
     }
 
     public BarChart reporteUnParametroBarra(int hecho) {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroBarra(
                 comboBoxHechos[1].get(hecho));
-        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+        BarChart barChart = new BarChart("Retiros - " + comboBoxHechos[0].get(hecho), matrizCausas);
         return barChart;
     }
 
@@ -99,7 +99,7 @@ public class LogicaRetiros {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinBarra(
                 comboBoxDimensiones[1].get(dimension),
                 comboBoxAtributos[1].get(atributo));
-        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+        BarChart barChart = new BarChart("Retiros - " + comboBoxAtributos[0].get(atributo), matrizCausas);
         return barChart;
     }
 
@@ -107,7 +107,7 @@ public class LogicaRetiros {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinPie(
                 comboBoxDimensiones[1].get(dimension),
                 comboBoxAtributos[1].get(atributo));
-        PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
+        PieChart pieChart = new PieChart("Retiros - " + comboBoxAtributos[0].get(atributo), matrizCausas);
         return pieChart;
     }
 
@@ -117,7 +117,14 @@ public class LogicaRetiros {
                 comboBoxAtributos1[1].get(atributo),
                 valor,
                 comboBoxHechos1[1].get(hecho));
-        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+
+        String title = "Retiros - " + comboBoxHechos[0].get(hecho) + " por " + comboBoxAtributos1[0].get(atributo);
+
+        if (!valor.equalsIgnoreCase("todos")) {
+            title = title + " = [" + valor + "]";
+        }
+
+        BarChart barChart = new BarChart(title, matrizCausas);
         return barChart;
     }
 
@@ -133,9 +140,21 @@ public class LogicaRetiros {
         String dimensionNameB = comboBoxDimensionesB[1].get(dimensionB);
         String atributoNameB = comboBoxAtributosB[1].get(atributoB);
 
-        
         String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, valorA, dimensionNameB, atributoNameB, valorB);
-        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+
+        String title = "Retiros - " + " por " + comboBoxAtributosA[0].get(atributoA);
+
+        if (!valorA.equalsIgnoreCase("todos")) {
+            title = title + " = [" + valorA + "] ";
+        }
+
+        title = title + " por " + comboBoxAtributosB[0].get(atributoB);
+
+        if (!valorB.equalsIgnoreCase("todos")) {
+            title = title + " = [" + valorB + "] ";
+        }
+
+        BarChart barChart = new BarChart(title, matrizCausas);
         return barChart;
     }
 

@@ -71,4 +71,10 @@ public class BarChart {
         chartPanel = new ChartPanel(chart);
         return chartPanel;
     }
+
+    public String getCharTitle() {
+        return charTitle;
+    }
+    
+    
 }
