@@ -54,6 +54,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jButtonBarJoin1 = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
         jPanelNorte = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jPanelGrafica = new javax.swing.JPanel();
         jLabelImagen = new javax.swing.JLabel();
 
@@ -172,6 +173,11 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jButtonBarJoin1.setText("Bar");
         jButtonBarJoin1.setPreferredSize(new java.awt.Dimension(170, 25));
+        jButtonBarJoin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBarJoin1ActionPerformed(evt);
+            }
+        });
         jPanelTres.add(jButtonBarJoin1);
 
         jPanelMenu.add(jPanelTres);
@@ -183,6 +189,11 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jPanelNorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelNorte.setPreferredSize(new java.awt.Dimension(10, 150));
+        jPanelNorte.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Espacio pensado para agregar más funcionalidades"));
+        jPanelNorte.add(jPanel1, java.awt.BorderLayout.CENTER);
+
         jPanelMain.add(jPanelNorte, java.awt.BorderLayout.PAGE_START);
 
         jPanelGrafica.setBackground(new java.awt.Color(255, 255, 255));
@@ -237,6 +248,14 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes));
     }//GEN-LAST:event_jComboBoxDimension1ActionPerformed
 
+    private void jButtonBarJoin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoin1ActionPerformed
+        final int hecho = jComboBoxHechos1.getSelectedIndex();
+        int dimension = jComboBoxDimension1.getSelectedIndex();
+        int atributo = jComboBoxAtributo1.getSelectedIndex();
+        BarChart barChart = logicaRetiros.reporteBivariadoBarra(hecho, atributo, dimension);
+        updateGrafica(barChart.getChartPanel());
+    }//GEN-LAST:event_jButtonBarJoin1ActionPerformed
+
     private void updateGrafica(JPanel chartPanel) {
         jPanelGrafica.removeAll();
         jPanelGrafica.add(chartPanel, java.awt.BorderLayout.CENTER);
@@ -261,6 +280,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelImagen;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDos;
     private javax.swing.JPanel jPanelGrafica;
     private javax.swing.JPanel jPanelMain;

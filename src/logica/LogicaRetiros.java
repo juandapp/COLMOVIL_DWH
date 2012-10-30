@@ -61,4 +61,13 @@ public class LogicaRetiros {
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
         return pieChart;
     }
+
+    public BarChart reporteBivariadoBarra(int hecho, int atributo, int dimension) {
+         String[][] matrizCausas = controladorRetiros.reporteBivariadoBarra(
+                hechosInteresantes[1].get(hecho),
+                atributosInteresantes[1].get(atributo),
+                dimensionesRelacionadas[1].get(dimension));
+        BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
+        return barChart;
+    }
 }
