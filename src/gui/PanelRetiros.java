@@ -31,6 +31,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxHechos1.setModel(new javax.swing.DefaultComboBoxModel(hechosInteresantes));
         jComboBoxDimension1.setModel(new javax.swing.DefaultComboBoxModel(dimensionesRelacionadas));
         jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes));
+        
+        cargarValores();
     }
 
     @SuppressWarnings("unchecked")
@@ -230,11 +232,6 @@ public class PanelRetiros extends javax.swing.JPanel {
 
         jComboBoxValor.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
         jComboBoxValor.setPreferredSize(new java.awt.Dimension(200, 25));
-        jComboBoxValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxValorActionPerformed(evt);
-            }
-        });
         jPanelTres.add(jComboBoxValor);
 
         jLabel7.setText("Hecho");

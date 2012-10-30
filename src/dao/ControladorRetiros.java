@@ -77,7 +77,8 @@ public class ControladorRetiros {
     }
     
     public Object[] getValores(String dimension, String atributo) {
-         ArrayList<String> valores = new ArrayList<>();
+        
+        ArrayList<String> valores = new ArrayList<>();
         try {
                 String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
                 ResultSet tabla = fachadaBD.executeQuery(consulta);
@@ -354,7 +355,7 @@ public class ControladorRetiros {
                     + "INNER JOIN " + tablaDim + " j ON " + joinCondition + " ";
             
             if (!value.equalsIgnoreCase("todos")) {
-                consulta = consulta + "WHERE j." + parametroDimension + " = "+value+" ";
+                consulta = consulta + "WHERE j." + parametroDimension + " = '"+value+"' ";
             }
             
             consulta = consulta + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;
