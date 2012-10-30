@@ -404,4 +404,9 @@ public class ControladorRetiros {
 
         return newAtributo.substring(0, newAtributo.length() - 1);
     }
+
+    public Object[] getValores(String dimensionName, String atributoName) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }
