@@ -28,11 +28,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelMenuPrincipal = new javax.swing.JPanel();
-        jButtonHome = new javax.swing.JButton();
-        jButtonRetiros = new javax.swing.JButton();
-        jButtonContrataciones = new javax.swing.JButton();
-        jButtonConsumos = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
         jPanelHome = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
@@ -40,53 +35,20 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelRetiros = new javax.swing.JPanel();
         jPanelContrataciones = new javax.swing.JPanel();
         jPanelConsumos = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButtonHome = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jButtonConsumos = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        jButtonRetiros = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jButtonContrataciones = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSali = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanelMenuPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelMenuPrincipal.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
-
-        jButtonHome.setText("Home");
-        jButtonHome.setPreferredSize(new java.awt.Dimension(150, 40));
-        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHomeActionPerformed(evt);
-            }
-        });
-        jPanelMenuPrincipal.add(jButtonHome);
-
-        jButtonRetiros.setText("Retiros");
-        jButtonRetiros.setPreferredSize(new java.awt.Dimension(150, 40));
-        jButtonRetiros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRetirosActionPerformed(evt);
-            }
-        });
-        jPanelMenuPrincipal.add(jButtonRetiros);
-
-        jButtonContrataciones.setText("Contrataciones");
-        jButtonContrataciones.setPreferredSize(new java.awt.Dimension(150, 40));
-        jButtonContrataciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonContratacionesActionPerformed(evt);
-            }
-        });
-        jPanelMenuPrincipal.add(jButtonContrataciones);
-
-        jButtonConsumos.setText("Consumos");
-        jButtonConsumos.setPreferredSize(new java.awt.Dimension(150, 40));
-        jButtonConsumos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConsumosActionPerformed(evt);
-            }
-        });
-        jPanelMenuPrincipal.add(jButtonConsumos);
-
-        getContentPane().add(jPanelMenuPrincipal, java.awt.BorderLayout.NORTH);
 
         jPanelMain.setPreferredSize(new java.awt.Dimension(700, 350));
         jPanelMain.setLayout(new java.awt.CardLayout());
@@ -116,6 +78,67 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelMain.add(jPanelConsumos, "jPanelConsumos");
 
         getContentPane().add(jPanelMain, java.awt.BorderLayout.CENTER);
+
+        jToolBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToolBar1.setRollover(true);
+        jToolBar1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+
+        jButtonHome.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonHome.setText("Home");
+        jButtonHome.setFocusable(false);
+        jButtonHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonHome.setPreferredSize(new java.awt.Dimension(150, 40));
+        jButtonHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonHome);
+        jToolBar1.add(jSeparator3);
+
+        jButtonConsumos.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonConsumos.setText("Consumos");
+        jButtonConsumos.setFocusable(false);
+        jButtonConsumos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonConsumos.setPreferredSize(new java.awt.Dimension(150, 40));
+        jButtonConsumos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonConsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsumosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonConsumos);
+        jToolBar1.add(jSeparator2);
+
+        jButtonRetiros.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonRetiros.setText("Retiros");
+        jButtonRetiros.setFocusable(false);
+        jButtonRetiros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRetiros.setPreferredSize(new java.awt.Dimension(150, 40));
+        jButtonRetiros.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRetiros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetirosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonRetiros);
+        jToolBar1.add(jSeparator1);
+
+        jButtonContrataciones.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonContrataciones.setText("Contrataciones");
+        jButtonContrataciones.setFocusable(false);
+        jButtonContrataciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonContrataciones.setPreferredSize(new java.awt.Dimension(150, 40));
+        jButtonContrataciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonContrataciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContratacionesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonContrataciones);
+
+        getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
 
         jMenu1.setText("Archivo");
 
@@ -207,7 +230,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelContrataciones;
     private javax.swing.JPanel jPanelHome;
     private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelMenuPrincipal;
     private javax.swing.JPanel jPanelRetiros;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

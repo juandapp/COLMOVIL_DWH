@@ -1,26 +1,36 @@
 package gui;
 
 import controladores.ControladorRetiros;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class PanelRetiros extends javax.swing.JPanel {
 
     private final ControladorRetiros controladorRetiros;
     private MainFrame parent;
+    private ArrayList<String>[] hechosInteresantes;
+    private ArrayList<String>[] atributosInteresantes;
+    private ArrayList<String>[] dimensionesRelacionadas;
 
     public PanelRetiros(MainFrame parent) {
 
         this.parent = parent;
-
         controladorRetiros = new ControladorRetiros();
+
         initComponents();
 
-        jComboBoxDimension.setModel(new javax.swing.DefaultComboBoxModel(
-                controladorRetiros.getDimensionesRelacionadas("Retiros")));
-        jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
-                controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
-        jComboBoxHechos.setModel(new javax.swing.DefaultComboBoxModel(
-                controladorRetiros.getAtributosInteresantes("Retiros")));
+        hechosInteresantes = controladorRetiros.getAtributosInteresantes("Retiros");
+        atributosInteresantes = controladorRetiros.getAtributosInteresantes("ClienteDWH");
+        dimensionesRelacionadas = controladorRetiros.getDimensionesRelacionadas("Retiros");
+
+        jComboBoxHechos.setModel(new javax.swing.DefaultComboBoxModel(hechosInteresantes[0].toArray()));
+        jComboBoxDimension.setModel(new javax.swing.DefaultComboBoxModel(dimensionesRelacionadas[0].toArray()));
+        jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes[0].toArray()));
+
+        jComboBoxHechos1.setModel(new javax.swing.DefaultComboBoxModel(hechosInteresantes[0].toArray()));
+        jComboBoxDimension1.setModel(new javax.swing.DefaultComboBoxModel(dimensionesRelacionadas[0].toArray()));
+        jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes[0].toArray()));
+
     }
 
     @SuppressWarnings("unchecked")
@@ -44,29 +54,30 @@ public class PanelRetiros extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jComboBoxDimension1 = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jComboBoxAtributo2 = new javax.swing.JComboBox();
+        jComboBoxAtributo1 = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxDimension2 = new javax.swing.JComboBox();
+        jComboBoxHechos1 = new javax.swing.JComboBox();
         jButtonBarJoin1 = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
         jPanelNorte = new javax.swing.JPanel();
         jPanelGrafica = new javax.swing.JPanel();
         jLabelImagen = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(900, 650));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
 
         jPanelMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelMenu.setPreferredSize(new java.awt.Dimension(210, 50));
+        jPanelMenu.setPreferredSize(new java.awt.Dimension(240, 50));
 
         jPanelUno.setBorder(javax.swing.BorderFactory.createTitledBorder("Uno"));
-        jPanelUno.setPreferredSize(new java.awt.Dimension(200, 110));
+        jPanelUno.setPreferredSize(new java.awt.Dimension(230, 110));
 
         jLabel4.setText("Atributo");
-        jLabel4.setPreferredSize(new java.awt.Dimension(170, 15));
+        jLabel4.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelUno.add(jLabel4);
 
-        jComboBoxHechos.setPreferredSize(new java.awt.Dimension(170, 25));
+        jComboBoxHechos.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jComboBoxHechos.setPreferredSize(new java.awt.Dimension(200, 25));
         jPanelUno.add(jComboBoxHechos);
 
         jButtonBar1.setText("Bar");
@@ -90,13 +101,14 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMenu.add(jPanelUno);
 
         jPanelDos.setBorder(javax.swing.BorderFactory.createTitledBorder("Dos"));
-        jPanelDos.setPreferredSize(new java.awt.Dimension(200, 160));
+        jPanelDos.setPreferredSize(new java.awt.Dimension(230, 160));
 
-        jLabel2.setText("Dimension");
-        jLabel2.setPreferredSize(new java.awt.Dimension(170, 15));
+        jLabel2.setText("Dimensiones Relacionadas");
+        jLabel2.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelDos.add(jLabel2);
 
-        jComboBoxDimension.setPreferredSize(new java.awt.Dimension(170, 25));
+        jComboBoxDimension.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jComboBoxDimension.setPreferredSize(new java.awt.Dimension(200, 25));
         jComboBoxDimension.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxDimensionActionPerformed(evt);
@@ -105,10 +117,11 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelDos.add(jComboBoxDimension);
 
         jLabel3.setText("Atributo");
-        jLabel3.setPreferredSize(new java.awt.Dimension(170, 15));
+        jLabel3.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelDos.add(jLabel3);
 
-        jComboBoxAtributo.setPreferredSize(new java.awt.Dimension(170, 25));
+        jComboBoxAtributo.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jComboBoxAtributo.setPreferredSize(new java.awt.Dimension(200, 25));
         jPanelDos.add(jComboBoxAtributo);
 
         jButtonPieJoin.setText("Pie");
@@ -132,28 +145,36 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMenu.add(jPanelDos);
 
         jPanelTres.setBorder(javax.swing.BorderFactory.createTitledBorder("Tres"));
-        jPanelTres.setPreferredSize(new java.awt.Dimension(200, 210));
+        jPanelTres.setPreferredSize(new java.awt.Dimension(230, 210));
 
         jLabel5.setText("Dimension");
-        jLabel5.setPreferredSize(new java.awt.Dimension(170, 15));
+        jLabel5.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelTres.add(jLabel5);
 
-        jComboBoxDimension1.setPreferredSize(new java.awt.Dimension(170, 25));
+        jComboBoxDimension1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jComboBoxDimension1.setPreferredSize(new java.awt.Dimension(200, 25));
+        jComboBoxDimension1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDimension1ActionPerformed(evt);
+            }
+        });
         jPanelTres.add(jComboBoxDimension1);
 
         jLabel6.setText("Atributo");
-        jLabel6.setPreferredSize(new java.awt.Dimension(170, 15));
+        jLabel6.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelTres.add(jLabel6);
 
-        jComboBoxAtributo2.setPreferredSize(new java.awt.Dimension(170, 25));
-        jPanelTres.add(jComboBoxAtributo2);
+        jComboBoxAtributo1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jComboBoxAtributo1.setPreferredSize(new java.awt.Dimension(200, 25));
+        jPanelTres.add(jComboBoxAtributo1);
 
         jLabel7.setText("Hecho");
-        jLabel7.setPreferredSize(new java.awt.Dimension(170, 15));
+        jLabel7.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelTres.add(jLabel7);
 
-        jComboBoxDimension2.setPreferredSize(new java.awt.Dimension(170, 25));
-        jPanelTres.add(jComboBoxDimension2);
+        jComboBoxHechos1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jComboBoxHechos1.setPreferredSize(new java.awt.Dimension(200, 25));
+        jPanelTres.add(jComboBoxHechos1);
 
         jButtonBarJoin1.setText("Bar");
         jButtonBarJoin1.setPreferredSize(new java.awt.Dimension(170, 25));
@@ -171,6 +192,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelMain.add(jPanelNorte, java.awt.BorderLayout.PAGE_START);
 
         jPanelGrafica.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelGrafica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelGrafica.setLayout(new java.awt.BorderLayout());
 
         jLabelImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -185,22 +207,22 @@ public class PanelRetiros extends javax.swing.JPanel {
 
     private void jButtonPie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPie1ActionPerformed
         String[][] matrizCausas = controladorRetiros.reporteUnParametroPie(
-                jComboBoxHechos.getSelectedItem().toString());
+                hechosInteresantes[1].get(jComboBoxHechos.getSelectedIndex()));
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
         updateGrafica(pieChart.getChartPanel());
     }//GEN-LAST:event_jButtonPie1ActionPerformed
 
     private void jButtonBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBar1ActionPerformed
         String[][] matrizCausas = controladorRetiros.reporteUnParametroBarra(
-                jComboBoxHechos.getSelectedItem().toString());
+                hechosInteresantes[1].get(jComboBoxHechos.getSelectedIndex()));
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
         updateGrafica(barChart.getChartPanel());
     }//GEN-LAST:event_jButtonBar1ActionPerformed
 
     private void jButtonBarJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoinActionPerformed
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinBarra(
-                jComboBoxDimension.getSelectedItem().toString(),
-                jComboBoxAtributo.getSelectedItem().toString());
+                dimensionesRelacionadas[1].get(jComboBoxDimension.getSelectedIndex()),
+                atributosInteresantes[1].get(jComboBoxAtributo.getSelectedIndex()));
 
         BarChart barChart = new BarChart("Retiros y Causas", matrizCausas);
         updateGrafica(barChart.getChartPanel());
@@ -209,16 +231,24 @@ public class PanelRetiros extends javax.swing.JPanel {
     private void jButtonPieJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoinActionPerformed
 
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinPie(
-                jComboBoxDimension.getSelectedItem().toString(),
-                jComboBoxAtributo.getSelectedItem().toString());
+                dimensionesRelacionadas[1].get(jComboBoxDimension.getSelectedIndex()),
+                atributosInteresantes[1].get(jComboBoxAtributo.getSelectedIndex()));
+
         PieChart pieChart = new PieChart("Retiros y Causas", matrizCausas);
         updateGrafica(pieChart.getChartPanel());
     }//GEN-LAST:event_jButtonPieJoinActionPerformed
 
     private void jComboBoxDimensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionActionPerformed
-        jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(
-                controladorRetiros.getAtributosInteresantes(jComboBoxDimension.getSelectedItem().toString())));
+        String dimension = dimensionesRelacionadas[1].get(jComboBoxDimension.getSelectedIndex());
+        atributosInteresantes = controladorRetiros.getAtributosInteresantes(dimension);
+        jComboBoxAtributo.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes[0].toArray()));
     }//GEN-LAST:event_jComboBoxDimensionActionPerformed
+
+    private void jComboBoxDimension1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimension1ActionPerformed
+        String dimension = dimensionesRelacionadas[1].get(jComboBoxDimension1.getSelectedIndex());
+        atributosInteresantes = controladorRetiros.getAtributosInteresantes(dimension);
+        jComboBoxAtributo1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes[0].toArray()));
+    }//GEN-LAST:event_jComboBoxDimension1ActionPerformed
 
     private void updateGrafica(JPanel chartPanel) {
         jPanelGrafica.removeAll();
@@ -232,11 +262,11 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JButton jButtonPie1;
     private javax.swing.JButton jButtonPieJoin;
     private javax.swing.JComboBox jComboBoxAtributo;
-    private javax.swing.JComboBox jComboBoxAtributo2;
+    private javax.swing.JComboBox jComboBoxAtributo1;
     private javax.swing.JComboBox jComboBoxDimension;
     private javax.swing.JComboBox jComboBoxDimension1;
-    private javax.swing.JComboBox jComboBoxDimension2;
     private javax.swing.JComboBox jComboBoxHechos;
+    private javax.swing.JComboBox jComboBoxHechos1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
