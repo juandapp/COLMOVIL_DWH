@@ -318,7 +318,7 @@ public class ControladorRetiros {
 
     }
 
-    public String[][] reporteBivariadoBarra(String parametroHecho, String parametroDimension, String tablaDim) {
+    public String[][] reporteBivariadoBarra(String parametroHecho, String parametroDimension, String value, String tablaDim) {
 
         try {
 
@@ -351,8 +351,13 @@ public class ControladorRetiros {
 
             String consulta = "SELECT COUNT( r." + parametroHecho + " ), r." + parametroHecho + ", j." + parametroDimension + " "
                     + "FROM Retiros r" + " "
-                    + "INNER JOIN " + tablaDim + " j ON " + joinCondition + " "
-                    + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;
+                    + "INNER JOIN " + tablaDim + " j ON " + joinCondition + " ";
+            
+            if (!value.equalsIgnoreCase("todos")) {
+                consulta = consulta + "WHERE j." + parametroDimension + " = "+value+" ";
+            }
+            
+            consulta = consulta + "GROUP BY r." + parametroHecho + ", j." + parametroDimension;
 
             System.out.println(consulta);
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
