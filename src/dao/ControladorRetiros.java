@@ -1,4 +1,4 @@
-package controladores;
+package dao;
 
 import accesoDatos.FachadaBD;
 import java.sql.ResultSet;

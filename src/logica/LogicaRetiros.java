@@ -1,6 +1,6 @@
 package logica;
 
-import controladores.ControladorRetiros;
+import dao.ControladorRetiros;
 import gui.BarChart;
 import gui.PieChart;
 import java.util.ArrayList;
