@@ -86,9 +86,7 @@ public class ControladorRetiros {
                 valores.add("Todos");
             while (tabla.next()) {
                 String valor = tabla.getString(1);
-                if (esIntesante(atributo, dimension)) {
-                    valores.add(formatearAtributo(atributo));
-                }
+                valores.add(valor);
             }
 
             return valores.toArray();
