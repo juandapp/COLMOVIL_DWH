@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,6 +75,11 @@ public class PanelRetiros extends javax.swing.JPanel {
         jButtonBarJoin1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
         setLayout(new java.awt.BorderLayout());
 
         jPanelMain.setName(""); // NOI18N
@@ -340,7 +347,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBoxAtributoAActionPerformed
 
     private void jBMostrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMostrarTodosActionPerformed
-
+                
         // How many frames do we have?
         JInternalFrame[] allframes = jDesktopPane.getAllFrames();
         int count = allframes.length;
@@ -360,14 +367,8 @@ public class PanelRetiros extends javax.swing.JPanel {
                 rows++;
             }
         }
-
-        System.out.println("cont" + count);
-        System.out.println("sqrt" + sqrt);
-        System.out.println("rows" + rows);
-        System.out.println("cols" + cols);
-
+        
         // Define some initial values for size & location.
-        System.out.println(jDesktopPane.getSize());
         Dimension size = jDesktopPane.getSize();
 
         int w = size.width / cols;
@@ -395,15 +396,20 @@ public class PanelRetiros extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jBMostrarTodosActionPerformed
 
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        jDesktopPane.updateUI();
+        jBMostrarTodos.doClick();        
+    }//GEN-LAST:event_formComponentResized
+
     private void updateGrafica(JPanel chartPanel) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, "hola");
         personalJInternalFrame.setBounds(0, 0, 760, 450);
         jDesktopPane.add(personalJInternalFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        try {
+        /*try {
             personalJInternalFrame.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(PanelRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         personalJInternalFrame.setVisible(true);
         jBMostrarTodos.doClick();
     }
