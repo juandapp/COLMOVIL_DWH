@@ -77,7 +77,8 @@ public class ControladorRetiros {
     }
     
     public Object[] getValores(String dimension, String atributo) {
-         ArrayList<String> valores = new ArrayList<>();
+        
+        ArrayList<String> valores = new ArrayList<>();
         try {
                 String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
                 ResultSet tabla = fachadaBD.executeQuery(consulta);
