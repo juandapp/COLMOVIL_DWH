@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controladores;
 
 import accesoDatos.FachadaBD;
@@ -10,12 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
-/**
- *
- * @author gustavo
- */
 public class ControladorRetiros {
 
     private final FachadaBD fachadaBD;
@@ -25,7 +16,7 @@ public class ControladorRetiros {
         fachadaBD = new FachadaBD();
     }
 
-    public Object[] getDimensionesRelacionadas(String hecho) {
+    public ArrayList<String>[] getDimensionesRelacionadas(String hecho) {
         try {
             String consulta = "select "
                     + "referenced_table_name "
@@ -33,13 +24,20 @@ public class ControladorRetiros {
                     + "where referenced_table_name is not null and table_name = '" + hecho + "';";
 
             ResultSet tabla = fachadaBD.executeQuery(consulta);
-            ArrayList<String> dimensiones = new ArrayList<>();
+            ArrayList<String>[] dimensiones = new ArrayList[2];
 
+            // Formato para la GUI
+            dimensiones[0] = new ArrayList<>();
+            // Formato SQL
+            dimensiones[1] = new ArrayList<>();
             while (tabla.next()) {
-                dimensiones.add(tabla.getString(1));
+                String dimension = tabla.getString(1);
+                dimensiones[0].add(formatearAtributo(dimension));
+                dimensiones[1].add(dimension);
             }
-
-            return dimensiones.toArray();
+            
+            fachadaBD.cerrarConexion();
+            return dimensiones;
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,20 +48,30 @@ public class ControladorRetiros {
         return null;
     }
 
-    public Object[] getAtributosInteresantes(String dimension) {
+    public ArrayList<String>[] getAtributosInteresantes(String dimension) {
+
         try {
             String consulta = "DESC " + dimension;
-            ResultSet tabla = fachadaBD.executeQuery(consulta);
 
-            ArrayList<String> atributos = new ArrayList<>();
+            ResultSet tabla = fachadaBD.executeQuery(consulta);
+            ArrayList<String>[] atributos = new ArrayList[2];
+
+            // Formato para la GUI
+            atributos[0] = new ArrayList<>();
+            // Formato SQL
+            atributos[1] = new ArrayList<>();
 
             while (tabla.next()) {
                 String atributo = tabla.getString(1);
                 if (esIntesante(atributo, dimension)) {
-                    atributos.add(atributo);
+                    atributos[0].add(formatearAtributo(atributo));
+                    atributos[1].add(atributo);
                 }
             }
-            return atributos.toArray();
+
+            fachadaBD.cerrarConexion();
+            return atributos;
+            
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,13 +94,14 @@ public class ControladorRetiros {
             return false;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
         return false;
     }
 
     public String[][] reporteCausa() {
 
         try {
+
             ResultSet tabla = fachadaBD.executeQuery("SELECT causa, COUNT( causa ) FROM  Retiros GROUP BY causa");
 
             tabla.last();
@@ -108,12 +117,12 @@ public class ControladorRetiros {
                 i++;
             } while (tabla.next());
 
-
+            fachadaBD.cerrarConexion();
             return resultado;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
@@ -122,6 +131,7 @@ public class ControladorRetiros {
     public String[][] reporteCausaEstrato() {
 
         try {
+
             ResultSet tabla = fachadaBD.executeQuery("SELECT COUNT( r.causa ), r.causa, d.estrato "
                     + "FROM Retiros r "
                     + "INNER JOIN Demografia_Cliente d ON r.cod_Demografia = d.cod_Demografia "
@@ -141,12 +151,12 @@ public class ControladorRetiros {
                 i++;
             } while (tabla.next());
 
-
+            fachadaBD.cerrarConexion();
             return resultado;
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
@@ -188,6 +198,7 @@ public class ControladorRetiros {
                     + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
             System.out.println(consulta);
+
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -203,11 +214,12 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
@@ -250,6 +262,7 @@ public class ControladorRetiros {
                     + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
             System.out.println(consulta);
+
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -265,12 +278,12 @@ public class ControladorRetiros {
                 resultado[i][2] = resultSet.getString(2);
                 i++;
             } while (resultSet.next());
-
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
@@ -283,6 +296,7 @@ public class ControladorRetiros {
 
             String consulta = "SELECT " + parametro + ", COUNT( " + parametro + " ) FROM  Retiros GROUP BY " + parametro;
             System.out.println(consulta);
+
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -298,11 +312,12 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
@@ -315,6 +330,7 @@ public class ControladorRetiros {
 
             String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Retiros GROUP BY " + parametro;
             System.out.println(consulta);
+
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
             resultSet.last();
@@ -331,11 +347,12 @@ public class ControladorRetiros {
                 i++;
             } while (resultSet.next());
 
+            fachadaBD.cerrarConexion();
             return resultado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
@@ -401,10 +418,28 @@ public class ControladorRetiros {
 
         } catch (SQLException ex) {
             Logger.getLogger(ControladorRetiros.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             fachadaBD.cerrarConexion();
         }
         return null;
 
+    }
+
+    private String formatearAtributo(String atributo) {
+
+        String newAtributo = atributo;
+        if (newAtributo.startsWith("cod") || newAtributo.startsWith("COD")) {
+            newAtributo = atributo.substring(3);
+        }
+
+        String[] split = newAtributo.split("DWH|_|(?=\\p{Lu})");
+        newAtributo = "";
+        for (int i = 0; i < split.length; i++) {
+            if (!split[i].isEmpty()) {
+                newAtributo = newAtributo + String.valueOf(split[i].charAt(0)).toUpperCase() + split[i].substring(1) + " ";
+            }
+        }
+
+        return newAtributo.substring(0, newAtributo.length()-1);
     }
 }
