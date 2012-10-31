@@ -5,9 +5,15 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.TextAnchor;
 
 public class BarChart {
 
@@ -29,7 +35,7 @@ public class BarChart {
     public BarChart(String charTitle, String[][] dataSet, String rangeAxisLabel) {
         this.charTitle = charTitle;
         this.dataSet = dataSet;
-        this.rangeAxisLabel=rangeAxisLabel;
+        this.rangeAxisLabel = rangeAxisLabel;
     }
 
     public void setDomainAxisLabel(String domainAxisLabel) {
@@ -71,6 +77,17 @@ public class BarChart {
         chart.getLegend().setItemFont(new Font("Ubuntu", Font.PLAIN, 12));
         chart.getTitle().setFont(new Font("Ubuntu", Font.BOLD, 20));
 
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setItemMargin(0.05);
+
+        renderer.setBaseItemLabelsVisible(true);
+        renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        renderer.setBaseLegendTextFont(new Font("Ubuntu", Font.PLAIN, 12));
+
+//        renderer.setSeriesItemLabelFont(0, new Font("Ubuntu", Font.BOLD, 10));
+       
+
         return chart;
     }
 
@@ -84,6 +101,4 @@ public class BarChart {
     public String getCharTitle() {
         return charTitle;
     }
-    
-    
 }

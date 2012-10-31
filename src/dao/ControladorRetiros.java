@@ -68,7 +68,7 @@ public class ControladorRetiros {
             return atributos;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error getAtributosInteresantes: " + ex);
         } finally {
             fachadaBD.cerrarConexion("getAtributosInteresantes");
@@ -92,7 +92,7 @@ public class ControladorRetiros {
             return valores.toArray();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error valor Interesante: " + ex);
         } finally {
             fachadaBD.cerrarConexion("Get Valores Interesantes");
@@ -115,7 +115,7 @@ public class ControladorRetiros {
             }
             return false;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error esIntesante: " + ex);
         }
         return false;
@@ -162,21 +162,23 @@ public class ControladorRetiros {
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
-            resultSet.first();
+            System.out.println("numeroFilas: " + numeroFilas);
 
             String[][] resultado = new String[numeroFilas][2];
 
             int i = 0;
-            do {
+            resultSet.first();
+            resultSet.previous();
+            while (resultSet.next()) {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = resultSet.getString(2);
                 i++;
-            } while (resultSet.next());
+            }
 
             return resultado;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error reporteUnParametroJoinPie: " + ex);
         } finally {
             fachadaBD.cerrarConexion("reporteUnParametroJoinPie");
@@ -226,21 +228,22 @@ public class ControladorRetiros {
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
-            resultSet.first();
 
             String[][] resultado = new String[numeroFilas][3];
 
             int i = 0;
-            do {
+            resultSet.first();
+            resultSet.previous();
+            while (resultSet.next()) {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = "";
                 resultado[i][2] = resultSet.getString(2);
                 i++;
-            } while (resultSet.next());
+            }
             return resultado;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error reporteUnParametroJoinBarra: " + ex);
         } finally {
             fachadaBD.cerrarConexion("reporteUnParametroJoinBarra");
@@ -261,21 +264,23 @@ public class ControladorRetiros {
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
-            resultSet.first();
+
 
             String[][] resultado = new String[numeroFilas][2];
 
             int i = 0;
-            do {
+            resultSet.first();
+            resultSet.previous();
+            while (resultSet.next()) {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = resultSet.getString(2);
                 i++;
-            } while (resultSet.next());
+            }
 
             return resultado;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error reporteUnParametroPie: " + ex);
         } finally {
             fachadaBD.cerrarConexion("reporteUnParametroPie");
@@ -295,22 +300,23 @@ public class ControladorRetiros {
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
-            resultSet.first();
 
             String[][] resultado = new String[numeroFilas][3];
 
             int i = 0;
-            do {
+            resultSet.first();
+            resultSet.previous();
+            while (resultSet.next()) {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = "";
                 resultado[i][2] = resultSet.getString(2);
                 i++;
-            } while (resultSet.next());
+            }
 
             return resultado;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error reporteUnParametroBarra: " + ex);
         } finally {
             fachadaBD.cerrarConexion("reporteUnParametroBarra");
@@ -365,22 +371,23 @@ public class ControladorRetiros {
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
-            resultSet.first();
 
             String[][] resultado = new String[numeroFilas][3];
 
             int i = 0;
-            do {
+            resultSet.first();
+            resultSet.previous();
+            while (resultSet.next()) {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = resultSet.getString(2);
                 resultado[i][2] = resultSet.getString(3);
                 i++;
-            } while (resultSet.next());
+            }
 
             return resultado;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error reporteBivariadoBarra: " + ex);
         } finally {
             fachadaBD.cerrarConexion("reporteBivariadoBarra");
@@ -468,8 +475,8 @@ public class ControladorRetiros {
             }
 
             if (!valorB.equalsIgnoreCase("todos") && !valorA.equalsIgnoreCase("todos")) {
-                consulta = consulta + "WHERE k." + atributoB + " = '" + valorB + "' "+
-                        "AND j." + atributoA + " = '" + valorA + "' ";
+                consulta = consulta + "WHERE k." + atributoB + " = '" + valorB + "' "
+                        + "AND j." + atributoA + " = '" + valorA + "' ";
             }
 
             consulta = consulta + "GROUP BY j." + atributoA + ", k." + atributoB;
@@ -478,23 +485,23 @@ public class ControladorRetiros {
 
             resultSet.last();
             int numeroFilas = resultSet.getRow();
-            resultSet.first();
 
             String[][] resultado = new String[numeroFilas][3];
 
             // Esto aqui y en todas las demas esta mal!!! porque puede que la consulta no arroje resultados!!
             int i = 0;
-            do {
+            resultSet.first();
+            resultSet.previous();
+            while (resultSet.next()) {
                 resultado[i][0] = resultSet.getString(1);
                 resultado[i][1] = resultSet.getString(2);
                 resultado[i][2] = resultSet.getString(3);
                 i++;
-            } while (resultSet.next());
+            }
 
             return resultado;
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
             System.out.println("Error reporteBivariadoBarra: " + ex);
         } finally {
             fachadaBD.cerrarConexion("reporteBivariadoBarra");
