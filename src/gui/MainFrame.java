@@ -249,6 +249,9 @@ public class MainFrame extends javax.swing.JFrame {
         if (currentPanel.equals("jPanelConsumos")) {
             ((PanelConsumos) jPanelConsumos).tileInternalframes();
         }
+        if (currentPanel.equals("jPanelContrataciones")) {
+            ((PanelContrataciones) jPanelContrataciones).tileInternalframes();
+        }
     }//GEN-LAST:event_jMenuItemMosaicoActionPerformed
 
     private void jMenuItemMostrarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarTodasActionPerformed
@@ -257,6 +260,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         if (currentPanel.equals("jPanelConsumos")) {
             ((PanelConsumos) jPanelConsumos).maximizarTodos();
+        }
+        if (currentPanel.equals("jPanelContrataciones")) {
+            ((PanelContrataciones) jPanelContrataciones).maximizarTodos();
         }
     }//GEN-LAST:event_jMenuItemMostrarTodasActionPerformed
 
@@ -267,6 +273,9 @@ public class MainFrame extends javax.swing.JFrame {
         if (currentPanel.equals("jPanelConsumos")) {
             ((PanelConsumos) jPanelConsumos).cerrarTodos();
         }
+        if (currentPanel.equals("jPanelContrataciones")) {
+            ((PanelContrataciones) jPanelContrataciones).cerrarTodos();
+        }
     }//GEN-LAST:event_jMenuItemCerrarTodasActionPerformed
 
     private void jMenuItemMinimizarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMinimizarTodasActionPerformed
@@ -275,6 +284,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         if (currentPanel.equals("jPanelConsumos")) {
             ((PanelConsumos) jPanelConsumos).minimizarTodos();
+        }
+        if (currentPanel.equals("jPanelContrataciones")) {
+            ((PanelContrataciones) jPanelContrataciones).minimizarTodos();
         }
     }//GEN-LAST:event_jMenuItemMinimizarTodasActionPerformed
 
