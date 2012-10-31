@@ -11,7 +11,7 @@ public class FachadaBD {
     static Connection conexion;
     static String usuario = "root";
     static String password = "";
-    static String host = "gustalibreros.no-ip.org";
+    static String host = "localhost";
     static String port = "3306";
     static String database = "colmovil_dwh";
     static String url = "jdbc:mysql://" + host + ":" + port + "/" + database;

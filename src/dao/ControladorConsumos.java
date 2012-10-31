@@ -185,7 +185,7 @@ public class ControladorConsumos {
             }
 
             if ("OperadorDWH".equals(dimensionConvertida)) {
-                System.out.println("Operador: "+fk);
+                System.out.println("Operador: " + fk);
                 if (fk.equals("cod_Operador_Origen")) {
                     joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
                 } else {
@@ -250,7 +250,7 @@ public class ControladorConsumos {
         try {
 
             String consulta = "SELECT tt.rango , COUNT( tt.rango ) "
-                    + "FROM (SELECT FLOOR( EXTRACT(MINUTE FROM Consumos_Voz.duracion) /"+rangoMinutos+" ) AS rango "
+                    + "FROM (SELECT FLOOR( EXTRACT(MINUTE FROM Consumos_Voz.duracion) /" + rangoMinutos + " ) AS rango "
                     + "FROM Consumos_Voz) AS tt GROUP BY tt.rango";
             System.out.println(consulta);
 
@@ -288,7 +288,7 @@ public class ControladorConsumos {
         try {
 
             String consulta = "SELECT tt.rango , COUNT( tt.rango ) "
-                    + "FROM (SELECT FLOOR( EXTRACT(MINUTE FROM Consumos_Voz.duracion) /"+rangoMinutos+" ) AS rango "
+                    + "FROM (SELECT FLOOR( EXTRACT(MINUTE FROM Consumos_Voz.duracion) /" + rangoMinutos + " ) AS rango "
                     + "FROM Consumos_Voz) AS tt GROUP BY tt.rango";
 
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
@@ -332,7 +332,7 @@ public class ControladorConsumos {
             }
 
             if ("OperadorDWH".equals(dimensionConvertida)) {
-                System.out.println("Operador: "+fk);
+                System.out.println("Operador: " + fk);
                 if (fk.equals("cod_Operador_Origen")) {
                     joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
                 } else {
@@ -403,7 +403,7 @@ public class ControladorConsumos {
 
             String joinConditionA = null;
             String joinConditionB = null;
-            
+
             String dimensionConvertidaA = convertidorDimensiones(fkA);
             String dimensionConvertidaB = convertidorDimensiones(fkA);
 
@@ -530,19 +530,20 @@ public class ControladorConsumos {
         }
         return "";
     }
-    
-      private String formatearDuracion(String rango, int rangoMinutos) {
+
+    private String formatearDuracion(String rango, int rangoMinutos) {
         String rangoFormateado = "";
-        
+
         int rangoInt = Integer.parseInt(rango);
-        int inicio = rangoInt*rangoMinutos;
-        int finalR = inicio+rangoMinutos;
-        
-        if(finalR>60){
+        int inicio = rangoInt * rangoMinutos;
+        int finalR = inicio + rangoMinutos;
+
+        if (finalR > 60) {
             finalR = 60;
         }
-        rangoFormateado = inicio + " - "+finalR; 
+        rangoFormateado = inicio + " - " + finalR;
         return rangoFormateado;
+    }
 
     private boolean esIntesante(String atributo, String dimension) {
         try {
