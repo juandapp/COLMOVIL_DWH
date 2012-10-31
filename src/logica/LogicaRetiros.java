@@ -2,6 +2,7 @@ package logica;
 
 import dao.ControladorRetiros;
 import gui.BarChart;
+import gui.MultiplePieChart;
 import gui.PieChart;
 import java.util.ArrayList;
 
@@ -126,6 +127,23 @@ public class LogicaRetiros {
 
         BarChart barChart = new BarChart(title, matrizCausas, "Retiros");
         return barChart;
+    }
+
+    public MultiplePieChart reporteBivariadoPie(int dimension, int atributo, String valor, int hecho) {
+        String[][] matrizCausas = controladorRetiros.reporteBivariadoBarra(
+                comboBoxDimensiones1[1].get(dimension),
+                comboBoxAtributos1[1].get(atributo),
+                valor,
+                comboBoxHechos1[1].get(hecho));
+
+        String title = "Retiros - " + comboBoxHechos[0].get(hecho) + " por " + comboBoxAtributos1[0].get(atributo);
+
+        if (!valor.equalsIgnoreCase("todos")) {
+            title = title + " = [" + valor + "]";
+        }
+
+        MultiplePieChart multiplePieChart = new MultiplePieChart(title, matrizCausas, "Retiros");
+        return multiplePieChart;
     }
 
     public Object[] getDataComboBoxValores(int dimension, int atributo) {

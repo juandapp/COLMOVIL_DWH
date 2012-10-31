@@ -62,8 +62,8 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxDimensiones = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxAtributos = new javax.swing.JComboBox();
-        jButtonPieJoin = new javax.swing.JButton();
         jButtonBarJoin = new javax.swing.JButton();
+        jButtonPieJoin = new javax.swing.JButton();
         jPanelTres = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jComboBoxDimensiones1 = new javax.swing.JComboBox();
@@ -74,6 +74,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jComboBoxHechos1 = new javax.swing.JComboBox();
         jButtonBarJoin2 = new javax.swing.JButton();
+        jButtonPieJoin2 = new javax.swing.JButton();
         jPanelBiDimensional = new javax.swing.JPanel();
         jPanelCuatro = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -202,15 +203,6 @@ public class PanelRetiros extends javax.swing.JPanel {
         jComboBoxAtributos.setPreferredSize(new java.awt.Dimension(200, 25));
         jPanelDos.add(jComboBoxAtributos);
 
-        jButtonPieJoin.setText("Pie");
-        jButtonPieJoin.setPreferredSize(new java.awt.Dimension(80, 25));
-        jButtonPieJoin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPieJoinActionPerformed(evt);
-            }
-        });
-        jPanelDos.add(jButtonPieJoin);
-
         jButtonBarJoin.setText("Bar");
         jButtonBarJoin.setPreferredSize(new java.awt.Dimension(80, 25));
         jButtonBarJoin.addActionListener(new java.awt.event.ActionListener() {
@@ -219,6 +211,15 @@ public class PanelRetiros extends javax.swing.JPanel {
             }
         });
         jPanelDos.add(jButtonBarJoin);
+
+        jButtonPieJoin.setText("Pie");
+        jButtonPieJoin.setPreferredSize(new java.awt.Dimension(80, 25));
+        jButtonPieJoin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPieJoinActionPerformed(evt);
+            }
+        });
+        jPanelDos.add(jButtonPieJoin);
 
         jPanelUniDimensional.add(jPanelDos);
 
@@ -268,13 +269,22 @@ public class PanelRetiros extends javax.swing.JPanel {
         jPanelTres.add(jComboBoxHechos1);
 
         jButtonBarJoin2.setText("Bar");
-        jButtonBarJoin2.setPreferredSize(new java.awt.Dimension(170, 25));
+        jButtonBarJoin2.setPreferredSize(new java.awt.Dimension(80, 25));
         jButtonBarJoin2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBarJoin2ActionPerformed(evt);
             }
         });
         jPanelTres.add(jButtonBarJoin2);
+
+        jButtonPieJoin2.setText("Pie");
+        jButtonPieJoin2.setPreferredSize(new java.awt.Dimension(80, 25));
+        jButtonPieJoin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPieJoin2ActionPerformed(evt);
+            }
+        });
+        jPanelTres.add(jButtonPieJoin2);
 
         jPanelUniDimensional.add(jPanelTres);
 
@@ -478,6 +488,15 @@ public class PanelRetiros extends javax.swing.JPanel {
         loadDatajComboBoxValoresB();
     }//GEN-LAST:event_jComboBoxAtributosBActionPerformed
 
+    private void jButtonPieJoin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoin2ActionPerformed
+        int hecho = jComboBoxHechos1.getSelectedIndex();
+        int dimension = jComboBoxDimensiones1.getSelectedIndex();
+        int atributo = jComboBoxAtributos1.getSelectedIndex();
+        String valor = jComboBoxValores.getSelectedItem().toString();
+        MultiplePieChart multiplePieChart = logicaRetiros.reporteBivariadoPie(dimension, atributo, valor, hecho);
+        addChartPanelInsideInternalFrame(multiplePieChart.getChartPanel(), multiplePieChart.getCharTitle());
+    }//GEN-LAST:event_jButtonPieJoin2ActionPerformed
+
     private void addChartPanelInsideInternalFrame(JPanel chartPanel, String title) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, title);
         personalJInternalFrame.setBounds(0, 0, 760, 450);
@@ -624,6 +643,7 @@ public class PanelRetiros extends javax.swing.JPanel {
     private javax.swing.JButton jButtonBarJoin2;
     private javax.swing.JButton jButtonPie;
     private javax.swing.JButton jButtonPieJoin;
+    private javax.swing.JButton jButtonPieJoin2;
     private javax.swing.JComboBox jComboBoxAtributos;
     private javax.swing.JComboBox jComboBoxAtributos1;
     private javax.swing.JComboBox jComboBoxAtributosA;
