@@ -243,26 +243,38 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void jMenuItemMosaicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMosaicoActionPerformed
-        if (currentPanel.endsWith("jPanelRetiros")) {
+        if (currentPanel.equals("jPanelRetiros")) {
             ((PanelRetiros) jPanelRetiros).tileInternalframes();
+        }
+        if (currentPanel.equals("jPanelConsumos")) {
+            ((PanelConsumos) jPanelConsumos).tileInternalframes();
         }
     }//GEN-LAST:event_jMenuItemMosaicoActionPerformed
 
     private void jMenuItemMostrarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarTodasActionPerformed
-        if (currentPanel.endsWith("jPanelRetiros")) {
+        if (currentPanel.equals("jPanelRetiros")) {
             ((PanelRetiros) jPanelRetiros).maximizarTodos();
+        }
+        if (currentPanel.equals("jPanelConsumos")) {
+            ((PanelConsumos) jPanelConsumos).maximizarTodos();
         }
     }//GEN-LAST:event_jMenuItemMostrarTodasActionPerformed
 
     private void jMenuItemCerrarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarTodasActionPerformed
-        if (currentPanel.endsWith("jPanelRetiros")) {
+        if (currentPanel.equals("jPanelRetiros")) {
             ((PanelRetiros) jPanelRetiros).cerrarTodos();
+        }
+        if (currentPanel.equals("jPanelConsumos")) {
+            ((PanelConsumos) jPanelConsumos).cerrarTodos();
         }
     }//GEN-LAST:event_jMenuItemCerrarTodasActionPerformed
 
     private void jMenuItemMinimizarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMinimizarTodasActionPerformed
-        if (currentPanel.endsWith("jPanelRetiros")) {
+        if (currentPanel.equals("jPanelRetiros")) {
             ((PanelRetiros) jPanelRetiros).minimizarTodos();
+        }
+        if (currentPanel.equals("jPanelConsumos")) {
+            ((PanelConsumos) jPanelConsumos).minimizarTodos();
         }
     }//GEN-LAST:event_jMenuItemMinimizarTodasActionPerformed
 
