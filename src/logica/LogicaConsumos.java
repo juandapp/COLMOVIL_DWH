@@ -114,7 +114,7 @@ public class LogicaConsumos {
     }
 
     public BarChart reporteBivariadoBarra(int dimension, int atributo, String valor, int hecho) {
-        String[][] matrizCausas = controladorConsumos.reporteBivariadoBarra(
+        String[][] matrizCausas = controladorConsumos.reporteBivariado(
                 comboBoxDimensiones1[1].get(dimension),
                 comboBoxAtributos1[1].get(atributo),
                 valor,
@@ -132,7 +132,7 @@ public class LogicaConsumos {
     }
 
     public MultiplePieChart reporteBivariadoPie(int dimension, int atributo, String valor, int hecho) {
-        String[][] matrizCausas = controladorConsumos.reporteBivariadoBarra(
+        String[][] matrizCausas = controladorConsumos.reporteBivariado(
                 comboBoxDimensiones1[1].get(dimension),
                 comboBoxAtributos1[1].get(atributo),
                 valor,

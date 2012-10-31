@@ -102,27 +102,6 @@ public class ControladorConsumos {
         return null;
     }
 
-    private boolean esIntesante(String atributo, String dimension) {
-        try {
-            if (!atributo.startsWith("cod")) {
-                String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
-                ResultSet tabla = fachadaBD.executeQuery(consulta);
-
-                tabla.next();
-                int value = Integer.parseInt(tabla.getString(1));
-
-                if (value < 33) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (SQLException ex) {
-
-            System.out.println("Error esIntesante: " + ex);
-        }
-        return false;
-    }
-
     public String[][] reporteUnParametroJoinPie(String fk, String parametro) {
 
         String dimensionConvertida = convertidorDimensiones(fk);
@@ -135,7 +114,7 @@ public class ControladorConsumos {
             }
 
             if ("OperadorDWH".equals(dimensionConvertida)) {
-                System.out.println("Operador: "+fk);
+                System.out.println("Operador: " + fk);
                 if (fk.equals("cod_Operador_Origen")) {
                     joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
                 } else {
@@ -341,7 +320,7 @@ public class ControladorConsumos {
 
     }
 
-    public String[][] reporteBivariadoBarra(String fk, String atributo, String valueAtributo, String hecho) {
+    public String[][] reporteBivariado(String fk, String atributo, String valueAtributo, String hecho) {
 
         String dimensionConvertida = convertidorDimensiones(fk);
         try {
@@ -418,25 +397,8 @@ public class ControladorConsumos {
 
     }
 
-    private String formatearAtributo(String atributo) {
-
-        String newAtributo = atributo;
-        if (newAtributo.startsWith("cod") || newAtributo.startsWith("COD")) {
-            newAtributo = atributo.substring(3);
-        }
-
-        String[] split = newAtributo.split("DWH|_|(?=\\p{Lu})");
-        newAtributo = "";
-        for (int i = 0; i < split.length; i++) {
-            if (!split[i].isEmpty()) {
-                newAtributo = newAtributo + String.valueOf(split[i].charAt(0)).toUpperCase() + split[i].substring(1) + " ";
-            }
-        }
-
-        return newAtributo.substring(0, newAtributo.length() - 1);
-    }
-
     public String[][] reporteBidimensional(String fkA, String atributoA, String valorA, String fkB, String atributoB, String valorB) {
+
         try {
 
             String joinConditionA = null;
@@ -581,5 +543,43 @@ public class ControladorConsumos {
         }
         rangoFormateado = inicio + " - "+finalR; 
         return rangoFormateado;
+
+    private boolean esIntesante(String atributo, String dimension) {
+        try {
+            if (!atributo.startsWith("cod")) {
+                String consulta = "SELECT COUNT(DISTINCT " + atributo + ") FROM " + dimension;
+                ResultSet tabla = fachadaBD.executeQuery(consulta);
+
+                tabla.next();
+                int value = Integer.parseInt(tabla.getString(1));
+
+                if (value < 33) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException ex) {
+
+            System.out.println("Error esIntesante: " + ex);
+        }
+        return false;
+    }
+
+    private String formatearAtributo(String atributo) {
+
+        String newAtributo = atributo;
+        if (newAtributo.startsWith("cod") || newAtributo.startsWith("COD")) {
+            newAtributo = atributo.substring(3);
+        }
+
+        String[] split = newAtributo.split("DWH|_|(?=\\p{Lu})");
+        newAtributo = "";
+        for (int i = 0; i < split.length; i++) {
+            if (!split[i].isEmpty()) {
+                newAtributo = newAtributo + String.valueOf(split[i].charAt(0)).toUpperCase() + split[i].substring(1) + " ";
+            }
+        }
+
+        return newAtributo.substring(0, newAtributo.length() - 1);
     }
 }
