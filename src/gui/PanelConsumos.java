@@ -20,8 +20,6 @@ public class PanelConsumos extends javax.swing.JPanel {
         logicaConsumos = new LogicaConsumos();
         initComponents();
 
-        jComboBoxHechos.setModel(new javax.swing.DefaultComboBoxModel(logicaConsumos.getDataComboBoxHechos()));
-
         jComboBoxDimensiones.setModel(new javax.swing.DefaultComboBoxModel(logicaConsumos.getDataComboBoxDimensiones()));
         jComboBoxAtributos.setModel(new javax.swing.DefaultComboBoxModel(logicaConsumos.getDataComboBoxAtributos(0)));
 
@@ -54,7 +52,7 @@ public class PanelConsumos extends javax.swing.JPanel {
         jPanelUniDimensional = new javax.swing.JPanel();
         jPanelUno = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxHechos = new javax.swing.JComboBox();
+        jSlider1 = new javax.swing.JSlider();
         jButtonBar = new javax.swing.JButton();
         jButtonPie = new javax.swing.JButton();
         jPanelDos = new javax.swing.JPanel();
@@ -73,6 +71,7 @@ public class PanelConsumos extends javax.swing.JPanel {
         jComboBoxValores = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jComboBoxHechos1 = new javax.swing.JComboBox();
+        jSlider2 = new javax.swing.JSlider();
         jButtonBarJoin2 = new javax.swing.JButton();
         jButtonPieJoin2 = new javax.swing.JButton();
         jPanelBiDimensional = new javax.swing.JPanel();
@@ -150,15 +149,18 @@ public class PanelConsumos extends javax.swing.JPanel {
         jPanelUniDimensional.setRequestFocusEnabled(false);
 
         jPanelUno.setBorder(javax.swing.BorderFactory.createTitledBorder("Uno"));
-        jPanelUno.setPreferredSize(new java.awt.Dimension(230, 110));
+        jPanelUno.setPreferredSize(new java.awt.Dimension(230, 150));
 
-        jLabel4.setText("Atributo");
+        jLabel4.setText("Duracion llamada");
         jLabel4.setPreferredSize(new java.awt.Dimension(200, 15));
         jPanelUno.add(jLabel4);
 
-        jComboBoxHechos.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
-        jComboBoxHechos.setPreferredSize(new java.awt.Dimension(200, 25));
-        jPanelUno.add(jComboBoxHechos);
+        jSlider1.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+        jSlider1.setMajorTickSpacing(5);
+        jSlider1.setMaximum(60);
+        jSlider1.setValue(10);
+        jSlider1.setPreferredSize(new java.awt.Dimension(206, 38));
+        jPanelUno.add(jSlider1);
 
         jButtonBar.setText("Bar");
         jButtonBar.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -225,7 +227,7 @@ public class PanelConsumos extends javax.swing.JPanel {
         jPanelUniDimensional.add(jPanelDos);
 
         jPanelTres.setBorder(javax.swing.BorderFactory.createTitledBorder("Tres"));
-        jPanelTres.setPreferredSize(new java.awt.Dimension(230, 260));
+        jPanelTres.setPreferredSize(new java.awt.Dimension(230, 320));
 
         jLabel9.setText("Dimension Relacionada");
         jLabel9.setPreferredSize(new java.awt.Dimension(200, 15));
@@ -268,6 +270,7 @@ public class PanelConsumos extends javax.swing.JPanel {
         jComboBoxHechos1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
         jComboBoxHechos1.setPreferredSize(new java.awt.Dimension(200, 25));
         jPanelTres.add(jComboBoxHechos1);
+        jPanelTres.add(jSlider2);
 
         jButtonBarJoin2.setText("Bar");
         jButtonBarJoin2.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -397,14 +400,14 @@ public class PanelConsumos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieActionPerformed
-        final int hecho = jComboBoxHechos.getSelectedIndex();
-        PieChart pieChart = logicaConsumos.reporteUnParametroPie(hecho);
+        int rangoMinutos = jSlider1.getValue();
+        PieChart pieChart = logicaConsumos.reporteDuracionPie(rangoMinutos);
         addChartPanelInsideInternalFrame(pieChart.getChartPanel(), pieChart.getCharTitle());
     }//GEN-LAST:event_jButtonPieActionPerformed
 
     private void jButtonBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarActionPerformed
-        final int hecho = jComboBoxHechos.getSelectedIndex();
-        BarChart barChart = logicaConsumos.reporteUnParametroBarra(hecho);
+        int rangoMinutos = jSlider1.getValue();
+        BarChart barChart = logicaConsumos.reporteDuracionBar(rangoMinutos);
         addChartPanelInsideInternalFrame(barChart.getChartPanel(), barChart.getCharTitle());
     }//GEN-LAST:event_jButtonBarActionPerformed
 
@@ -676,7 +679,6 @@ public class PanelConsumos extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBoxDimensiones1;
     private javax.swing.JComboBox jComboBoxDimensionesA;
     private javax.swing.JComboBox jComboBoxDimensionesB;
-    private javax.swing.JComboBox jComboBoxHechos;
     private javax.swing.JComboBox jComboBoxHechos1;
     private javax.swing.JComboBox jComboBoxValores;
     private javax.swing.JComboBox jComboBoxValoresA;
@@ -706,6 +708,8 @@ public class PanelConsumos extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelUno;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
     private javax.swing.JToolBar jToolBarOpciones;
     // End of variables declaration//GEN-END:variables
 }

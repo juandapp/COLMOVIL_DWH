@@ -266,11 +266,13 @@ public class ControladorConsumos {
 
     }
 
-    public String[][] reporteUnParametroPie(String parametro) {
+    public String[][] reporteDuracionPie(int rangoMinutos) {
 
         try {
 
-            String consulta = "SELECT " + parametro + ", COUNT( " + parametro + " ) FROM  Consumos_Voz GROUP BY " + parametro;
+            String consulta = "SELECT tt.rango , COUNT( tt.rango ) "
+                    + "FROM (SELECT FLOOR( EXTRACT(MINUTE FROM Consumos_Voz.duracion) /"+rangoMinutos+" ) AS rango "
+                    + "FROM Consumos_Voz) AS tt GROUP BY tt.rango";
             System.out.println(consulta);
 
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
@@ -285,7 +287,7 @@ public class ControladorConsumos {
             resultSet.first();
             resultSet.previous();
             while (resultSet.next()) {
-                resultado[i][0] = resultSet.getString(1);
+                resultado[i][0] = formatearDuracion(resultSet.getString(1), rangoMinutos);
                 resultado[i][1] = resultSet.getString(2);
                 i++;
             }
@@ -302,12 +304,13 @@ public class ControladorConsumos {
 
     }
 
-    public String[][] reporteUnParametroBarra(String parametro) {
+    public String[][] reporteDuracionBar(int rangoMinutos) {
 
         try {
 
-            String consulta = "SELECT COUNT( " + parametro + " ), " + parametro + "  FROM  Consumos_Voz GROUP BY " + parametro;
-            System.out.println(consulta);
+            String consulta = "SELECT tt.rango , COUNT( tt.rango ) "
+                    + "FROM (SELECT FLOOR( EXTRACT(MINUTE FROM Consumos_Voz.duracion) /"+rangoMinutos+" ) AS rango "
+                    + "FROM Consumos_Voz) AS tt GROUP BY tt.rango";
 
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
@@ -320,9 +323,9 @@ public class ControladorConsumos {
             resultSet.first();
             resultSet.previous();
             while (resultSet.next()) {
-                resultado[i][0] = resultSet.getString(1);
+                resultado[i][0] = resultSet.getString(2);
                 resultado[i][1] = "";
-                resultado[i][2] = resultSet.getString(2);
+                resultado[i][2] = formatearDuracion(resultSet.getString(1), rangoMinutos);
                 i++;
             }
 
@@ -564,5 +567,19 @@ public class ControladorConsumos {
             return "Consumos_Voz";
         }
         return "";
+    }
+    
+      private String formatearDuracion(String rango, int rangoMinutos) {
+        String rangoFormateado = "";
+        
+        int rangoInt = Integer.parseInt(rango);
+        int inicio = rangoInt*rangoMinutos;
+        int finalR = inicio+rangoMinutos;
+        
+        if(finalR>60){
+            finalR = 60;
+        }
+        rangoFormateado = inicio + " - "+finalR; 
+        return rangoFormateado;
     }
 }

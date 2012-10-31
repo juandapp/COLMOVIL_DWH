@@ -83,17 +83,15 @@ public class LogicaConsumos {
         return comboBoxHechos1[0].toArray();
     }
 
-    public PieChart reporteUnParametroPie(int hecho) {
-        String[][] matrizCausas = controladorConsumos.reporteUnParametroPie(
-                comboBoxHechos[1].get(hecho));
-        PieChart pieChart = new PieChart("Consumos - " + comboBoxHechos[0].get(hecho), matrizCausas);
+    public PieChart reporteDuracionPie(int rangoMinutos) {
+        String[][] matrizCausas = controladorConsumos.reporteDuracionPie(rangoMinutos);
+        PieChart pieChart = new PieChart("Consumos - Duracion llamadas en fracciones de "+rangoMinutos+" minutos" , matrizCausas);
         return pieChart;
     }
 
-    public BarChart reporteUnParametroBarra(int hecho) {
-        String[][] matrizCausas = controladorConsumos.reporteUnParametroBarra(
-                comboBoxHechos[1].get(hecho));
-        BarChart barChart = new BarChart("Consumos - " + comboBoxHechos[0].get(hecho), matrizCausas, "Consumos");
+    public BarChart reporteDuracionBar(int rangoMinutos) {
+        String[][] matrizCausas = controladorConsumos.reporteDuracionBar(rangoMinutos);
+        BarChart barChart = new BarChart("Consumos - Duracion llamadas en fracciones de "+rangoMinutos+" minutos", matrizCausas, "Consumos");
         return barChart;
     }
 
