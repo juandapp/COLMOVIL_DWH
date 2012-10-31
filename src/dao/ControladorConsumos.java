@@ -17,7 +17,7 @@ public class ControladorConsumos {
     public ArrayList<String>[] getDimensionesRelacionadas(String hecho) {
         try {
             String consulta = "select "
-                    + "referenced_table_name "
+                    + "column_name "
                     + "from information_schema.key_column_usage "
                     + "where referenced_table_name is not null and table_name = '" + hecho + "';";
 
@@ -132,8 +132,8 @@ public class ControladorConsumos {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if ("PlanDatos".equals(dimension)) {
-                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            if ("OperadorDWH".equals(dimension)) {
+                joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
             }
 
             if ("PlanVoz".equals(dimension)) {
