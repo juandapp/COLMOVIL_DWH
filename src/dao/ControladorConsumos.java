@@ -47,6 +47,7 @@ public class ControladorConsumos {
 
     public ArrayList<String>[] getAtributosInteresantes(String dimension) {
 
+        dimension = convertidorDimensiones(dimension);
         try {
             String consulta = "DESC " + dimension;
             ResultSet tabla = fachadaBD.executeQuery(consulta);
@@ -508,5 +509,28 @@ public class ControladorConsumos {
 
         }
         return null;
+    }
+
+    private String convertidorDimensiones(String dimension) {
+
+        if (dimension.equals("cod_Cliente")) {
+            return "Cliente";
+        }
+        if (dimension.equals("cod_Cliente")) {
+            return "Cliente";
+        }
+        if (dimension.equals("cod_Demografia")) {
+            return "Demografia_Cliente";
+        }
+        if (dimension.equals("cod_PlaVoz")) {
+            return "PlanVoz";
+        }
+        if (dimension.equals("cod_Operador_Origen")) {
+            return "OperadorDWH";
+        }
+        if (dimension.equals("cod_Operador_Destino")) {
+            return "OperadorDWH";
+        }
+        return "";
     }
 }
