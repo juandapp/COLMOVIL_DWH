@@ -463,26 +463,6 @@ public class PanelConsumos extends javax.swing.JPanel {
         tileInternalframes();
     }//GEN-LAST:event_formComponentResized
 
-    private void jComboBoxDimensiones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensiones1ActionPerformed
-        int dimension = jComboBoxDimensiones1.getSelectedIndex();
-        Object[] atributosInteresantes = logicaConsumos.getDataComboBoxAtributos1(dimension);
-        jComboBoxAtributos1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes));
-        loadDatajComboBoxValores();
-    }//GEN-LAST:event_jComboBoxDimensiones1ActionPerformed
-
-    private void jComboBoxAtributos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributos1ActionPerformed
-        loadDatajComboBoxValores();
-    }//GEN-LAST:event_jComboBoxAtributos1ActionPerformed
-
-    private void jButtonBarJoin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoin2ActionPerformed
-        int hecho = jComboBoxHechos1.getSelectedIndex();
-        int dimension = jComboBoxDimensiones1.getSelectedIndex();
-        int atributo = jComboBoxAtributos1.getSelectedIndex();
-        String valor = jComboBoxValores.getSelectedItem().toString();
-        BarChart barChart = logicaConsumos.reporteBivariadoBarra(dimension, atributo, valor, hecho);
-        addChartPanelInsideInternalFrame(barChart.getChartPanel(), barChart.getCharTitle());
-    }//GEN-LAST:event_jButtonBarJoin2ActionPerformed
-
     private void jComboBoxDimensionesBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensionesBActionPerformed
         int dimension = jComboBoxDimensionesB.getSelectedIndex();
         Object[] atributosInteresantes = logicaConsumos.getDataComboBoxAtributosB(dimension);
@@ -498,15 +478,6 @@ public class PanelConsumos extends javax.swing.JPanel {
         loadDatajComboBoxValoresB();
     }//GEN-LAST:event_jComboBoxAtributosBActionPerformed
 
-    private void jButtonPieJoin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoin2ActionPerformed
-        int hecho = jComboBoxHechos1.getSelectedIndex();
-        int dimension = jComboBoxDimensiones1.getSelectedIndex();
-        int atributo = jComboBoxAtributos1.getSelectedIndex();
-        String valor = jComboBoxValores.getSelectedItem().toString();
-        MultiplePieChart multiplePieChart = logicaConsumos.reporteBivariadoPie(dimension, atributo, valor, hecho);
-        addChartPanelInsideInternalFrame(multiplePieChart.getChartPanel(), multiplePieChart.getCharTitle());
-    }//GEN-LAST:event_jButtonPieJoin2ActionPerformed
-
     private void jButtonPieJoin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoin1ActionPerformed
         int dimensionA = jComboBoxDimensionesA.getSelectedIndex();
         int atributoA = jComboBoxAtributosA.getSelectedIndex();
@@ -519,6 +490,35 @@ public class PanelConsumos extends javax.swing.JPanel {
         MultiplePieChart multiplePieChart = logicaConsumos.reporteBiDimensionalPie(dimensionA, atributoA, valorA, dimensionB, atributoB, valorB);
         addChartPanelInsideInternalFrame(multiplePieChart.getChartPanel(), multiplePieChart.getCharTitle());
     }//GEN-LAST:event_jButtonPieJoin1ActionPerformed
+
+    private void jButtonPieJoin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPieJoin2ActionPerformed
+        int hecho = jComboBoxHechos1.getSelectedIndex();
+        int dimension = jComboBoxDimensiones1.getSelectedIndex();
+        int atributo = jComboBoxAtributos1.getSelectedIndex();
+        String valor = jComboBoxValores.getSelectedItem().toString();
+        MultiplePieChart multiplePieChart = logicaConsumos.reporteBivariadoPie(dimension, atributo, valor, hecho);
+        addChartPanelInsideInternalFrame(multiplePieChart.getChartPanel(), multiplePieChart.getCharTitle());
+    }//GEN-LAST:event_jButtonPieJoin2ActionPerformed
+
+    private void jButtonBarJoin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarJoin2ActionPerformed
+        int hecho = jComboBoxHechos1.getSelectedIndex();
+        int dimension = jComboBoxDimensiones1.getSelectedIndex();
+        int atributo = jComboBoxAtributos1.getSelectedIndex();
+        String valor = jComboBoxValores.getSelectedItem().toString();
+        BarChart barChart = logicaConsumos.reporteBivariadoBarra(dimension, atributo, valor, hecho);
+        addChartPanelInsideInternalFrame(barChart.getChartPanel(), barChart.getCharTitle());
+    }//GEN-LAST:event_jButtonBarJoin2ActionPerformed
+
+    private void jComboBoxAtributos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAtributos1ActionPerformed
+        loadDatajComboBoxValores();
+    }//GEN-LAST:event_jComboBoxAtributos1ActionPerformed
+
+    private void jComboBoxDimensiones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDimensiones1ActionPerformed
+        int dimension = jComboBoxDimensiones1.getSelectedIndex();
+        Object[] atributosInteresantes = logicaConsumos.getDataComboBoxAtributos1(dimension);
+        jComboBoxAtributos1.setModel(new javax.swing.DefaultComboBoxModel(atributosInteresantes));
+        loadDatajComboBoxValores();
+    }//GEN-LAST:event_jComboBoxDimensiones1ActionPerformed
 
     private void addChartPanelInsideInternalFrame(JPanel chartPanel, String title) {
         PersonalJInternalFrame personalJInternalFrame = new PersonalJInternalFrame(chartPanel, title);
