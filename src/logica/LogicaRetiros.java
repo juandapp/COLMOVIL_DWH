@@ -100,7 +100,8 @@ public class LogicaRetiros {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinBarra(
                 comboBoxDimensiones[1].get(dimension),
                 comboBoxAtributos[1].get(atributo));
-        BarChart barChart = new BarChart("Retiros - " + comboBoxAtributos[0].get(atributo), matrizCausas, "Retiros");
+        String title = "Retiros por " + comboBoxAtributos[0].get(atributo)+" de "+comboBoxDimensiones[0].get(dimension);
+        BarChart barChart = new BarChart(title, matrizCausas, "Retiros");
         return barChart;
     }
 
@@ -108,7 +109,8 @@ public class LogicaRetiros {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinPie(
                 comboBoxDimensiones[1].get(dimension),
                 comboBoxAtributos[1].get(atributo));
-        PieChart pieChart = new PieChart("Retiros - " + comboBoxAtributos[0].get(atributo), matrizCausas);
+        String title = "Retiros por " + comboBoxAtributos[0].get(atributo)+" de "+comboBoxDimensiones[0].get(dimension);
+        PieChart pieChart = new PieChart(title, matrizCausas);
         return pieChart;
     }
 
@@ -119,7 +121,8 @@ public class LogicaRetiros {
                 valor,
                 comboBoxHechos1[1].get(hecho));
 
-        String title = "Retiros - " + comboBoxHechos[0].get(hecho) + " por " + comboBoxAtributos1[0].get(atributo);
+        String title = "Retiros - " + comboBoxHechos[0].get(hecho) + " por " + comboBoxAtributos1[0].get(atributo)
+                + " de "+comboBoxDimensiones1[0].get(dimension);
 
         if (!valor.equalsIgnoreCase("todos")) {
             title = title + " = [" + valor + "]";
@@ -136,7 +139,8 @@ public class LogicaRetiros {
                 valor,
                 comboBoxHechos1[1].get(hecho));
 
-        String title = "Retiros - " + comboBoxHechos[0].get(hecho) + " por " + comboBoxAtributos1[0].get(atributo);
+        String title = "Retiros - " + comboBoxHechos[0].get(hecho) + " por " + comboBoxAtributos1[0].get(atributo)
+                + " de "+comboBoxDimensiones1[0].get(dimension);
 
         if (!valor.equalsIgnoreCase("todos")) {
             title = title + " = [" + valor + "]";
@@ -160,17 +164,19 @@ public class LogicaRetiros {
 
         String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, valorA, dimensionNameB, atributoNameB, valorB);
 
-        String title = "Retiros - " + " por " + comboBoxAtributosA[0].get(atributoA);
+        String title = "Retiros " + " por " + comboBoxAtributosA[0].get(atributoA);
 
         if (!valorA.equalsIgnoreCase("todos")) {
             title = title + " = [" + valorA + "] ";
         }
 
-        title = title + " por " + comboBoxAtributosB[0].get(atributoB);
+        title = title + " de "+comboBoxDimensionesA[0].get(dimensionA)+" por " + comboBoxAtributosB[0].get(atributoB);
 
         if (!valorB.equalsIgnoreCase("todos")) {
             title = title + " = [" + valorB + "] ";
         }
+        
+        title = title + " de "+comboBoxDimensionesB[0].get(dimensionB);
 
         BarChart barChart = new BarChart(title, matrizCausas, "Retiros");
         return barChart;
@@ -184,17 +190,19 @@ public class LogicaRetiros {
 
         String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, valorA, dimensionNameB, atributoNameB, valorB);
 
-        String title = "Retiros - " + " por " + comboBoxAtributosA[0].get(atributoA);
+        String title = "Retiros " + " por " + comboBoxAtributosA[0].get(atributoA);
 
         if (!valorA.equalsIgnoreCase("todos")) {
             title = title + " = [" + valorA + "] ";
         }
 
-        title = title + " por " + comboBoxAtributosB[0].get(atributoB);
+        title = title + " de "+comboBoxDimensionesA[0].get(dimensionA)+" por " + comboBoxAtributosB[0].get(atributoB);
 
         if (!valorB.equalsIgnoreCase("todos")) {
             title = title + " = [" + valorB + "] ";
         }
+        
+        title = title + " de "+comboBoxDimensionesB[0].get(dimensionB);
 
         MultiplePieChart multiplePieChart = new MultiplePieChart(title, matrizCausas, "Retiros");
         return multiplePieChart;
