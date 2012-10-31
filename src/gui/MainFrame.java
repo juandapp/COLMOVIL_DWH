@@ -172,7 +172,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemMosaico);
 
-        jMenuItemMostrarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemMostrarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemMostrarTodas.setText("Mostar Todas");
         jMenuItemMostrarTodas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +181,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemMostrarTodas);
 
-        jMenuItemMinimizarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemMinimizarTodas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DOWN, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemMinimizarTodas.setText("Minimizar Todas");
         jMenuItemMinimizarTodas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

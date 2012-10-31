@@ -151,6 +151,13 @@ public class ControladorContrataciones {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
+            if ("OficinaDWH".equals(dimension)) {
+                joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+            if ("Equipo".equals(dimension)) {
+                joinCondition = "j.cod_Equipo = r.cod_Equipo";
+            }
+
 
             String consulta = "SELECT j." + parametro + ", COUNT( * ) "
                     + "FROM Contrataciones r "
@@ -187,40 +194,43 @@ public class ControladorContrataciones {
 
     }
 
-    public String[][] reporteUnParametroJoinBarra(String tabla, String parametro) {
+    public String[][] reporteUnParametroJoinBarra(String dimension, String parametro) {
 
         try {
             String joinCondition = null;
-            System.out.println(tabla);
+            System.out.println(dimension);
 
-            if ("Fecha".equals(tabla)) {
+            if ("Fecha".equals(dimension)) {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if ("PlanDatos".equals(tabla)) {
+            if ("PlanDatos".equals(dimension)) {
                 joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
             }
 
-            if ("PlanVoz".equals(tabla)) {
+            if ("PlanVoz".equals(dimension)) {
                 joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
 
-            if ("Demografia_Cliente".equals(tabla)) {
+            if ("Demografia_Cliente".equals(dimension)) {
                 joinCondition = "j.cod_Demografia = r.cod_Demografia";
             }
 
-            if ("ClienteDWH".equals(tabla)) {
+            if ("ClienteDWH".equals(dimension)) {
                 joinCondition = "j.cod_Cliente = r.cod_Cliente";
             }
 
-            if ("OficinaDWH".equals(tabla)) {
+            if ("OficinaDWH".equals(dimension)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
+            }
+            if ("Equipo".equals(dimension)) {
+                joinCondition = "j.cod_Equipo = r.cod_Equipo";
             }
 
 
             String consulta = "SELECT COUNT(*), j." + parametro + " "
                     + "FROM Contrataciones r "
-                    + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
+                    + "INNER JOIN " + dimension + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
             System.out.println(consulta);
 
@@ -356,6 +366,10 @@ public class ControladorContrataciones {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
+            if ("Equipo".equals(dimension)) {
+                joinCondition = "j.cod_Equipo = r.cod_Equipo";
+            }
+
             String consulta = "SELECT COUNT( r." + hecho + " ), r." + hecho + ", j." + atributo + " "
                     + "FROM Contrataciones r" + " "
                     + "INNER JOIN " + dimension + " j ON " + joinCondition + " ";
@@ -440,6 +454,9 @@ public class ControladorContrataciones {
             if ("OficinaDWH".equals(dimensionA)) {
                 joinConditionA = "j.cod_Oficina = r.cod_Oficina";
             }
+            if ("Equipo".equals(dimensionA)) {
+                joinConditionA = "j.cod_Equipo = r.cod_Equipo";
+            }
 
             if ("Fecha".equals(dimensionB)) {
                 joinConditionB = "k.cod_Fecha = r.cod_Fecha";
@@ -458,6 +475,9 @@ public class ControladorContrataciones {
             }
             if ("OficinaDWH".equals(dimensionB)) {
                 joinConditionB = "k.cod_Oficina = r.cod_Oficina";
+            }
+            if ("Equipo".equals(dimensionB)) {
+                joinConditionB = "k.cod_Equipo = r.cod_Equipo";
             }
 
             String consulta = "SELECT COUNT(*), j." + atributoA + ", k." + atributoB + " "

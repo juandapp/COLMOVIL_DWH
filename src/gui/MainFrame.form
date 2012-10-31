@@ -41,7 +41,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMostrarTodas">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+T"/>
+                  <KeyStroke key="Ctrl+UP"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mostar Todas"/>
               </Properties>
@@ -52,7 +52,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMinimizarTodas">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+D"/>
+                  <KeyStroke key="Ctrl+DOWN"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Minimizar Todas"/>
               </Properties>
