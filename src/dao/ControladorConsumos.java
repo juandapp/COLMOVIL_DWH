@@ -194,40 +194,46 @@ public class ControladorConsumos {
 
     }
 
-    public String[][] reporteUnParametroJoinBarra(String tabla, String parametro) {
+    public String[][] reporteUnParametroJoinBarra(String fk, String parametro) {
 
+        String dimensionConvertida = convertidorDimensiones(fk);
         try {
             String joinCondition = null;
-            System.out.println(tabla);
+            System.out.println(fk);
 
-            if ("Fecha".equals(tabla)) {
+            if ("Fecha".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if ("PlanDatos".equals(tabla)) {
-                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            if ("OperadorDWH".equals(dimensionConvertida)) {
+                System.out.println("Operador: "+fk);
+                if (fk.equals("cod_Operador_Origen")) {
+                    joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
+                } else {
+                    joinCondition = "j.cod_Operador = r.cod_Operador_Destino";
+                }
             }
 
-            if ("PlanVoz".equals(tabla)) {
+            if ("PlanVoz".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
 
-            if ("Demografia_Cliente".equals(tabla)) {
+            if ("Demografia_Cliente".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Demografia = r.cod_Demografia";
             }
 
-            if ("ClienteDWH".equals(tabla)) {
+            if ("ClienteDWH".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Cliente = r.cod_Cliente";
             }
 
-            if ("OficinaDWH".equals(tabla)) {
+            if ("OficinaDWH".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
 
             String consulta = "SELECT COUNT(*), j." + parametro + " "
                     + "FROM Consumos_Voz r "
-                    + "INNER JOIN " + tabla + " j ON " + joinCondition + " "
+                    + "INNER JOIN " + dimensionConvertida + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
             System.out.println(consulta);
 
@@ -332,40 +338,45 @@ public class ControladorConsumos {
 
     }
 
-    public String[][] reporteBivariadoBarra(String dimension, String atributo, String valueAtributo, String hecho) {
+    public String[][] reporteBivariadoBarra(String fk, String atributo, String valueAtributo, String hecho) {
 
+        String dimensionConvertida = convertidorDimensiones(fk);
         try {
-
             String joinCondition = null;
-            System.out.println(dimension);
+            System.out.println(fk);
 
-            if ("Fecha".equals(dimension)) {
+            if ("Fecha".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if ("PlanDatos".equals(dimension)) {
-                joinCondition = "j.cod_PlanDatos = r.cod_PlanDatos";
+            if ("OperadorDWH".equals(dimensionConvertida)) {
+                System.out.println("Operador: "+fk);
+                if (fk.equals("cod_Operador_Origen")) {
+                    joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
+                } else {
+                    joinCondition = "j.cod_Operador = r.cod_Operador_Destino";
+                }
             }
 
-            if ("PlanVoz".equals(dimension)) {
+            if ("PlanVoz".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
 
-            if ("Demografia_Cliente".equals(dimension)) {
+            if ("Demografia_Cliente".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Demografia = r.cod_Demografia";
             }
 
-            if ("ClienteDWH".equals(dimension)) {
+            if ("ClienteDWH".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Cliente = r.cod_Cliente";
             }
 
-            if ("OficinaDWH".equals(dimension)) {
+            if ("OficinaDWH".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
             String consulta = "SELECT COUNT( r." + hecho + " ), r." + hecho + ", j." + atributo + " "
                     + "FROM Consumos_Voz r" + " "
-                    + "INNER JOIN " + dimension + " j ON " + joinCondition + " ";
+                    + "INNER JOIN " + dimensionConvertida + " j ON " + joinCondition + " ";
 
             if (!valueAtributo.equalsIgnoreCase("todos")) {
                 consulta = consulta + "WHERE j." + atributo + " = '" + valueAtributo + "' ";
@@ -422,55 +433,67 @@ public class ControladorConsumos {
         return newAtributo.substring(0, newAtributo.length() - 1);
     }
 
-    public String[][] reporteBidimensional(String dimensionA, String atributoA, String valorA, String dimensionB, String atributoB, String valorB) {
+    public String[][] reporteBidimensional(String fkA, String atributoA, String valorA, String fkB, String atributoB, String valorB) {
         try {
 
             String joinConditionA = null;
             String joinConditionB = null;
-            System.out.println(dimensionA);
+            
+            String dimensionConvertidaA = convertidorDimensiones(fkA);
+            String dimensionConvertidaB = convertidorDimensiones(fkA);
 
-            if ("Fecha".equals(dimensionA)) {
+
+
+            if ("Fecha".equals(fkA)) {
                 joinConditionA = "j.cod_Fecha = r.cod_Fecha";
             }
-            if ("PlanDatos".equals(dimensionA)) {
-                joinConditionA = "j.cod_PlanDatos = r.cod_PlanDatos";
+            if ("OperadorDWH".equals(dimensionConvertidaA)) {
+                if (fkA.equals("cod_Operador_Origen")) {
+                    joinConditionA = "j.cod_Operador = r.cod_Operador_Origen";
+                } else {
+                    joinConditionA = "j.cod_Operador = r.cod_Operador_Destino";
+                }
             }
-            if ("PlanVoz".equals(dimensionA)) {
+            if ("PlanVoz".equals(fkA)) {
                 joinConditionA = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
-            if ("Demografia_Cliente".equals(dimensionA)) {
+            if ("Demografia_Cliente".equals(fkA)) {
                 joinConditionA = "j.cod_Demografia = r.cod_Demografia";
             }
-            if ("ClienteDWH".equals(dimensionA)) {
+            if ("ClienteDWH".equals(fkA)) {
                 joinConditionA = "j.cod_Cliente = r.cod_Cliente";
             }
-            if ("OficinaDWH".equals(dimensionA)) {
+            if ("OficinaDWH".equals(fkA)) {
                 joinConditionA = "j.cod_Oficina = r.cod_Oficina";
             }
 
-            if ("Fecha".equals(dimensionB)) {
+            if ("Fecha".equals(fkB)) {
                 joinConditionB = "k.cod_Fecha = r.cod_Fecha";
             }
-            if ("PlanDatos".equals(dimensionB)) {
-                joinConditionB = "k.cod_PlanDatos = r.cod_PlanDatos";
+            if ("OperadorDWH".equals(dimensionConvertidaB)) {
+                if (fkB.equals("cod_Operador_Origen")) {
+                    joinConditionB = "j.cod_Operador = r.cod_Operador_Origen";
+                } else {
+                    joinConditionB = "j.cod_Operador = r.cod_Operador_Destino";
+                }
             }
-            if ("PlanVoz".equals(dimensionB)) {
+            if ("PlanVoz".equals(fkB)) {
                 joinConditionB = "k.cod_PlanVoz = r.cod_PlanVoz";
             }
-            if ("Demografia_Cliente".equals(dimensionB)) {
+            if ("Demografia_Cliente".equals(fkB)) {
                 joinConditionB = "k.cod_Demografia = r.cod_Demografia";
             }
-            if ("ClienteDWH".equals(dimensionB)) {
+            if ("ClienteDWH".equals(fkB)) {
                 joinConditionB = "k.cod_Cliente = r.cod_Cliente";
             }
-            if ("OficinaDWH".equals(dimensionB)) {
+            if ("OficinaDWH".equals(fkB)) {
                 joinConditionB = "k.cod_Oficina = r.cod_Oficina";
             }
 
             String consulta = "SELECT COUNT(*), j." + atributoA + ", k." + atributoB + " "
                     + "FROM Consumos_Voz r" + " "
-                    + "INNER JOIN " + dimensionA + " j ON " + joinConditionA + " "
-                    + "INNER JOIN " + dimensionB + " k ON " + joinConditionB + " ";
+                    + "INNER JOIN " + dimensionConvertidaA + " j ON " + joinConditionA + " "
+                    + "INNER JOIN " + dimensionConvertidaB + " k ON " + joinConditionB + " ";
 
 
             if (!valorA.equalsIgnoreCase("todos") && valorB.equalsIgnoreCase("todos")) {
