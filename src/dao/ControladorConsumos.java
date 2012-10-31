@@ -79,6 +79,7 @@ public class ControladorConsumos {
 
     public Object[] getValores(String dimension, String atributo) {
 
+        dimension = convertidorDimensiones(dimension);
         ArrayList<String> valores = new ArrayList<>();
         try {
             String consulta = "SELECT DISTINCT " + atributo + " FROM " + dimension;
@@ -122,42 +123,47 @@ public class ControladorConsumos {
         return false;
     }
 
-    public String[][] reporteUnParametroJoinPie(String dimension, String parametro) {
+    public String[][] reporteUnParametroJoinPie(String fk, String parametro) {
 
+        String dimensionConvertida = convertidorDimensiones(fk);
         try {
             String joinCondition = null;
-            System.out.println(dimension);
+            System.out.println(fk);
 
-            if ("Fecha".equals(dimension)) {
+            if ("Fecha".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Fecha = r.cod_Fecha";
             }
 
-            if ("OperadorDWH".equals(dimension)) {
-                joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
+            if ("OperadorDWH".equals(dimensionConvertida)) {
+                System.out.println("Operador: "+fk);
+                if (fk.equals("cod_Operador_Origen")) {
+                    joinCondition = "j.cod_Operador = r.cod_Operador_Origen";
+                } else {
+                    joinCondition = "j.cod_Operador = r.cod_Operador_Destino";
+                }
             }
 
-            if ("PlanVoz".equals(dimension)) {
+            if ("PlanVoz".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_PlanVoz = r.cod_PlanVoz";
             }
 
-            if ("Demografia_Cliente".equals(dimension)) {
+            if ("Demografia_Cliente".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Demografia = r.cod_Demografia";
             }
 
-            if ("ClienteDWH".equals(dimension)) {
+            if ("ClienteDWH".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Cliente = r.cod_Cliente";
             }
 
-            if ("OficinaDWH".equals(dimension)) {
+            if ("OficinaDWH".equals(dimensionConvertida)) {
                 joinCondition = "j.cod_Oficina = r.cod_Oficina";
             }
 
 
             String consulta = "SELECT j." + parametro + ", COUNT( * ) "
                     + "FROM Consumos_Voz r "
-                    + "INNER JOIN " + dimension + " j ON " + joinCondition + " "
+                    + "INNER JOIN " + dimensionConvertida + " j ON " + joinCondition + " "
                     + "GROUP BY j." + parametro;
-            System.out.println(consulta);
 
             ResultSet resultSet = fachadaBD.executeQuery(consulta);
 
@@ -514,10 +520,10 @@ public class ControladorConsumos {
     private String convertidorDimensiones(String dimension) {
 
         if (dimension.equals("cod_Cliente")) {
-            return "Cliente";
+            return "ClienteDWH";
         }
-        if (dimension.equals("cod_Cliente")) {
-            return "Cliente";
+        if (dimension.equals("cod_Fecha")) {
+            return "Fecha";
         }
         if (dimension.equals("cod_Demografia")) {
             return "Demografia_Cliente";
@@ -530,6 +536,9 @@ public class ControladorConsumos {
         }
         if (dimension.equals("cod_Operador_Destino")) {
             return "OperadorDWH";
+        }
+        if (dimension.equals("Consumos_Voz")) {
+            return "Consumos_Voz";
         }
         return "";
     }
