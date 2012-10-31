@@ -1,13 +1,17 @@
 package gui;
 
 import java.awt.Font;
+import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.LegendItemCollection;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.MultiplePiePlot;
 import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.util.Rotation;
@@ -33,7 +37,7 @@ public class MultiplePieChart {
     public MultiplePieChart(String charTitle, String[][] dataSet, String rangeAxisLabel) {
         this.charTitle = charTitle;
         this.dataSet = dataSet;
-        this.rangeAxisLabel=rangeAxisLabel;
+        this.rangeAxisLabel = rangeAxisLabel;
     }
 
     public void setDomainAxisLabel(String domainAxisLabel) {
@@ -63,20 +67,28 @@ public class MultiplePieChart {
                 charTitle,
                 dataset,
                 TableOrder.BY_COLUMN,
-                false,
+                true,
                 true,
                 false);
 
         //Cambiar la orientacion de los labels!!
         chart.getTitle().setFont(new Font("Ubuntu", Font.BOLD, 20));
-        
+
         MultiplePiePlot multiplePlot = (MultiplePiePlot) chart.getPlot();
         PiePlot3D plot = (PiePlot3D) multiplePlot.getPieChart().getPlot();
-        PieSectionLabelGenerator generator = new StandardPieSectionLabelGenerator("{0} ({2})");
+        
+        PieSectionLabelGenerator generator = new StandardPieSectionLabelGenerator("{2}");
         plot.setLabelGenerator(generator);
         plot.setStartAngle(290);
         plot.setDirection(Rotation.CLOCKWISE);
         plot.setForegroundAlpha(0.9f);
+        
+        List subtitles = chart.getSubtitles();
+        LegendTitle subtitle;
+        for (int i = 0; i < subtitles.size(); i++) {
+            subtitle=(LegendTitle)subtitles.get(i);
+            subtitle.setItemFont(new Font("Ubuntu", Font.PLAIN, 12));
+        }
         return chart;
     }
 
@@ -90,6 +102,4 @@ public class MultiplePieChart {
     public String getCharTitle() {
         return charTitle;
     }
-    
-    
 }
