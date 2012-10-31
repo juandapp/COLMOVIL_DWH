@@ -176,6 +176,30 @@ public class LogicaRetiros {
         return barChart;
     }
 
+    public MultiplePieChart reporteBiDimensionalPie(int dimensionA, int atributoA, String valorA, int dimensionB, int atributoB, String valorB) {
+        String dimensionNameA = comboBoxDimensionesA[1].get(dimensionA);
+        String atributoNameA = comboBoxAtributosA[1].get(atributoA);
+        String dimensionNameB = comboBoxDimensionesB[1].get(dimensionB);
+        String atributoNameB = comboBoxAtributosB[1].get(atributoB);
+
+        String[][] matrizCausas = controladorRetiros.reporteBidimensional(dimensionNameA, atributoNameA, valorA, dimensionNameB, atributoNameB, valorB);
+
+        String title = "Retiros - " + " por " + comboBoxAtributosA[0].get(atributoA);
+
+        if (!valorA.equalsIgnoreCase("todos")) {
+            title = title + " = [" + valorA + "] ";
+        }
+
+        title = title + " por " + comboBoxAtributosB[0].get(atributoB);
+
+        if (!valorB.equalsIgnoreCase("todos")) {
+            title = title + " = [" + valorB + "] ";
+        }
+
+        MultiplePieChart multiplePieChart = new MultiplePieChart(title, matrizCausas, "Retiros");
+        return multiplePieChart;
+    }
+
     public Object[] getDataComboBoxValoresA(int dimension, int atributo) {
         String dimensionName = comboBoxDimensionesA[1].get(dimension);
         String atributoName = comboBoxAtributosA[1].get(atributo);

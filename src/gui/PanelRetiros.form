@@ -448,7 +448,7 @@
                       </Border>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[230, 360]"/>
+                      <Dimension value="[230, 370]"/>
                     </Property>
                   </Properties>
 
@@ -603,11 +603,22 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Bar"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[170, 25]"/>
+                          <Dimension value="[80, 25]"/>
                         </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBarJoin1ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButtonPieJoin1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Pie"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[80, 25]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPieJoin1ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
