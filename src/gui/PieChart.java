@@ -4,12 +4,13 @@
  */
 package gui;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Paint;
+import java.awt.Font;
+import java.text.DecimalFormat;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
@@ -43,7 +44,7 @@ public class PieChart {
 
         JFreeChart chart = ChartFactory.createPieChart3D(charTitle,
                 dataset,
-                true,
+                false,
                 true,
                 false);
 
@@ -51,6 +52,11 @@ public class PieChart {
         plot.setStartAngle(290);
         plot.setDirection(Rotation.CLOCKWISE);
         plot.setForegroundAlpha(0.9f);
+        
+        chart.getTitle().setFont(new Font("Ubuntu", Font.BOLD, 20));
+        PieSectionLabelGenerator generator = new StandardPieSectionLabelGenerator("{0} ({1}, {2})");
+        plot.setLabelGenerator(generator);
+        
         return chart;
     }
 

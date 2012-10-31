@@ -117,7 +117,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jBAnalisisUnidimensional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/imagenes/Uni.jpg"))); // NOI18N
         jBAnalisisUnidimensional.setFocusable(false);
         jBAnalisisUnidimensional.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBAnalisisUnidimensional.setPreferredSize(new java.awt.Dimension(40, 150));
+        jBAnalisisUnidimensional.setPreferredSize(new java.awt.Dimension(40, 200));
         jBAnalisisUnidimensional.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBAnalisisUnidimensional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +130,7 @@ public class PanelRetiros extends javax.swing.JPanel {
         jBAnalisisBidimensional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/imagenes/Bi.jpg"))); // NOI18N
         jBAnalisisBidimensional.setFocusable(false);
         jBAnalisisBidimensional.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBAnalisisBidimensional.setPreferredSize(new java.awt.Dimension(40, 150));
+        jBAnalisisBidimensional.setPreferredSize(new java.awt.Dimension(40, 200));
         jBAnalisisBidimensional.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jBAnalisisBidimensional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
