@@ -1,9 +1,17 @@
 package gui;
 
+import java.awt.Font;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarPainter;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -24,9 +32,10 @@ public class BarChart {
         this.dataSet = dataSet;
     }
 
-    public BarChart(String charTitle, String[][] dataSet) {
+    public BarChart(String charTitle, String[][] dataSet, String rangeAxisLabel) {
         this.charTitle = charTitle;
         this.dataSet = dataSet;
+        this.rangeAxisLabel=rangeAxisLabel;
     }
 
     public void setDomainAxisLabel(String domainAxisLabel) {
@@ -52,7 +61,7 @@ public class BarChart {
 
     private JFreeChart createChart(CategoryDataset dataset) {
 
-        JFreeChart chart = ChartFactory.createBarChart(
+        JFreeChart chart = ChartFactory.createBarChart3D(
                 charTitle,
                 domainAxisLabel,
                 rangeAxisLabel,
@@ -61,6 +70,12 @@ public class BarChart {
                 true,
                 true,
                 false);
+
+        //Cambiar la orientacion de los labels!!
+        chart.getCategoryPlot().getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+        chart.getCategoryPlot().getRangeAxis().setLabelFont(new Font("Ubuntu", Font.BOLD, 14));
+        chart.getLegend().setItemFont(new Font("Ubuntu", Font.PLAIN, 12));
+        chart.getTitle().setFont(new Font("Ubuntu", Font.BOLD, 20));
 
         return chart;
     }

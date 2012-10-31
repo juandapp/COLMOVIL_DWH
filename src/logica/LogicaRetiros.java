@@ -91,7 +91,7 @@ public class LogicaRetiros {
     public BarChart reporteUnParametroBarra(int hecho) {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroBarra(
                 comboBoxHechos[1].get(hecho));
-        BarChart barChart = new BarChart("Retiros - " + comboBoxHechos[0].get(hecho), matrizCausas);
+        BarChart barChart = new BarChart("Retiros - " + comboBoxHechos[0].get(hecho), matrizCausas, "Retiros");
         return barChart;
     }
 
@@ -99,7 +99,7 @@ public class LogicaRetiros {
         String[][] matrizCausas = controladorRetiros.reporteUnParametroJoinBarra(
                 comboBoxDimensiones[1].get(dimension),
                 comboBoxAtributos[1].get(atributo));
-        BarChart barChart = new BarChart("Retiros - " + comboBoxAtributos[0].get(atributo), matrizCausas);
+        BarChart barChart = new BarChart("Retiros - " + comboBoxAtributos[0].get(atributo), matrizCausas, "Retiros");
         return barChart;
     }
 
@@ -124,7 +124,7 @@ public class LogicaRetiros {
             title = title + " = [" + valor + "]";
         }
 
-        BarChart barChart = new BarChart(title, matrizCausas);
+        BarChart barChart = new BarChart(title, matrizCausas, "Retiros");
         return barChart;
     }
 
@@ -154,7 +154,7 @@ public class LogicaRetiros {
             title = title + " = [" + valorB + "] ";
         }
 
-        BarChart barChart = new BarChart(title, matrizCausas);
+        BarChart barChart = new BarChart(title, matrizCausas, "Retiros");
         return barChart;
     }
 

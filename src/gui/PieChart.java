@@ -4,6 +4,9 @@
  */
 package gui;
 
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Paint;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
