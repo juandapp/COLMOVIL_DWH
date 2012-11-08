@@ -1,9 +1,14 @@
-*.class
-*~
-# Package Files #
-*.war
-*.ear
-/Colmovil_DWH/nbproject/private/
+#NetBeans
 /nbproject/private/
 /build/
 /dist/
+
+#Gedit
+*~
+
+#GitHub
+*.class
+# Package Files #
+*.war
+*.ear
+
